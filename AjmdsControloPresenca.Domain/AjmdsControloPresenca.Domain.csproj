@@ -35,10 +35,15 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Cargo.cs" />
+    <Compile Include="Entities\Departamento.cs" />
+    <Compile Include="Entities\EstadoCivil.cs" />
+    <Compile Include="Entities\Funcionario.cs" />
+    <Compile Include="Entities\Genero.cs" />
+    <Compile Include="Entities\Presenca.cs" />
+    <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
