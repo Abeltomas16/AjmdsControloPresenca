@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjmdsControloPresenca.UI", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjmdsControloPresenca.Infra", "AjmdsControloPresenca.Infra\AjmdsControloPresenca.Infra.csproj", "{0D88EBFF-B073-43E1-881A-1AEDE3CD3BD4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjmdsControloPresenca.Domain", "AjmdsControloPresenca.Domain\AjmdsControloPresenca.Domain.csproj", "{12940055-B8F2-4D8D-85EF-CB482B2D5D8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0D88EBFF-B073-43E1-881A-1AEDE3CD3BD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D88EBFF-B073-43E1-881A-1AEDE3CD3BD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D88EBFF-B073-43E1-881A-1AEDE3CD3BD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12940055-B8F2-4D8D-85EF-CB482B2D5D8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12940055-B8F2-4D8D-85EF-CB482B2D5D8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12940055-B8F2-4D8D-85EF-CB482B2D5D8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12940055-B8F2-4D8D-85EF-CB482B2D5D8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
