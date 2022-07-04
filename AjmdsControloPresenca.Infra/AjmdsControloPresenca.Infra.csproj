@@ -52,15 +52,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity\Data\EntityDatabaseContext.cs" />
+    <Compile Include="Entity\Data\Maps\CargosMap.cs" />
+    <Compile Include="Entity\Data\Maps\DepartamentosMap.cs" />
+    <Compile Include="Entity\Data\Maps\DepartamentosTurnoMap.cs" />
+    <Compile Include="Entity\Data\Maps\EstadoCivilMap.cs" />
+    <Compile Include="Entity\Data\Maps\FuncionarioMap.cs" />
+    <Compile Include="Entity\Data\Maps\GeneroMap.cs" />
+    <Compile Include="Entity\Data\Maps\PresencaMap.cs" />
+    <Compile Include="Entity\Data\Maps\TurnoMap.cs" />
+    <Compile Include="Entity\Data\Maps\UsuarioMap.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entity\Data\Maps\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\AjmdsControloPresenca.Domain\AjmdsControloPresenca.Domain.csproj">
       <Project>{12940055-B8F2-4D8D-85EF-CB482B2D5D8E}</Project>

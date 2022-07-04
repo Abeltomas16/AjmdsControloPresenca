@@ -1,10 +1,6 @@
 ﻿using AjmdsControloPresenca.Domain.Entities;
-using System;
-using System.Collections.Generic;
+using AjmdsControloPresenca.Infra.Entity.Data.Maps;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AjmdsControloPresenca.Infra.Entity.Data
 {
@@ -22,5 +18,17 @@ namespace AjmdsControloPresenca.Infra.Entity.Data
         public DbSet<Presenca> Presencas { get; set; }
         public DbSet<Turno> Turnos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.Add(new CargosMap());
+            modelBuilder.Configurations.Add(new DepartamentosMap());
+          //  modelBuilder.Configurations.Add(new DepartamentosTurnoMap());
+            modelBuilder.Configurations.Add(new EstadoCivilMap());
+            modelBuilder.Configurations.Add(new FuncionarioMap());
+            modelBuilder.Configurations.Add(new GeneroMap());
+            modelBuilder.Configurations.Add(new PresencaMap());
+            modelBuilder.Configurations.Add(new TurnoMap());
+            modelBuilder.Configurations.Add(new UsuarioMap());
+        }
     }
 }

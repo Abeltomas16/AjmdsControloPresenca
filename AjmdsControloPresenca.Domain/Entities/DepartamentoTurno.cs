@@ -3,8 +3,8 @@
     public class DepartamentoTurno
     {
 
-        public short DepartamentoId { get; set; }
-        public virtual Departamento  Departamento { get; set; }
+        public short Id { get; set; }
+       // public virtual Departamento  Departamento { get; set; }
 
         public short Segunda { get; set; }
         public virtual Turno TurnoS { get; set; }
