@@ -61,6 +61,12 @@
   <ItemGroup>
     <Folder Include="Entity\Data\Maps\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AjmdsControloPresenca.Domain\AjmdsControloPresenca.Domain.csproj">
+      <Project>{12940055-B8F2-4D8D-85EF-CB482B2D5D8E}</Project>
+      <Name>AjmdsControloPresenca.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
