@@ -37,10 +37,12 @@
   <ItemGroup>
     <Compile Include="Entities\Cargo.cs" />
     <Compile Include="Entities\Departamento.cs" />
+    <Compile Include="Entities\DepartamentoTurno.cs" />
     <Compile Include="Entities\EstadoCivil.cs" />
     <Compile Include="Entities\Funcionario.cs" />
     <Compile Include="Entities\Genero.cs" />
     <Compile Include="Entities\Presenca.cs" />
+    <Compile Include="Entities\Turno.cs" />
     <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

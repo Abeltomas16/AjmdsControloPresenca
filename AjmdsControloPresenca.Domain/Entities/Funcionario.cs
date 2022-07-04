@@ -27,6 +27,9 @@ namespace AjmdsControloPresenca.Domain.Entities
         public short DepartamentoId { get; set; }
         public virtual Departamento Departamento { get; set; }
 
+        public short CargoId { get; set; }
+        public virtual Cargo  Cargo { get; set; }
+
         public virtual ICollection<Presenca> Presenca { get; set; }
     }
 }
