@@ -11,9 +11,11 @@ namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
 
             HasKey(pk => pk.Id);
 
+            Property(t => t.Id)
+                .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             //FK 1-1??
 
-            Property(c => c.Segunda);
+           Property(c => c.Segunda);
             Property(c => c.Terca);
             Property(c => c.Quarta);
             Property(c => c.Quinta);
@@ -22,7 +24,7 @@ namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
             Property(c => c.Domingo);
             Property(c => c.Sabado);
 
-            HasRequired(fk => fk.TurnoS)
+          /*  HasRequired(fk => fk.TurnoS)
                 .WithMany()
                 .HasForeignKey(f => f.Segunda);
 
@@ -30,13 +32,13 @@ namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
                 .WithMany()
                 .HasForeignKey(f => f.Terca);
 
-
-            HasRequired(fk => fk.TurnoQ)
+            */
+           /* HasRequired(fk => fk.TurnoQ)
                 .WithMany()
-                .HasForeignKey(f => f.Quarta);
+                .HasForeignKey(f => f.Quarta);*/
 
 
-            HasRequired(fk => fk.TurnoQT)
+           /* HasRequired(fk => fk.TurnoQT)
                 .WithMany()
                 .HasForeignKey(f => f.Quinta);
 
@@ -53,7 +55,7 @@ namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
             HasRequired(fk => fk.TurnoDM)
                 .WithMany()
                 .HasForeignKey(f => f.Domingo);
-
+           */
         }
     }
 }

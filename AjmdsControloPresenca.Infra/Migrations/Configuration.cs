@@ -9,7 +9,7 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(AjmdsControloPresenca.Infra.Entity.Data.EntityDatabaseContext context)
@@ -18,6 +18,8 @@
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
+            context.Database.ExecuteSqlCommand("ALTER TABLE DepartamentoTurno " +
+                                    "ADD FOREIGN KEY(Id) REFERENCES Departamento(Id)");
         }
     }
 }

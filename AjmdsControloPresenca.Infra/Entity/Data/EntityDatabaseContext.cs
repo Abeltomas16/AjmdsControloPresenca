@@ -6,7 +6,7 @@ namespace AjmdsControloPresenca.Infra.Entity.Data
 {
     public class EntityDatabaseContext : DbContext
     {
-        public EntityDatabaseContext() : base("ConnectionStringSQL")
+        public EntityDatabaseContext() : base("Password=049222Xp12;Persist Security Info=True;User ID=sa;Initial Catalog=ALAYSBABel;Data Source=.")
         {
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
@@ -22,7 +22,7 @@ namespace AjmdsControloPresenca.Infra.Entity.Data
         {
             modelBuilder.Configurations.Add(new CargosMap());
             modelBuilder.Configurations.Add(new DepartamentosMap());
-          //  modelBuilder.Configurations.Add(new DepartamentosTurnoMap());
+            modelBuilder.Configurations.Add(new DepartamentosTurnoMap());
             modelBuilder.Configurations.Add(new EstadoCivilMap());
             modelBuilder.Configurations.Add(new FuncionarioMap());
             modelBuilder.Configurations.Add(new GeneroMap());
