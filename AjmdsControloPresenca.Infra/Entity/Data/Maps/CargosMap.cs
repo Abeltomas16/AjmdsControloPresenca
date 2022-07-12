@@ -10,9 +10,9 @@ namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
         {
             ToTable("Cargo");
 
-            HasKey(pk => pk.Id);
+            HasKey(pk => pk.CargoId);
 
-            Property(c => c.Id)
+            Property(c => c.CargoId)
                 .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
 
             Property(c => c.Descricao)

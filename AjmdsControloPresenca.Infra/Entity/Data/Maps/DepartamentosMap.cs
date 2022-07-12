@@ -4,15 +4,15 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
 {
-    public class DepartamentosMap:EntityTypeConfiguration<Departamento>
+    public class DepartamentosMap : EntityTypeConfiguration<Departamento>
     {
         public DepartamentosMap()
         {
             ToTable("Departamento");
 
-            HasKey(pk => pk.Id);
+            HasKey(pk => pk.DepartamentoId);
 
-            Property(c => c.Id)
+            Property(c => c.DepartamentoId)
                 .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
 
             Property(c => c.Descricao)
@@ -23,6 +23,10 @@ namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
                 }));
 
             Property(c => c.Estado);
+
+            HasOptional(a => a.DepartamentoTurno)
+            .WithRequired(ab => ab.Departamento);
+
         }
     }
 }

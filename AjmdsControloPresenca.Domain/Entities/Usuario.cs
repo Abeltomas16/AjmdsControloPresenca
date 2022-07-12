@@ -1,4 +1,6 @@
-﻿namespace AjmdsControloPresenca.Domain.Entities
+﻿using System.Collections.Generic;
+
+namespace AjmdsControloPresenca.Domain.Entities
 {
     public class Usuario
     {

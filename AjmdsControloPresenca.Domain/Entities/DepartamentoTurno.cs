@@ -3,28 +3,28 @@
     public class DepartamentoTurno
     {
 
-        public short Id { get; set; }
-       // public virtual Departamento  Departamento { get; set; }
+        public short DepartamentoId { get; set; }
+        public virtual Departamento Departamento { get; set; }
 
-        public short Segunda { get; set; }
-        public virtual Turno TurnoS { get; set; }
+        public short TurnoSegundaId { get; set; }
+        public virtual Turno TurnoSegunda { get; set; }
+       
+        public short TurnoTercaId { get; set; }
+        public virtual Turno TurnoTerca { get; set; }
 
-        public short Terca { get; set; }
-        public virtual Turno TurnoT { get; set; }
+        public short TurnoQuartaId { get; set; }
+        public virtual Turno TurnoQuarta { get; set; }
 
-        public short Quarta { get; set; }
-        public virtual Turno TurnoQ { get; set; }
+        public short TurnoQuintaId { get; set; }
+        public virtual Turno TurnoQuinta { get; set; }
 
-        public short Quinta { get; set; }
-        public virtual Turno TurnoQT { get; set; }
+        public short TurnoSextaId { get; set; }
+        public virtual Turno TurnoSexta { get; set; }
 
-        public short Sexta { get; set; }
-        public virtual Turno TurnoST { get; set; }
+        public short TurnoSabadoId { get; set; }
+        public virtual Turno TurnoSabado { get; set; }
 
-        public short Sabado { get; set; }
-        public virtual Turno TurnoSB { get; set; }
-
-        public short Domingo { get; set; }
-        public virtual Turno TurnoDM { get; set; }
+        public short TurnoDomingoId { get; set; }
+        public virtual Turno TurnoDomingo { get; set; }
     }
 }

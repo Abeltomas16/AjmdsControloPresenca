@@ -19,6 +19,7 @@ namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
             Property(c => c.Entrada);
 
             Property(c => c.Estado);
+
         }
     }
 }

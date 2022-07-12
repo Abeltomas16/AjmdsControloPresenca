@@ -1,10 +1,5 @@
 ﻿using AjmdsControloPresenca.Domain.Entities;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
 {
@@ -47,37 +42,35 @@ namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
 
             Property(c => c.Estado);
             Property(c => c.DataCadastro);
-
+            Property(c => c.EstadoCivilId);
             Property(c => c.DepartamentoId);
-
-            HasRequired(fk => fk.Departamento)
-                 .WithMany()
-                 .HasForeignKey(x => x.DepartamentoId);
-
             Property(c => c.CargoId);
-
-            HasRequired(fk => fk.Cargo)
-                 .WithMany()
-                 .HasForeignKey(x => x.CargoId);
-
             Property(c => c.GeneroId);
 
+            HasRequired(s => s.Cargo)
+            .WithMany(g => g.Funcionarios)
+            .HasForeignKey<int>(s => s.CargoId);
+
+            HasRequired(fk => fk.Departamento)
+                 .WithMany(g => g.Funcionarios)
+                .HasForeignKey(x => x.DepartamentoId);
+
+            HasRequired(fk => fk.Cargo)
+                 .WithMany(c => c.Funcionarios)
+                 .HasForeignKey(x => x.CargoId);
+
             HasRequired(fk => fk.Genero)
-                 .WithMany()
-                 .HasForeignKey(x => x.GeneroId);
-
-
-            Property(c => c.EstadoCivilId);
+                  .WithMany(c => c.Funcionarios)
+                  .HasForeignKey(x => x.GeneroId);
 
             HasRequired(fk => fk.EstadoCivil)
-                 .WithMany()
+                 .WithMany(c => c.Funcionarios)
                  .HasForeignKey(x => x.EstadoCivilId);
 
-            Property(c => c.CadastradorUsuarioId);
 
-            HasRequired(fk => fk.Usuario)
-                 .WithMany()
-                 .HasForeignKey(x => x.CadastradorUsuarioId);
+            //One by one
+            HasOptional(a => a.Usuario)
+           .WithRequired(ab => ab.Funcionario);
         }
     }
 }

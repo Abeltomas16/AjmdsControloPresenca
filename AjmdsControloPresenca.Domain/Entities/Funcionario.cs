@@ -15,9 +15,6 @@ namespace AjmdsControloPresenca.Domain.Entities
         public bool Estado { get; set; }
         public DateTime DataCadastro { get; set; } = DateTime.Now;
 
-        public short CadastradorUsuarioId { get; set; }
-        public virtual Usuario Usuario { get; set; }
-
         public short GeneroId { get; set; }
         public virtual Genero Genero { get; set; }
 
@@ -28,8 +25,9 @@ namespace AjmdsControloPresenca.Domain.Entities
         public virtual Departamento Departamento { get; set; }
 
         public short CargoId { get; set; }
-        public virtual Cargo  Cargo { get; set; }
+        public virtual Cargo Cargo { get; set; }
 
         public virtual ICollection<Presenca> Presenca { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

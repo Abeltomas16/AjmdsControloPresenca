@@ -1,5 +1,7 @@
 ﻿using AjmdsControloPresenca.Domain.Entities;
+using System;
 using System.Data.Entity.ModelConfiguration;
+using System.Data.Entity.ModelConfiguration.Configuration;
 
 namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
 {
@@ -9,53 +11,44 @@ namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
         {
             ToTable("DepartamentoTurno");
 
-            HasKey(pk => pk.Id);
+            HasKey(pk => pk.DepartamentoId);
+            Property(c => c.TurnoSegundaId)
+                .HasColumnOrder(1);
 
-            Property(t => t.Id)
-                .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            //FK 1-1??
+            HasRequired(fk => fk.TurnoSegunda)
+                  .WithMany(c => c.DepartamentoTurno)
+                  .HasForeignKey(x => x.TurnoSegundaId)
+                  .WillCascadeOnDelete(false);
 
-           Property(c => c.Segunda);
-            Property(c => c.Terca);
-            Property(c => c.Quarta);
-            Property(c => c.Quinta);
-            Property(c => c.Sexta);
-            Property(c => c.Sabado);
-            Property(c => c.Domingo);
-            Property(c => c.Sabado);
+            HasRequired(fk => fk.TurnoTerca)
+              .WithMany(c => c.DepartamentoTurnoTerca)
+              .HasForeignKey(x => x.TurnoTercaId)
+              .WillCascadeOnDelete(false);
 
-          /*  HasRequired(fk => fk.TurnoS)
-                .WithMany()
-                .HasForeignKey(f => f.Segunda);
+            HasRequired(fk => fk.TurnoQuarta)
+               .WithMany(c => c.DepartamentoTurnoQuarta)
+               .HasForeignKey(x => x.TurnoQuartaId)
+               .WillCascadeOnDelete(false);
 
-            HasRequired(fk => fk.TurnoT)
-                .WithMany()
-                .HasForeignKey(f => f.Terca);
+            HasRequired(fk => fk.TurnoQuinta)
+              .WithMany(c => c.DepartamentoTurnoQuinta)
+              .HasForeignKey(x => x.TurnoQuintaId)
+              .WillCascadeOnDelete(false);
 
-            */
-           /* HasRequired(fk => fk.TurnoQ)
-                .WithMany()
-                .HasForeignKey(f => f.Quarta);*/
+            HasRequired(fk => fk.TurnoSexta)
+               .WithMany(c => c.DepartamentoTurnoSexta)
+               .HasForeignKey(x => x.TurnoSextaId)
+               .WillCascadeOnDelete(false);
 
+            HasRequired(fk => fk.TurnoSabado)
+               .WithMany(c => c.DepartamentoTurnoSabado)
+               .HasForeignKey(x => x.TurnoSabadoId)
+               .WillCascadeOnDelete(false);
 
-           /* HasRequired(fk => fk.TurnoQT)
-                .WithMany()
-                .HasForeignKey(f => f.Quinta);
-
-            HasRequired(fk => fk.TurnoS)
-                .WithMany()
-                .HasForeignKey(f => f.Sexta);
-
-
-            HasRequired(fk => fk.TurnoSB)
-                .WithMany()
-                .HasForeignKey(f => f.Sabado);
-
-
-            HasRequired(fk => fk.TurnoDM)
-                .WithMany()
-                .HasForeignKey(f => f.Domingo);
-           */
+            HasRequired(fk => fk.TurnoDomingo)
+               .WithMany(c => c.DepartamentoTurnoDomingo)
+               .HasForeignKey(x => x.TurnoDomingoId)
+               .WillCascadeOnDelete(false);
         }
     }
 }

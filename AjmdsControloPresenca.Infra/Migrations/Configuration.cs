@@ -14,12 +14,20 @@
 
         protected override void Seed(AjmdsControloPresenca.Infra.Entity.Data.EntityDatabaseContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-            //  to avoid creating duplicate seed data.
-            context.Database.ExecuteSqlCommand("ALTER TABLE DepartamentoTurno " +
-                                    "ADD FOREIGN KEY(Id) REFERENCES Departamento(Id)");
+            context.Database.ExecuteSqlCommand(
+              " INSERT dbo.Cargo(CargoId, Descricao) VALUES (1, N'GERENTE')               "
+              + " INSERT dbo.Cargo(CargoId, Descricao) VALUES(2, N'PROGRAMADOR SENIOR')     "
+              + " INSERT dbo.Cargo(CargoId, Descricao) VALUES(3, N'PROGRAMADOR JÚNIOR')     "
+              + " INSERT dbo.Cargo(CargoId, Descricao) VALUES(4, N'PROGRAMADOR PLENO')      "
+              + " INSERT dbo.Cargo(CargoId, Descricao) VALUES(5, N'VENDEDOR')               "
+              + " INSERT dbo.Cargo(CargoId, Descricao) VALUES(6, N'AUXILIAR DE RH')         "
+              + " INSERT dbo.Cargo(CargoId, Descricao) VALUES(7, N'DESIGNER GRÁFICO')       "
+              + " INSERT dbo.Cargo(CargoId, Descricao) VALUES(8, N'TÉCNICO DE COMPRA')      "
+              + " INSERT dbo.Cargo(CargoId, Descricao) VALUES(9, N'TÉCNICO DE REDE')        "
+              + " INSERT dbo.Cargo(CargoId, Descricao) VALUES(10, N'RECEPCIONISTA')         "
+              + " INSERT dbo.Cargo(CargoId, Descricao) VALUES(11, N'GESTOR DE VENDAS')      "
+              + " INSERT dbo.Cargo(CargoId, Descricao) VALUES(12, N'GESTORA DE RH')         "
+              + " INSERT dbo.Cargo(CargoId, Descricao) VALUES(13, N'ESPECIALISTA DE VENDA')");
         }
     }
 }
