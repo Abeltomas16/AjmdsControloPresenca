@@ -1,7 +1,28 @@
 ﻿
+@model AjmdsControloPresenca.UI.Models.LoginViewModel
 @{
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
-
+<div class="my-5 row">
+    <div class="col-12 col-md-6">
+        <h2>Entrar no sistema</h2>
+        <form>
+            <div class="form-group">
+                @Html.LabelFor(c => c.Nome, "Nome")
+                @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.Senha, "Senha")
+                @Html.TextBoxFor(m => m.Senha, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.CheckBoxFor(model => model.Logado, new { @class = "" })
+                @Html.LabelFor(model => model.Logado, "Permanecer logado")
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-lg btn-primary" value="Entrar" />
+            </div>
+        </form>
+    </div>
+</div>
