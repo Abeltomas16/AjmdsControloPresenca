@@ -7,14 +7,24 @@
 <div class="my-5 row">
     <div class="col-12 col-md-6">
         <h2>Entrar no sistema</h2>
-        <form>
+        <small>
+            @Html.ValidationMessage("ErroLogin")
+        </small>
+
+        <form method="post">
             <div class="form-group">
                 @Html.LabelFor(c => c.Nome, "Nome")
                 @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+                <small>
+                    @Html.ValidationMessageFor(v => v.Nome, null, new { @class = "text-danger" })
+                </small>
             </div>
             <div class="form-group">
                 @Html.LabelFor(c => c.Senha, "Senha")
                 @Html.TextBoxFor(m => m.Senha, new { @class = "form-control" })
+                <small>
+                    @Html.ValidationMessageFor(v => v.Senha, null, new { @class = "text-danger" })
+                </small>
             </div>
             <div class="form-group">
                 @Html.CheckBoxFor(model => model.Logado, new { @class = "" })
