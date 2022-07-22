@@ -35,6 +35,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contract\IRepositoryCrud.cs" />
     <Compile Include="Entities\Cargo.cs" />
     <Compile Include="Entities\Departamento.cs" />
     <Compile Include="Entities\DepartamentoTurno.cs" />
@@ -47,8 +48,6 @@
     <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contract\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
