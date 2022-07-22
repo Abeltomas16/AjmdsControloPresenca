@@ -1,0 +1,50 @@
+﻿@model AjmdsControloPresenca.UI.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    <h4>LoginViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Senha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Senha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Logado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Logado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GoUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GoUrl)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
