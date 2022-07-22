@@ -7,7 +7,7 @@ namespace AjmdsControloPresenca.Infra.Repository
 {
     public class RepositoryEF<T> : IRepositoryCrud<T> where T : class
     {
-        EntityDatabaseContext Context = new EntityDatabaseContext();
+        protected EntityDatabaseContext Context = new EntityDatabaseContext();
         public IEnumerable<T> ListarTodos() => Context.Set<T>().ToList();
 
         public T ListarPorId(object id) => Context.Set<T>().Find(id);
