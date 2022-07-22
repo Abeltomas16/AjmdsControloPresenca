@@ -11,9 +11,9 @@ namespace AjmdsControloPresenca.UI.Controllers
         private UsuarioRepositoryEF RepositoryEF = new UsuarioRepositoryEF();
 
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult Login(string ReturnUrl)
         {
-            LoginViewModel login = new LoginViewModel();
+            LoginViewModel login = new LoginViewModel { GoUrl = ReturnUrl };
             return View(login);
         }
         [HttpPost]

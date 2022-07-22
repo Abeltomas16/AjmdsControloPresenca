@@ -7,44 +7,16 @@
 <h2>Index</h2>
 
 <div>
-    <h4>LoginViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Senha)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Senha)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Logado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Logado)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GoUrl)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GoUrl)
-        </dd>
-
-    </dl>
+    <h4>Bem bindo</h4>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@section script{
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    }

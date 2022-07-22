@@ -14,7 +14,7 @@
         <form method="post">
             <div class="form-group">
                 @Html.LabelFor(c => c.Nome, "Nome")
-                @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.Nome, new { @class = "form-control",autofocus="" })
                 <small>
                     @Html.ValidationMessageFor(v => v.Nome, null, new { @class = "text-danger" })
                 </small>
@@ -40,4 +40,7 @@
 @section script{
 
     <script src="~/Scripts/toastr.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/bootstrap.validate.js"></script>
 }
