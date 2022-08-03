@@ -76,8 +76,11 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\CargoRepositoryEF.cs" />
     <Compile Include="Repository\DepartamentoRepositoryEF.cs" />
+    <Compile Include="Repository\EstadoCivilRepositoryEF.cs" />
     <Compile Include="Repository\FuncionarioRepositoryEF.cs" />
+    <Compile Include="Repository\IGeneroRepositoryEF.cs" />
     <Compile Include="Repository\RepositoryEF.cs" />
     <Compile Include="Repository\UsuarioRepositoryEF.cs" />
   </ItemGroup>
