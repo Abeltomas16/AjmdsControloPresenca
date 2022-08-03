@@ -11,7 +11,7 @@
 
         protected override void Seed(AjmdsControloPresenca.Infra.Entity.Data.EntityDatabaseContext context)
         {
-            context.Database.ExecuteSqlCommand(
+          /*  context.Database.ExecuteSqlCommand(
                 " INSERT dbo.Cargo( Descricao) VALUES (N'GERENTE')               "
               + " INSERT dbo.Cargo( Descricao) VALUES( N'PROGRAMADOR SENIOR')     "
               + " INSERT dbo.Cargo( Descricao) VALUES( N'PROGRAMADOR JÚNIOR')     "
@@ -56,7 +56,7 @@
                                                + " INSERT dbo.Genero(Descricao) VALUES( N'FEMENINO')");
             
 
-            context.SaveChanges();
+            context.SaveChanges();*/
         }
     }
 }

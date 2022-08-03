@@ -66,6 +66,14 @@
     <Compile Include="Migrations\202207131248010_Initial.designer.cs">
       <DependentUpon>202207131248010_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202208031449479_Colocado Entrada e Saidacoo nullable.cs" />
+    <Compile Include="Migrations\202208031449479_Colocado Entrada e Saidacoo nullable.designer.cs">
+      <DependentUpon>202208031449479_Colocado Entrada e Saidacoo nullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202208031523252_AddColunaCadastro.cs" />
+    <Compile Include="Migrations\202208031523252_AddColunaCadastro.designer.cs">
+      <DependentUpon>202208031523252_AddColunaCadastro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\RepositoryEF.cs" />
@@ -84,6 +92,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202207131248010_Initial.resx">
       <DependentUpon>202207131248010_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208031449479_Colocado Entrada e Saidacoo nullable.resx">
+      <DependentUpon>202208031449479_Colocado Entrada e Saidacoo nullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208031523252_AddColunaCadastro.resx">
+      <DependentUpon>202208031523252_AddColunaCadastro.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

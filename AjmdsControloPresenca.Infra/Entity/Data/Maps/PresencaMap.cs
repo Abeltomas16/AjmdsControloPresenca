@@ -14,8 +14,13 @@ namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
             Property(c => c.Id)
                 .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
 
-            Property(c => c.Entrada);
-            Property(c => c.Saida);
+            Property(c => c.Entrada)
+                .IsOptional();
+
+            Property(c => c.Saida)
+                .IsOptional();
+
+            Property(c => c.Cadastro);
 
             Property(c => c.FuncionarioId);
 
