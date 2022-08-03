@@ -80,7 +80,7 @@
     <Compile Include="Repository\DepartamentoRepositoryEF.cs" />
     <Compile Include="Repository\EstadoCivilRepositoryEF.cs" />
     <Compile Include="Repository\FuncionarioRepositoryEF.cs" />
-    <Compile Include="Repository\IGeneroRepositoryEF.cs" />
+    <Compile Include="Repository\GeneroRepositoryEF.cs" />
     <Compile Include="Repository\RepositoryEF.cs" />
     <Compile Include="Repository\UsuarioRepositoryEF.cs" />
   </ItemGroup>

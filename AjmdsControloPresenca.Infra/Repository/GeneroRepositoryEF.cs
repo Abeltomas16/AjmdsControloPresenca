@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace AjmdsControloPresenca.Infra.Repository
 {
-    public class IGeneroRepositoryEF : IGeneroRepository
+    public class GeneroRepositoryEF : IGeneroRepository
     {
         private EntityDatabaseContext Context = new EntityDatabaseContext();
         public IEnumerable<Genero> ListarTodos() => Context.Set<Genero>().ToList();
