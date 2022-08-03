@@ -1,10 +1,11 @@
 ﻿
+
 @{
     ViewBag.Title = "Funcionários";
 }
 
-<h2 class="">@ViewBag.Title</h2>
-<a href="#" class="btn btn-primary mt-4 mb-4 px-3">Novo</a>
+<h2>@ViewBag.Title</h2>
+<a href="#" class="btn btn-primary mt-4 mb-4 px-3">Cadastrar</a>
 <div class="table-responsive table-hover">
     <table class="table table-striped">
         <thead>
@@ -16,40 +17,34 @@
                 <th scope="col">Estado Civil</th>
                 <th scope="col">Departamento</th>
                 <th scope="col">Cargo</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>mdo</td>
-                <td>Otto</td>
-                <td>mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>fat</td>
-                <td>Otto</td>
-                <td>mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>twitter</td>
-                <td>Otto</td>
-                <td>mdo</td>
-            </tr>
+            @foreach (Funcionario funcionario in Model)
+            {
+                <tr>
+                    <th scope="row">@funcionario.Id</th>
+                    <td>@funcionario.Nome</td>
+                    <td>@funcionario.SobreNome</td>
+                    <td>@funcionario.ContactoPrincipa</td>
+                    <td>@funcionario.EstadoCivil.Descricao</td>
+                    <td>@funcionario.Departamento.Descricao</td>
+                    <td>@funcionario.Cargo.Descricao</td>
+                    <td class="btn-group">
+                        <a class="btn btn-sm btn-outline-success"
+                           href="@Url.Action("Edit",new {id=funcionario.Id})"><i class="fas fa-edit"></i> Editar</a>
+                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i> Excluir</button>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
-    @section script{
+@section script{
 
-        <script src="~/Scripts/toastr.min.js"></script>
-        <script src="~/Scripts/jquery.validate.min.js"></script>
-        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-        <script src="~/Scripts/bootstrap.validate.js"></script>
-    }
+    <script src="~/Scripts/toastr.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/bootstrap.validate.js"></script>
+}
