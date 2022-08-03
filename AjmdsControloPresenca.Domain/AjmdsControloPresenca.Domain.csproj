@@ -35,6 +35,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contract\IDepartamentoRepository.cs" />
     <Compile Include="Contract\IFuncionarioRepository.cs" />
     <Compile Include="Contract\IRepositoryCrud.cs" />
     <Compile Include="Contract\IUsuarioRepository.cs" />
