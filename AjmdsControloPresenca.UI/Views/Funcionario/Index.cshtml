@@ -21,16 +21,16 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (Funcionario funcionario in Model)
+            @foreach (FuncionarioIndexVM funcionario in Model)
             {
                 <tr>
                     <th scope="row">@funcionario.Id</th>
                     <td>@funcionario.Nome</td>
                     <td>@funcionario.SobreNome</td>
                     <td>@funcionario.ContactoPrincipa</td>
-                    <td>@funcionario.EstadoCivil.Descricao</td>
-                    <td>@funcionario.Departamento.Descricao</td>
-                    <td>@funcionario.Cargo.Descricao</td>
+                    <td>@funcionario.EstadoCivilDescricao</td>
+                    <td>@funcionario.DepartamentoDescricao</td>
+                    <td>@funcionario.CargoDescricao</td>
                     <td class="btn-group">
                         <a class="btn btn-sm btn-outline-success"
                            href="@Url.Action("Edit",new {id=funcionario.Id})"><i class="fas fa-edit"></i> Editar</a>
