@@ -37,6 +37,7 @@ namespace AjmdsControloPresenca.UI.Controllers
             repositoryEF.Add(Entity.ToFuncionario());
             return RedirectToAction("Index");
         }
+        [HttpGet]
         public ActionResult Edit(int? Id)
         {
             if (Id == null) RedirectToAction("Index");
@@ -44,6 +45,13 @@ namespace AjmdsControloPresenca.UI.Controllers
             FuncionarioAddEditVM funcionarioVM = repositoryEF.ListarPorId(Id).ToFuncionarioAddEdit();
             PreencherSelects();
             return View(funcionarioVM);
+        }
+        [HttpPost]
+        public ActionResult Edit(FuncionarioAddEditVM Entity)
+        {
+            if (!ModelState.IsValid) return View(Entity);
+            repositoryEF.Alter(Entity.ToFuncionario());
+            return RedirectToAction("Index");
         }
         private void PreencherSelects()
         {
