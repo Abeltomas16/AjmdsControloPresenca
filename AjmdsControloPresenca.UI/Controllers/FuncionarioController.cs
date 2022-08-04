@@ -1,6 +1,7 @@
 ﻿using AjmdsControloPresenca.Domain.Entities;
 using AjmdsControloPresenca.Infra.Repository;
 using AjmdsControloPresenca.UI.Models;
+using AjmdsControloPresenca.UI.Models.Funcionario;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,16 +20,7 @@ namespace AjmdsControloPresenca.UI.Controllers
         EstadoCivilRepositoryEF _estadoCivilRepository = new EstadoCivilRepositoryEF();
         public ActionResult Index()
         {
-            var funcionarios = repositoryEF.ListarTodos().Select(f => new FuncionarioIndexVM
-            {
-                Id = f.Id,
-                Nome = f.Nome,
-                SobreNome = f.SobreNome,
-                ContactoPrincipa = f.ContactoPrincipa,
-                EstadoCivilDescricao = f.EstadoCivil.Descricao,
-                DepartamentoDescricao = f.Departamento.Descricao,
-                CargoDescricao = f.Cargo.Descricao
-            });
+            var funcionarios = repositoryEF.ListarTodos().ToFuncionarioVM();
             return View(funcionarios);
         }
         public ActionResult Add()
