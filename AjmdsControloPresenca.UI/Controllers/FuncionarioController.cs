@@ -23,11 +23,19 @@ namespace AjmdsControloPresenca.UI.Controllers
             IEnumerable<FuncionarioIndexVM> funcionarios = repositoryEF.ListarTodos().ToFuncionarioIndex();
             return View(funcionarios);
         }
+        [HttpGet]
         public ActionResult Add()
         {
             FuncionarioAddEditVM funcionario = new FuncionarioAddEditVM();
             PreencherSelects();
             return View(funcionario);
+        }
+        [HttpPost]
+        public ActionResult Add(FuncionarioAddEditVM Entity)
+        {
+            if (!ModelState.IsValid) return View(Entity);
+            repositoryEF.Add(Entity.ToFuncionario());
+            return RedirectToAction("Index");
         }
         public ActionResult Edit(int? Id)
         {

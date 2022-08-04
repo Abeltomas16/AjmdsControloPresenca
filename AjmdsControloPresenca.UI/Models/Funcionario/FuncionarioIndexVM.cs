@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AjmdsControloPresenca.UI.Models
+namespace AjmdsControloPresenca.UI.Models.Funcionario
 {
     public class FuncionarioIndexVM
     {

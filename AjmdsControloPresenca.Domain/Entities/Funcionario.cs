@@ -5,6 +5,10 @@ namespace AjmdsControloPresenca.Domain.Entities
 {
     public class Funcionario
     {
+        public Funcionario()
+        {
+            DataCadastro = DateTime.Now;
+        }
         public short Id { get; set; }
         public string Nome { get; set; }
         public string SobreNome { get; set; }
@@ -13,8 +17,7 @@ namespace AjmdsControloPresenca.Domain.Entities
         public string ContactoPrincipa { get; set; }
         public string ContactoAuxiliar { get; set; }
         public bool Estado { get; set; }
-        public DateTime DataCadastro { get; set; } = DateTime.Now;
-
+        public DateTime DataCadastro { get; set; }
         public short GeneroId { get; set; }
         public virtual Genero Genero { get; set; }
 
