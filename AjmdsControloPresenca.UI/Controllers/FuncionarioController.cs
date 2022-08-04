@@ -4,6 +4,7 @@ using AjmdsControloPresenca.UI.Models;
 using AjmdsControloPresenca.UI.Models.Funcionario;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -33,8 +34,23 @@ namespace AjmdsControloPresenca.UI.Controllers
         [HttpPost]
         public ActionResult Add(FuncionarioAddEditVM Entity)
         {
-            if (!ModelState.IsValid) return View(Entity);
-            repositoryEF.Add(Entity.ToFuncionario());
+            try
+            {
+                if (!ModelState.IsValid) return View(Entity);
+                repositoryEF.Add(Entity.ToFuncionario());
+                return RedirectToAction("Index");
+            }
+            catch(DbEntityValidationException ex)
+            {
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity do tipo \"{0}\" in state \"{1}\" causou erro:",eve.Entry.Entity.GetType().Name,eve.ValidationErrors);
+                    foreach (var item in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Propiedade: \"{0}\", Error: \"{1}\"",item.PropertyName,item.ErrorMessage);
+                    }
+                }
+            }
             return RedirectToAction("Index");
         }
         [HttpGet]
@@ -51,6 +67,13 @@ namespace AjmdsControloPresenca.UI.Controllers
         {
             if (!ModelState.IsValid) return View(Entity);
             repositoryEF.Alter(Entity.ToFuncionario());
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public ActionResult Delete(int? Id)
+        {
+            if (Id == null) RedirectToAction("Index");
+            repositoryEF.Delete(repositoryEF.ListarPorId(Id));
             return RedirectToAction("Index");
         }
         private void PreencherSelects()
