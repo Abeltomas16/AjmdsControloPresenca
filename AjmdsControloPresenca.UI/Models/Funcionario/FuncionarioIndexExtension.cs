@@ -12,7 +12,8 @@ namespace AjmdsControloPresenca.UI.Models.Funcionario
                 Id = f.Id,
                 Nome = f.Nome,
                 SobreNome = f.SobreNome,
-                ContactoPrincipa = f.ContactoPrincipa,
+                Bilhete=f.Bilhete,
+                ContactoPrincipal = f.ContactoPrincipal,
                 EstadoCivilDescricao = f.EstadoCivil.Descricao,
                 DepartamentoDescricao = f.Departamento.Descricao,
                 CargoDescricao = f.Cargo.Descricao

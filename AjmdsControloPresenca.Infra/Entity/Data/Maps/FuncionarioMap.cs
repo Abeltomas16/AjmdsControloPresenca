@@ -1,4 +1,5 @@
 ﻿using AjmdsControloPresenca.Domain.Entities;
+using System.Data.Entity.Infrastructure.Annotations;
 using System.Data.Entity.ModelConfiguration;
 
 namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
@@ -24,6 +25,17 @@ namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
                 .HasColumnType("varchar")
                 .IsRequired();
 
+            Property(c => c.Bilhete)
+                  .HasMaxLength(15)
+                 .HasColumnType("varchar")
+                 .IsRequired()
+                 .HasColumnAnnotation(
+                    "IX_BILHETE",
+                    new IndexAnnotation(
+                        new System.ComponentModel.DataAnnotations.Schema.IndexAttribute()
+                        { IsUnique = true }
+                        ));
+
             Property(c => c.SalarioLiquido)
                .HasColumnType("money");
 
@@ -31,8 +43,8 @@ namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
                .HasMaxLength(200)
                .HasColumnType("varchar");
 
-            Property(c => c.ContactoAuxiliar)
-                .HasMaxLength(25)
+            Property(c => c.ContactoPrincipal)
+                .HasMaxLength(9)
                 .HasColumnType("varchar")
                 .IsRequired();
 

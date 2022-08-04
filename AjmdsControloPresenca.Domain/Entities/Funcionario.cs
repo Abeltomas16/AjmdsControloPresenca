@@ -12,9 +12,10 @@ namespace AjmdsControloPresenca.Domain.Entities
         public short Id { get; set; }
         public string Nome { get; set; }
         public string SobreNome { get; set; }
+        public string Bilhete { get; set; }
         public decimal SalarioLiquido { get; set; }
         public string Observacao { get; set; }
-        public string ContactoPrincipa { get; set; }
+        public string ContactoPrincipal { get; set; }
         public string ContactoAuxiliar { get; set; }
         public bool Estado { get; set; }
         public DateTime DataCadastro { get; set; }

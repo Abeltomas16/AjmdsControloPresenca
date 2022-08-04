@@ -74,6 +74,10 @@
     <Compile Include="Migrations\202208031523252_AddColunaCadastro.designer.cs">
       <DependentUpon>202208031523252_AddColunaCadastro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202208042236199_AddCampoBilhete.cs" />
+    <Compile Include="Migrations\202208042236199_AddCampoBilhete.designer.cs">
+      <DependentUpon>202208042236199_AddCampoBilhete.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CargoRepositoryEF.cs" />
@@ -103,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202208031523252_AddColunaCadastro.resx">
       <DependentUpon>202208031523252_AddColunaCadastro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208042236199_AddCampoBilhete.resx">
+      <DependentUpon>202208042236199_AddCampoBilhete.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

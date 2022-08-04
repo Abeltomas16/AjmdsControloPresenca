@@ -9,11 +9,12 @@ namespace AjmdsControloPresenca.UI.Models.Funcionario
         public string Nome { get; set; }
         [Required, StringLength(30)]
         public string SobreNome { get; set; }
-        [Display(Name = "Salário liquido")]
+        [Required, Display(Name = "Bilhete"), MinLength(14), StringLength(15)]
+        public string Bilhete { get; set; }
         public decimal SalarioLiquido { get; set; }
         public string Observacao { get; set; }
         [Required, StringLength(30), Display(Name = "Contacto Principal")]
-        public string ContactoPrincipa { get; set; }
+        public string ContactoPrincipal { get; set; }
         [Display(Name = "Contacto Auxiliar")]
         public string ContactoAuxiliar { get; set; }
         public bool Estado { get; set; }

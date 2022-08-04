@@ -12,7 +12,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
-                <th scope="col">SobreNome</th>
+                <th scope="col">Bilhete</th>
                 <th scope="col">Contacto</th>
                 <th scope="col">Estado Civil</th>
                 <th scope="col">Departamento</th>
@@ -23,11 +23,11 @@
         <tbody>
             @foreach (FuncionarioIndexVM funcionario in Model)
             {
-                <tr class="funcionario-@funcionario.Id">
+                <tr id="funcionario-@funcionario.Id">
                     <th scope="row">@funcionario.Id</th>
-                    <td>@funcionario.Nome</td>
-                    <td>@funcionario.SobreNome</td>
-                    <td>@funcionario.ContactoPrincipa</td>
+                    <td>@string.Format($"{funcionario.Nome} {funcionario.SobreNome}")</td>
+                    <td>@funcionario.Bilhete</td>
+                    <td>@funcionario.ContactoPrincipal</td>
                     <td>@funcionario.EstadoCivilDescricao</td>
                     <td>@funcionario.DepartamentoDescricao</td>
                     <td>@funcionario.CargoDescricao</td>
@@ -73,20 +73,20 @@
 }
 <script>
          function showModal(Id,Nome){
-             $('#lblNomeFuncionario').text(Nome);
-             $('#deleteModal').data('id',Id).modal('show');
+             $('#lblNomeFuncionario').text(Nome)
+             $('#deleteModal').data('id',Id).modal('show')
          }
         document.querySelector('#btnConfirmar').addEventListener('click',async()=>{
-                const id= $('#deleteModal').data('id');            
+                const id= $('#deleteModal').data('id')
                 var link=`/Funcionario/Delete/${id}`
                 var promisse= await fetch(link)
                 if(promisse.status==200){
-                    document.querySelector(`#funcionario-${id}`).remove();
-                    toastr.success('Funcionário Excluido com sucesso','AJMDS-PRESENCA');
+                     document.querySelector('#funcionario-'+id).remove()
+                    toastr.success('Funcionário Excluido com sucesso','AJMDS-PRESENCA')
                 }else{
-                     toastr.error('Funcionário não encontrado','AJMDS-PRESENCA');
+                     toastr.error('Funcionário não encontrado','AJMDS-PRESENCA')
                 }
-                $('#deleteModal').data('id','0').modal('hide');
-            });
+                $('#deleteModal').data('id','0').modal('hide')
+            })
 
 </script>
