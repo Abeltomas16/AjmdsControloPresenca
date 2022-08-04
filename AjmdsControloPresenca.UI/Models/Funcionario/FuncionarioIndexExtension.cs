@@ -5,7 +5,7 @@ namespace AjmdsControloPresenca.UI.Models.Funcionario
 {
     public static class FuncionarioIndexExtension
     {
-        public static IEnumerable<FuncionarioIndexVM> ToFuncionarioVM(this IEnumerable<Func.Funcionario> Entity)
+        public static IEnumerable<FuncionarioIndexVM> ToFuncionarioIndex(this IEnumerable<Func.Funcionario> Entity)
         {
             return Entity.Select(f => new FuncionarioIndexVM
             {

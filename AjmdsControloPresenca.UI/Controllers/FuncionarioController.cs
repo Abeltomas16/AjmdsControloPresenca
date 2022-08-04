@@ -20,22 +20,33 @@ namespace AjmdsControloPresenca.UI.Controllers
         EstadoCivilRepositoryEF _estadoCivilRepository = new EstadoCivilRepositoryEF();
         public ActionResult Index()
         {
-            var funcionarios = repositoryEF.ListarTodos().ToFuncionarioVM();
+            IEnumerable<FuncionarioIndexVM> funcionarios = repositoryEF.ListarTodos().ToFuncionarioIndex();
             return View(funcionarios);
         }
         public ActionResult Add()
         {
-            FuncionarioIndexVM funcionario = new FuncionarioIndexVM();
+            FuncionarioAddEditVM funcionario = new FuncionarioAddEditVM();
+            PreencherSelects();
+            return View(funcionario);
+        }
+        public ActionResult Edit(int? Id)
+        {
+            if (Id == null) RedirectToAction("Index");
 
-            var departamento = _departamentoRepository.ListarTodos();
+            FuncionarioAddEditVM funcionarioVM = repositoryEF.ListarPorId(Id).ToFuncionarioAddEdit();
+            PreencherSelects();
+            return View(funcionarioVM);
+        }
+        private void PreencherSelects()
+        {
             var cargos = _cargosRepositoryEF.ListarTodos();
             var genero = _generoRepositoryEF.ListarTodos();
             var estadoCivil = _estadoCivilRepository.ListarTodos();
+            var departamento = _departamentoRepository.ListarTodos();
             ViewBag.Departamentos = departamento;
             ViewBag.Cargos = cargos;
             ViewBag.Genero = genero;
             ViewBag.EstadoCivil = estadoCivil;
-            return View(funcionario);
         }
     }
 }

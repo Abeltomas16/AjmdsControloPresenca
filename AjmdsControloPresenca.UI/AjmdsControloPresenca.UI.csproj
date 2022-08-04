@@ -189,6 +189,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Funcionario\FuncionarioAddEditExtension.cs" />
+    <Compile Include="Models\Funcionario\FuncionarioAddEditVM.cs" />
+    <Compile Include="Models\Funcionario\FuncionarioIndexExtension.cs" />
     <Compile Include="Models\Funcionario\FuncionarioIndexVM.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
