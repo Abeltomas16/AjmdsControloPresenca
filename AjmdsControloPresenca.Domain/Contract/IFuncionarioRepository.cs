@@ -6,5 +6,6 @@ namespace AjmdsControloPresenca.Domain.Contract
     public interface IFuncionarioRepository : IRepositoryCrud<Funcionario>
     {
         IEnumerable<Funcionario> ListarTodos();
+        Funcionario ListarBI(string BI);
     }
 }

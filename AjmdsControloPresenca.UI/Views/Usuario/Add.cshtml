@@ -1,0 +1,53 @@
+﻿
+
+<h2>Cadastrar Usuário</h2>
+
+<form class="my-4 text-center text-muted p-0 col-md-6" id="frmPesquisar">
+        <div class="input-group">
+            <input type="text" name="bilhete" class="form-control" placeholder="Número do bilhete do funcionário" aria-describedby="inputGroupPrepend1" required>
+            <div class="input-group-append">
+                <span class="input-group-text" id="inputGroupPrepend1"><i class="fas fa-search"></i></span>
+            </div>
+        </div>
+</form>
+
+<div id="content">
+
+</div>
+
+<a href="@Url.Action("Index")" class="btn btn-outline-info">Cancelar</a>
+
+@section script{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/bootstrap.validate.js"></script>
+}
+
+<script>
+
+    const form=document.querySelector('#frmPesquisar')
+    form.addEventListener('submit',e=>{
+        e.preventDefault()
+        const bilhete=form.bilhete.value.trim()
+        getUsuario(bilhete,form)
+    })
+     async function  getUsuario(Bilhete,frm){
+        const query=`/Usuario/Search/${Bilhete}` 
+        const promisse=await fetch(query)
+
+        if(promisse.status == 409){
+            console.log('Funcionário Já tem um registro');
+            return;
+         }else if(promisse.status == 404){
+            console.log('Funcionário não encontrado');
+            return;
+         }else{
+         const dados=await promisse.json()
+         //{FuncionarioId: 4, NomeFuncionario: 'josef'}
+        frm.reset()
+       // return dados[0]
+        }
+    }
+
+
+</script>

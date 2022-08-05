@@ -221,6 +221,7 @@
     <Content Include="Views\Funcionario\Add.cshtml" />
     <Content Include="Views\Funcionario\Edit.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Usuario\Add.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

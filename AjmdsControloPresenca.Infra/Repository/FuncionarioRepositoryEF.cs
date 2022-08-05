@@ -7,6 +7,8 @@ namespace AjmdsControloPresenca.Infra.Repository
 {
     public class FuncionarioRepositoryEF : RepositoryEF<Funcionario>, IFuncionarioRepository
     {
+        public Funcionario ListarBI(string BI) => Context.Set<Funcionario>().Include(c => c.Cargo).Include(c => c.Departamento).Include(c => c.EstadoCivil).Include(c => c.Genero).Where(f => f.Bilhete.ToLower() == BI.ToLower()).FirstOrDefault();
+
         public IEnumerable<Funcionario> ListarTodos() => Context.Set<Funcionario>().Include(c => c.Cargo).Include(c => c.Departamento).Include(c => c.EstadoCivil).Include(c => c.Genero).ToList();
     }
 }
