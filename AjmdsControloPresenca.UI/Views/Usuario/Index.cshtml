@@ -1,7 +1,7 @@
 ﻿
 
 @{
-    ViewBag.Title = "Funcionários";
+    ViewBag.Title = "Usuários";
 }
 
 <h2>@ViewBag.Title</h2>
@@ -10,31 +10,25 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Bilhete</th>
-                <th scope="col">Contacto</th>
-                <th scope="col">Departamento</th>
-                <th scope="col">Cargo</th>
+                <th scope="col">Funcionário</th>
+                <th scope="col">Nome Login</th>
+                <th scope="col">Senha</th>
                 <th scope="col">Estado</th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (FuncionarioIndexVM funcionario in Model)
+            @foreach (UsuarioIndexVM user in Model)
             {
-                <tr id="funcionario-@funcionario.Id">
-                    <th scope="row">@funcionario.Id</th>
-                    <td>@string.Format($"{funcionario.Nome} {funcionario.SobreNome}")</td>
-                    <td>@funcionario.Bilhete</td>
-                    <td>@funcionario.ContactoPrincipal</td>
-                    <td>@funcionario.DepartamentoDescricao</td>
-                    <td>@funcionario.CargoDescricao</td>
-                    <td>@funcionario.Estado</td>
+                <tr id="usuario-@user.Id">
+                    <td>@user.NomeFuncionario</td>
+                    <td>@user.Nome</td>
+                    <td>@user.Senha</td>
+                    <td>"Activo"</td>
                     <td class="btn-group">
                         <a class="btn btn-sm btn-outline-success"
-                           href="@Url.Action("Edit",new {id=funcionario.Id})"><i class="fas fa-edit"></i> Editar</a>
-                        <button class="btn btn-sm btn-outline-danger" onclick="showModal(@funcionario.Id,'@funcionario.Nome')"><i class="fas fa-trash"></i> Excluir</button>
+                           href="@Url.Action("Edit",new {id=user.Id})"><i class="fas fa-edit"></i> Editar</a>
+                        <button class="btn btn-sm btn-outline-danger" onclick="showModal(@user.Id,'@user.Nome')"><i class="fas fa-trash"></i> Excluir</button>
                     </td>
                 </tr>
             }
@@ -45,13 +39,13 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Excluir Funcionário</h5>
+                    <h5 class="modal-title">Excluir Usuário</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Desejas excluir o funcionário <span id="lblNomeFuncionario"></span></p>
+                    <p>Desejas excluir o usuário <span id="lblNome"></span></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -73,10 +67,10 @@
 }
 <script>
          function showModal(Id,Nome){
-             $('#lblNomeFuncionario').text(Nome)
+             $('#lblNome').text(Nome)
              $('#deleteModal').data('id',Id).modal('show')
          }
-        document.querySelector('#btnConfirmar').addEventListener('click',async()=>{
+       /* document.querySelector('#btnConfirmar').addEventListener('click',async()=>{
                 const id= $('#deleteModal').data('id')
                 var link=`/Funcionario/Delete/${id}`
                 var promisse= await fetch(link)
@@ -87,6 +81,6 @@
                      toastr.error('Funcionário não encontrado','AJMDS-PRESENCA')
                 }
                 $('#deleteModal').data('id','0').modal('hide')
-            })
+            })*/
 
 </script>

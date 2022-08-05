@@ -12,9 +12,9 @@ namespace AjmdsControloPresenca.UI.Models.Funcionario
                 Id = f.Id,
                 Nome = f.Nome,
                 SobreNome = f.SobreNome,
-                Bilhete=f.Bilhete,
+                Bilhete = f.Bilhete,
                 ContactoPrincipal = f.ContactoPrincipal,
-                EstadoCivilDescricao = f.EstadoCivil.Descricao,
+                Estado = f.Estado ? "Activo" : "Inactivo",
                 DepartamentoDescricao = f.Departamento.Descricao,
                 CargoDescricao = f.Cargo.Descricao
             });

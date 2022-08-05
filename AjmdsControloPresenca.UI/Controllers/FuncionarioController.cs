@@ -56,8 +56,7 @@ namespace AjmdsControloPresenca.UI.Controllers
         [HttpGet]
         public ActionResult Edit(int? Id)
         {
-            if (Id == null) RedirectToAction("Index");
-
+            if (Id == null) return RedirectToAction("Index");
             FuncionarioAddEditVM funcionarioVM = repositoryEF.ListarPorId(Id).ToFuncionarioAddEdit();
             PreencherSelects();
             return View(funcionarioVM);
@@ -72,7 +71,7 @@ namespace AjmdsControloPresenca.UI.Controllers
         [HttpGet]
         public ActionResult Delete(int? Id)
         {
-            if (Id == null) RedirectToAction("Index");
+            if (Id == null)return RedirectToAction("Index");
             repositoryEF.Delete(repositoryEF.ListarPorId(Id));
             return RedirectToAction("Index");
         }

@@ -6,6 +6,7 @@ namespace AjmdsControloPresenca.UI.Models.Funcionario
     {
         public static FuncionarioAddEditVM ToFuncionarioAddEdit(this Func.Funcionario Entity)
         {
+            if (Entity is null) return null;
             return new FuncionarioAddEditVM
             {
                 Id = Entity.Id,

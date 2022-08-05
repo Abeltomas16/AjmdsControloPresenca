@@ -9,7 +9,7 @@ namespace AjmdsControloPresenca.UI.Models.Funcionario
         public string SobreNome { get; set; }
         public string Bilhete { get; set; }
         public string ContactoPrincipal { get; set; }
-        public string EstadoCivilDescricao { get; set; }
+        public string Estado { get; set; }
         public string DepartamentoDescricao { get; set; }
         public string CargoDescricao { get; set; }
     }
