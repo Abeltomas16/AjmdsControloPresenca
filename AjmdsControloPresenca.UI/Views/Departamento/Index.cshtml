@@ -70,13 +70,13 @@
          }
         document.querySelector('#btnConfirmar').addEventListener('click',async()=>{
                 const id= $('#deleteModal').data('id')
-                var link=`/Funcionario/Delete/${id}`
+                var link=`/Departamento/Delete/${id}`
                 var promisse= await fetch(link)
                 if(promisse.status==200){
                      document.querySelector('#departamento-'+id).remove()
-                    toastr.success('departamento Excluido com sucesso','AJMDS-PRESENCA')
+                    toastr.success('Departamento Excluido com sucesso','AJMDS-PRESENCA')
                 }else{
-                     toastr.error('departamento não encontrado','AJMDS-PRESENCA')
+                     toastr.error('Departamento não encontrado','AJMDS-PRESENCA')
                 }
                 $('#deleteModal').data('id','0').modal('hide')
             })

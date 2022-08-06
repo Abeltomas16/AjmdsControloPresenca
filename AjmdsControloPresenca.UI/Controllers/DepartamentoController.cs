@@ -60,5 +60,12 @@ namespace AjmdsControloPresenca.UI.Controllers
             departamentoRepository.Alter(Entity.ToDepartamento());
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public ActionResult Delete(short? Id)
+        {
+            if (Id is null) return RedirectToAction("Index");
+            departamentoRepository.Delete(departamentoRepository.ListarPorId(Id));
+            return RedirectToAction("Index");
+        }
     }
 }
