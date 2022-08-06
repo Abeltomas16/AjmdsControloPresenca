@@ -3,7 +3,7 @@ using System.Linq;
 using dept = AjmdsControloPresenca.Domain.Entities;
 namespace AjmdsControloPresenca.UI.Models.Departamento
 {
-    public static class DepartamentoIndexVMExtension
+    public static class DepartamentoIndexExtension
     {
         public static IEnumerable<DepartamentoIndexVM> ToDepartamentoVM(this IEnumerable<dept.Departamento> Entity)
         {
@@ -12,7 +12,7 @@ namespace AjmdsControloPresenca.UI.Models.Departamento
                 DepartamentoId = e.DepartamentoId,
                 Descricao = e.Descricao,
                 Estado = e.Estado ? "Activo" : "Inactivo"
-            }); ;
+            });
         }
     }
 }

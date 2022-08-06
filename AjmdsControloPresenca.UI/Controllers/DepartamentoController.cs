@@ -2,6 +2,7 @@
 using AjmdsControloPresenca.UI.Models.Departamento;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -16,6 +17,34 @@ namespace AjmdsControloPresenca.UI.Controllers
         {
             var departamentos = departamentoRepository.ListarTodos().ToDepartamentoVM();
             return View(departamentos);
+        }
+        [HttpGet]
+        public ActionResult Add()
+        {
+            DepartamentoAddEditVM departamento = new DepartamentoAddEditVM();
+            return View(departamento);
+        }
+        [HttpPost]
+        public ActionResult Add(DepartamentoAddEditVM Entity)
+        {
+            try
+            {
+                if (!ModelState.IsValid) return View(Entity);
+                departamentoRepository.Add(Entity.ToDepartamento());
+                return RedirectToAction("Index");
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity do tipo \"{0}\" in state \"{1}\" causou erro:", eve.Entry.Entity.GetType().Name, eve.ValidationErrors);
+                    foreach (var item in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Propiedade: \"{0}\", Error: \"{1}\"", item.PropertyName, item.ErrorMessage);
+                    }
+                }
+            }
+            return RedirectToAction("Index");
         }
     }
 }
