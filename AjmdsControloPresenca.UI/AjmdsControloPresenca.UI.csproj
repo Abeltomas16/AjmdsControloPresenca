@@ -195,6 +195,8 @@
     <Compile Include="Models\Funcionario\FuncionarioIndexExtension.cs" />
     <Compile Include="Models\Funcionario\FuncionarioIndexVM.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\Usuario\UsuarioAddEditExtension.cs" />
+    <Compile Include="Models\Usuario\UsuarioAddEditVM.cs" />
     <Compile Include="Models\Usuario\UsuarioIndexExtension.cs" />
     <Compile Include="Models\Usuario\UsuarioIndexVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
