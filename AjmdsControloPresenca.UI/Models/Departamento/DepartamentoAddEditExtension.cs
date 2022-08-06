@@ -16,5 +16,14 @@ namespace AjmdsControloPresenca.UI.Models.Departamento
                 Estado = Entity.Estado
             };
         }
+        public static DepartamentoAddEditVM  ToDepartamentoVM(this dept.Departamento Entity)
+        {
+            return new DepartamentoAddEditVM
+            {
+                DepartamentoId = Entity.DepartamentoId,
+                Descricao = Entity.Descricao,
+                Estado = Entity.Estado
+            };
+        }
     }
 }
