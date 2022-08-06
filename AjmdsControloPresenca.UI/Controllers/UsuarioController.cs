@@ -22,6 +22,36 @@ namespace AjmdsControloPresenca.UI.Controllers
             var usuario = new UsuarioAddEditVM();
             return View(usuario);
         }
+        [HttpGet]
+        public ActionResult Edit(short? Id)
+        {
+            if (Id == null) return RedirectToAction("Index");
+            var user = usuarioRepository.ListarPorIdFunconario(Id.Value).ToUsuarioAddEdit();
+            return View(user);
+        }
+        [HttpPost]
+        public ActionResult Edit(UsuarioAddEditVM Entity)
+        {
+            try
+            {
+                if (!ModelState.IsValid) return View(Entity);
+                var user = Entity.ToUsuario();
+                usuarioRepository.Alter(user);
+                return RedirectToAction("Index");
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    System.Console.WriteLine("Entity do tipo \"{0}\" in state \"{1}\" causou erro:", eve.Entry.Entity.GetType().Name, eve.ValidationErrors);
+                    foreach (var item in eve.ValidationErrors)
+                    {
+                        System.Console.WriteLine("- Propiedade: \"{0}\", Error: \"{1}\"", item.PropertyName, item.ErrorMessage);
+                    }
+                }
+            }
+            return RedirectToAction("Index");
+        }
         [HttpPost]
         public ActionResult Add(UsuarioAddEditVM Entity)
         {
@@ -42,14 +72,14 @@ namespace AjmdsControloPresenca.UI.Controllers
             }
             catch (DbEntityValidationException ex)
             {
-                  foreach (var eve in ex.EntityValidationErrors)
-                  {
+                foreach (var eve in ex.EntityValidationErrors)
+                {
                     System.Console.WriteLine("Entity do tipo \"{0}\" in state \"{1}\" causou erro:", eve.Entry.Entity.GetType().Name, eve.ValidationErrors);
-                      foreach (var item in eve.ValidationErrors)
-                      {
+                    foreach (var item in eve.ValidationErrors)
+                    {
                         System.Console.WriteLine("- Propiedade: \"{0}\", Error: \"{1}\"", item.PropertyName, item.ErrorMessage);
-                      }
-                  }
+                    }
+                }
             }
             return RedirectToAction("Index");
         }
