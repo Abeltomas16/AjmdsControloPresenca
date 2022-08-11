@@ -60,5 +60,12 @@ namespace AjmdsControloPresenca.UI.Controllersa
             cargoRepository.Alter(Entity.ToCargo());
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public ActionResult Delete(short? Id)
+        {
+            if (Id is null) return RedirectToAction("Index");
+            cargoRepository.Delete(cargoRepository.ListarPorId(Id));
+            return RedirectToAction("Index");
+        }
     }
 }
