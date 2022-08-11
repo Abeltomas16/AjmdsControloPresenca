@@ -11,7 +11,7 @@ namespace AjmdsControloPresenca.UI.Models.Departamento
         {
             return new dept.Departamento
             {
-                DepartamentoId=Entity.DepartamentoId,
+                DepartamentoId=Entity.Id,
                 Descricao = Entity.Descricao.ToUpper(),
                 Estado = Entity.Estado
             };
@@ -20,7 +20,7 @@ namespace AjmdsControloPresenca.UI.Models.Departamento
         {
             return new DepartamentoAddEditVM
             {
-                DepartamentoId = Entity.DepartamentoId,
+                Id = Entity.DepartamentoId,
                 Descricao = Entity.Descricao,
                 Estado = Entity.Estado
             };
