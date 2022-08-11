@@ -1,0 +1,90 @@
+﻿
+
+@{
+    ViewBag.Title = "Turno";
+}
+
+<h2>@ViewBag.Title</h2>
+<a href="@Url.Action("Add")" class="btn btn-primary mt-4 mb-4 px-3">Cadastrar</a>
+<div class="table-responsive table-hover">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Entrada</th>
+                <th scope="col">Saida</th>
+                <th scope="col">Tolerância(M)</th>
+                <th scope="col">Estado</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (TurnoIndexVM turno in Model)
+            {
+                <tr id="turno-@turno.Id">
+                    <th scope="row">@turno.Id</th>
+                    <td>@turno.Descricao</td>
+                    <td>@turno.Entrada</td>
+                    <td>@turno.Saida</td>
+                    <td>@turno.TurnoToleranciaAtraso</td>
+                    <td>@turno.Estado</td>
+                    <td class="btn-group">
+                        <a class="btn btn-sm btn-outline-success"
+                           href="@Url.Action("Edit",new {id=turno.Id})"><i class="fas fa-edit"></i> Editar</a>
+                        <button class="btn btn-sm btn-outline-danger" onclick="showModal(@turno.Id,'@turno.Descricao')"><i class="fas fa-trash"></i> Excluir</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div data-id="0" class="modal" id="deleteModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Excluir Funcionário</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Desejas excluir o funcionário <span id="lblNomeFuncionario"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnConfirmar">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+@section script{
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/bootstrap.validate.js"></script>
+}
+<script>
+         function showModal(Id,Nome){
+             $('#lblNomeFuncionario').text(Nome)
+             $('#deleteModal').data('id',Id).modal('show')
+         }
+        document.querySelector('#btnConfirmar').addEventListener('click',async()=>{
+                const id= $('#deleteModal').data('id')
+                var link=`/Turno/Delete/${id}`
+                var promisse= await fetch(link)
+                if(promisse.status==200){
+                     document.querySelector('#turno-'+id).remove()
+                    toastr.success('Turno Excluido com sucesso','AJMDS-PRESENCA')
+                }else{
+                     toastr.error('Turno não encontrado','AJMDS-PRESENCA')
+                }
+                $('#deleteModal').data('id','0').modal('hide')
+            })
+
+</script>

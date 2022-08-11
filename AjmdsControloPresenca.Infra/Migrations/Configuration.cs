@@ -33,7 +33,7 @@
 
             context.Database.ExecuteSqlCommand("INSERT dbo.Turno(Descricao, Entrada, Saida, Estado, TurnoToleranciaAtraso) VALUES  ('TURNO A','2022-07-12 08:00:00', '2022-07-12 17:30:00', CONVERT(bit, 'True'), 10) "
                                            + "  INSERT dbo.Turno(Descricao, Entrada, Saida, Estado, TurnoToleranciaAtraso) VALUES('TURNO A', '2022-07-12 09:00:00', '2022-07-12 12:30:00', CONVERT(bit, 'True'), 0)"
-                                           + "  INSERT dbo.Turno(Descricao, Entrada, Saida, Estado, TurnoToleranciaAtraso) VALUES('TURNO C' '2022-07-12 00:00:00', '2022-07-12 00:00:00', CONVERT(bit, 'True'), 0)");
+                                           + "  INSERT dbo.Turno(Descricao, Entrada, Saida, Estado, TurnoToleranciaAtraso) VALUES('TURNO C', '2022-07-12 00:00:00', '2022-07-12 00:00:00', CONVERT(bit, 'True'), 0)");
 
             context.Database.ExecuteSqlCommand("  INSERT INTO dbo.DepartamentoTurno "
                                                + " (TurnoSegundaId, DepartamentoId, TurnoTercaId,TurnoQuartaId, TurnoQuintaId, TurnoSextaId, TurnoSabadoId, TurnoDomingoId) "
