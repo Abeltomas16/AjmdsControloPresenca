@@ -26,14 +26,14 @@
               + " INSERT dbo.Cargo( Descricao) VALUES( N'GESTORA DE RH')         "
               + " INSERT dbo.Cargo( Descricao) VALUES( N'ESPECIALISTA DE VENDA'); ");
 
-            context.Database.ExecuteSqlCommand("INSERT dbo.Departamento( Descricao, Estado) VALUES ( N'GERAL', CONVERT(bit, 'True'))                  "
-                                             + "  INSERT dbo.Departamento(Descricao, Estado) VALUES( N'TÉCNICO E REPARAÇÕES', CONVERT(bit, 'True'))   "
-                                             + "  INSERT dbo.Departamento (Descricao, Estado) VALUES( N'COMERCIAL', CONVERT(bit, 'True'))              "
-                                             + "  INSERT dbo.Departamento(Descricao, Estado) VALUES( N'RECURSOS  HUMANOS', CONVERT(bit, 'True'))");
+            context.Database.ExecuteSqlCommand("INSERT dbo.Departamento(Descricao, Estado) VALUES ( N'GERAL', CONVERT(bit, 'True'))                  "
+                                             + "INSERT dbo.Departamento(Descricao, Estado) VALUES( N'TÉCNICO E REPARAÇÕES', CONVERT(bit, 'True'))   "
+                                             + "INSERT dbo.Departamento(Descricao, Estado) VALUES( N'COMERCIAL', CONVERT(bit, 'True'))              "
+                                             + "INSERT dbo.Departamento(Descricao, Estado) VALUES( N'RECURSOS  HUMANOS', CONVERT(bit, 'True'))");
 
-            context.Database.ExecuteSqlCommand("INSERT dbo.Turno( Entrada, Saida, Estado, TurnoToleranciaAtraso) VALUES  ('2022-07-12 08:00:00', '2022-07-12 17:30:00', CONVERT(bit, 'True'), 10) "
-                                 + "  INSERT dbo.Turno( Entrada, Saida, Estado, TurnoToleranciaAtraso) VALUES( '2022-07-12 09:00:00', '2022-07-12 12:30:00', CONVERT(bit, 'True'), 0)"
-                                 + "  INSERT dbo.Turno( Entrada, Saida, Estado, TurnoToleranciaAtraso) VALUES( '2022-07-12 00:00:00', '2022-07-12 00:00:00', CONVERT(bit, 'True'), 0)");
+            context.Database.ExecuteSqlCommand("INSERT dbo.Turno(Descricao, Entrada, Saida, Estado, TurnoToleranciaAtraso) VALUES  ('TURNO A','2022-07-12 08:00:00', '2022-07-12 17:30:00', CONVERT(bit, 'True'), 10) "
+                                           + "  INSERT dbo.Turno(Descricao, Entrada, Saida, Estado, TurnoToleranciaAtraso) VALUES('TURNO A', '2022-07-12 09:00:00', '2022-07-12 12:30:00', CONVERT(bit, 'True'), 0)"
+                                           + "  INSERT dbo.Turno(Descricao, Entrada, Saida, Estado, TurnoToleranciaAtraso) VALUES('TURNO C' '2022-07-12 00:00:00', '2022-07-12 00:00:00', CONVERT(bit, 'True'), 0)");
 
             context.Database.ExecuteSqlCommand("  INSERT INTO dbo.DepartamentoTurno "
                                                + " (TurnoSegundaId, DepartamentoId, TurnoTercaId,TurnoQuartaId, TurnoQuintaId, TurnoSextaId, TurnoSabadoId, TurnoDomingoId) "

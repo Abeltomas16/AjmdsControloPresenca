@@ -78,6 +78,14 @@
     <Compile Include="Migrations\202208042236199_AddCampoBilhete.designer.cs">
       <DependentUpon>202208042236199_AddCampoBilhete.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202208111933571_AddColunaDescricao.cs" />
+    <Compile Include="Migrations\202208111933571_AddColunaDescricao.designer.cs">
+      <DependentUpon>202208111933571_AddColunaDescricao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202208111936518_AddRestricao.cs" />
+    <Compile Include="Migrations\202208111936518_AddRestricao.designer.cs">
+      <DependentUpon>202208111936518_AddRestricao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CargoRepositoryEF.cs" />
@@ -110,6 +118,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202208042236199_AddCampoBilhete.resx">
       <DependentUpon>202208042236199_AddCampoBilhete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208111933571_AddColunaDescricao.resx">
+      <DependentUpon>202208111933571_AddColunaDescricao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208111936518_AddRestricao.resx">
+      <DependentUpon>202208111936518_AddRestricao.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

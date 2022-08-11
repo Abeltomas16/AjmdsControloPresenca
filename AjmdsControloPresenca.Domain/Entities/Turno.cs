@@ -6,6 +6,7 @@ namespace AjmdsControloPresenca.Domain.Entities
     public class Turno
     {
         public short Id { get; set; }
+        public string Descricao { get; set; }
         public DateTime Entrada { get; set; }
         public DateTime Saida { get; set; }
         public bool Estado { get; set; }
