@@ -12,8 +12,8 @@ namespace AjmdsControloPresenca.UI.Models.Turno
             {
                 Id = e.Id,
                 Descricao = e.Descricao,
-                Entrada = e.Entrada,
-                Saida = e.Saida,
+                Entrada = e.Entrada.ToShortTimeString(),
+                Saida = e.Saida.ToShortTimeString(),
                 Estado = e.Estado ? "Activo" : "Inactivo",
                 TurnoToleranciaAtraso = e.TurnoToleranciaAtraso
             });
