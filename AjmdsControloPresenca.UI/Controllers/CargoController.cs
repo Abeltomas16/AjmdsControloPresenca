@@ -46,5 +46,19 @@ namespace AjmdsControloPresenca.UI.Controllersa
             }
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public ActionResult Edit(short? Id)
+        {
+            if (Id is null) return RedirectToAction("Index");
+            var cargo = cargoRepository.ListarPorId(Id).ToCargoVM();
+            return View(cargo);
+        }
+        [HttpPost]
+        public ActionResult Edit(CargoIndexVM Entity)
+        {
+            if (!ModelState.IsValid) return View(Entity);
+            cargoRepository.Alter(Entity.ToCargo());
+            return RedirectToAction("Index");
+        }
     }
 }
