@@ -1,0 +1,51 @@
+﻿
+@model TurnoAddEditVM
+<h2>Editar Turno</h2>
+<form method="POST">
+
+    <div class="form-group">
+        @Html.LabelFor(n => n.Descricao, "Nome:")
+        @Html.TextBoxFor(n => n.Descricao, new { @class = "form-control", @autofocus = "" })
+        <small>  @Html.ValidationMessageFor(n => n.Descricao, null, new { @class = "text-danger" })</small>
+    </div>
+
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(t => t.Entrada, "Entrada:")
+            @Html.TextBoxFor(n => n.Entrada, new { @class = "form-control", @type = "time" })
+            <small>  @Html.ValidationMessageFor(n => n.Entrada, null, new { @class = "text-danger" })</small>
+        </div>
+
+        <div class="form-group col-md-6">
+            @Html.LabelFor(t => t.Saida, "Saida:")
+            @Html.TextBoxFor(n => n.Saida, new { @class = "form-control", @type = "time" })
+            <small>  @Html.ValidationMessageFor(n => n.Saida, null, new { @class = "text-danger" })</small>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="form-check">
+            @Html.CheckBoxFor(e => e.Estado, new { @class = "form-check-input" })
+            @Html.LabelFor(e => e.Estado, "Activo")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(a => a.TurnoToleranciaAtraso, "Toerância atraso (Minutos):")
+        @Html.TextBoxFor(a => a.TurnoToleranciaAtraso, new { @class = "form-control", @type = "number" })
+        <small>  @Html.ValidationMessageFor(a => a.TurnoToleranciaAtraso, null, new { @class = "text-danger" })</small>
+    </div>
+
+
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Salvar" />
+        <a href="@Url.Action("Index")" class="btn btn-outline-info">Cancelar</a>
+    </div>
+</form>
+@section script{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/bootstrap.validate.js"></script>
+}

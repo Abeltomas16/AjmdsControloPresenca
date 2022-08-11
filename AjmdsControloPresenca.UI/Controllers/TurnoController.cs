@@ -46,5 +46,19 @@ namespace AjmdsControloPresenca.UI.Controllers
              }
              return RedirectToAction("Index");
          }
+        [HttpGet]
+        public ActionResult Edit(short? Id)
+        {
+            if (Id is null) return RedirectToAction("Index");
+            var turno = turnoRepositoryEF.ListarPorId(Id).ToTurnoVM();
+            return View(turno);
+        }
+        [HttpPost]
+        public ActionResult Edit(TurnoAddEditVM Entity)
+        {
+            if (!ModelState.IsValid) return View(Entity);
+            turnoRepositoryEF.Alter(Entity.ToTurno());
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -13,11 +13,11 @@ namespace AjmdsControloPresenca.UI.Models.Turno
 
         [Required]
         [DataType(DataType.Time)]
-        public DateTime Entrada { get; set; }
+        public TimeSpan Entrada { get; set; }
 
         [Required]
         [DataType(DataType.Time)]
-        public DateTime Saida { get; set; }
+        public TimeSpan Saida { get; set; }
 
         public bool Estado { get; set; }
 
