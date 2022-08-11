@@ -25,27 +25,27 @@ namespace AjmdsControloPresenca.UI.Controllers
             return View(turno);
         }
         [HttpPost]
-         public ActionResult Add(TurnoAddEditVM Entity)
-         {
-             try
-             {
-                 if (!ModelState.IsValid) return View(Entity);
-                 turnoRepositoryEF.Add(Entity.ToTurno());
-                 return RedirectToAction("Index");
-             }
-             catch (DbEntityValidationException ex)
-             {
-                 foreach (var eve in ex.EntityValidationErrors)
-                 {
-                     Console.WriteLine("Entity do tipo \"{0}\" in state \"{1}\" causou erro:", eve.Entry.Entity.GetType().Name, eve.ValidationErrors);
-                     foreach (var item in eve.ValidationErrors)
-                     {
-                         Console.WriteLine("- Propiedade: \"{0}\", Error: \"{1}\"", item.PropertyName, item.ErrorMessage);
-                     }
-                 }
-             }
-             return RedirectToAction("Index");
-         }
+        public ActionResult Add(TurnoAddEditVM Entity)
+        {
+            try
+            {
+                if (!ModelState.IsValid) return View(Entity);
+                turnoRepositoryEF.Add(Entity.ToTurno());
+                return RedirectToAction("Index");
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity do tipo \"{0}\" in state \"{1}\" causou erro:", eve.Entry.Entity.GetType().Name, eve.ValidationErrors);
+                    foreach (var item in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Propiedade: \"{0}\", Error: \"{1}\"", item.PropertyName, item.ErrorMessage);
+                    }
+                }
+            }
+            return RedirectToAction("Index");
+        }
         [HttpGet]
         public ActionResult Edit(short? Id)
         {
@@ -58,6 +58,13 @@ namespace AjmdsControloPresenca.UI.Controllers
         {
             if (!ModelState.IsValid) return View(Entity);
             turnoRepositoryEF.Alter(Entity.ToTurno());
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public ActionResult Delete(short? Id)
+        {
+            if (Id is null) return RedirectToAction("Index");
+            turnoRepositoryEF.Delete(turnoRepositoryEF.ListarPorId(Id));
             return RedirectToAction("Index");
         }
     }

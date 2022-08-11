@@ -82,7 +82,7 @@
                      document.querySelector('#turno-'+id).remove()
                     toastr.success('Turno Excluido com sucesso','AJMDS-PRESENCA')
                 }else{
-                     toastr.error('Turno não encontrado','AJMDS-PRESENCA')
+                     toastr.error('Falha ao exluir turno','AJMDS-PRESENCA')
                 }
                 $('#deleteModal').data('id','0').modal('hide')
             })
