@@ -41,7 +41,7 @@
         </div>
         <div class="form-group p-0 col-md-6">
             @Html.LabelFor(n => n.ConfirmPassword, "Confirmar senha:")
-            @Html.PasswordFor(n => n.ConfirmPassword, new { @class = "form-control"})
+            @Html.PasswordFor(n => n.ConfirmPassword, new { @class = "form-control" })
             <small>  @Html.ValidationMessageFor(n => n.ConfirmPassword, null, new { @class = "text-danger" })</small>
         </div>
 
@@ -56,13 +56,12 @@
 <a href="@Url.Action("Index")" class="btn btn-outline-info">Cancelar</a>
 
 @section script{
+    <script src="~/Scripts/toastr.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <script src="~/Scripts/bootstrap.validate.js"></script>
-}
 
-<script>
-
+    <script>
     const form=document.querySelector('#frmPesquisar')
     const frmAdd=document.querySelector('#frmAdd')
     form.addEventListener('submit',e=>{
@@ -77,11 +76,11 @@
 
         if(promisse.status == 409){
             frmAdd.classList.add('d-none')
-            console.log('Funcionário Já tem um registro');
+            toastr.error('Funcionário Já tem um registro');
             return;
          }else if(promisse.status == 404){
             frmAdd.classList.add('d-none')
-            console.log('Funcionário não encontrado');
+            toastr.error('Funcionário não encontrado');
             return;
          }else{
           const dados=await promisse.json()
@@ -92,6 +91,5 @@
         }
     frm.reset()
     }
-
-
-</script>
+    </script>
+}

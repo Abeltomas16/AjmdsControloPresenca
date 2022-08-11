@@ -98,5 +98,12 @@ namespace AjmdsControloPresenca.UI.Controllers
 
             return Json(new { FuncionarioId = funcionario.Id, NomeFuncionario = funcionario.Nome, Bilhete = funcionario.Bilhete.ToUpper().Trim() }, JsonRequestBehavior.AllowGet);
         }
+        [HttpGet]
+        public ActionResult Delete(int? Id)
+        {
+            if (Id == null) return RedirectToAction("Index");
+            usuarioRepository.Delete(usuarioRepository.ListarPorId(Id));
+            return RedirectToAction("Index");
+        }
     }
 }

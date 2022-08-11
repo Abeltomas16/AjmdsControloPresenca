@@ -64,23 +64,24 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/bootstrap.validate.js"></script>
-}
-<script>
+    <script>
          function showModal(Id,Nome){
              $('#lblNome').text(Nome)
              $('#deleteModal').data('id',Id).modal('show')
          }
-       /* document.querySelector('#btnConfirmar').addEventListener('click',async()=>{
+        document.querySelector('#btnConfirmar').addEventListener('click',async()=>{
                 const id= $('#deleteModal').data('id')
-                var link=`/Funcionario/Delete/${id}`
+                var link=`/Usuario/Delete/${id}`
                 var promisse= await fetch(link)
                 if(promisse.status==200){
-                     document.querySelector('#funcionario-'+id).remove()
+                     document.querySelector('#usuario-'+id).remove()
                     toastr.success('Usuário Excluido com sucesso','AJMDS-PRESENCA')
                 }else{
                      toastr.error('Falha ao exluir usuário','AJMDS-PRESENCA')
                 }
                 $('#deleteModal').data('id','0').modal('hide')
-            })*/
+            })
 
-</script>
+    </script>
+}
+
