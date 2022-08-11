@@ -83,6 +83,9 @@ namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
             //One by one
             HasOptional(a => a.Usuario)
            .WithRequired(ab => ab.Funcionario);
+
+            HasOptional(a => a.FuncionarioTurno)
+            .WithRequired(ab => ab.Funcionario);
         }
     }
 }

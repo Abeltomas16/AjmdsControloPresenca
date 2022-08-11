@@ -35,17 +35,6 @@
                                            + "  INSERT dbo.Turno(Descricao, Entrada, Saida, Estado, TurnoToleranciaAtraso) VALUES('TURNO A', '2022-07-12 09:00:00', '2022-07-12 12:30:00', CONVERT(bit, 'True'), 0)"
                                            + "  INSERT dbo.Turno(Descricao, Entrada, Saida, Estado, TurnoToleranciaAtraso) VALUES('TURNO C', '2022-07-12 00:00:00', '2022-07-12 00:00:00', CONVERT(bit, 'True'), 0)");
 
-            context.Database.ExecuteSqlCommand("  INSERT INTO dbo.DepartamentoTurno "
-                                               + " (TurnoSegundaId, DepartamentoId, TurnoTercaId,TurnoQuartaId, TurnoQuintaId, TurnoSextaId, TurnoSabadoId, TurnoDomingoId) "
-                                               + " VALUES(1, 1, 1, 1, 1, 1, 2, 3); ");
-
-            context.Database.ExecuteSqlCommand("  INSERT INTO dbo.DepartamentoTurno "
-                                               + " (TurnoSegundaId, DepartamentoId, TurnoTercaId,TurnoQuartaId, TurnoQuintaId, TurnoSextaId, TurnoSabadoId, TurnoDomingoId) "
-                                               + " VALUES(1, 2, 1, 1, 1, 1, 2, 3); ");
-
-            context.Database.ExecuteSqlCommand(" INSERT INTO dbo.DepartamentoTurno "
-                                               + " (TurnoSegundaId, DepartamentoId, TurnoTercaId,TurnoQuartaId, TurnoQuintaId, TurnoSextaId, TurnoSabadoId, TurnoDomingoId) "
-                                               + " VALUES(1, 3, 1, 1, 1, 1, 2, 3); ");
 
             context.Database.ExecuteSqlCommand("INSERT dbo.EstadoCivil(Descricao) VALUES ( N'SOLTEIRO(A)')     "
                                                + " INSERT dbo.EstadoCivil(Descricao) VALUES( N'DIVORCIADO(A)')  "

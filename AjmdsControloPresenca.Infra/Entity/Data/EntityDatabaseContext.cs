@@ -13,8 +13,8 @@ namespace AjmdsControloPresenca.Infra.Entity.Data
         }
         public DbSet<Cargo> Cargos { get; set; }
         public DbSet<Departamento> Departamentos { get; set; }
-        public DbSet<DepartamentoTurno> DepartamentoTurnos { get; set; }
         public DbSet<Funcionario> Funcionarios { get; set; }
+        public DbSet<FuncionarioTurno> FuncionarioTurnos { get; set; }
         public DbSet<Presenca> Presencas { get; set; }
         public DbSet<Turno> Turnos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
@@ -23,8 +23,8 @@ namespace AjmdsControloPresenca.Infra.Entity.Data
         {
             modelBuilder.Configurations.Add(new CargosMap());
             modelBuilder.Configurations.Add(new DepartamentosMap());
-            modelBuilder.Configurations.Add(new DepartamentosTurnoMap());
             modelBuilder.Configurations.Add(new EstadoCivilMap());
+            modelBuilder.Configurations.Add(new FuncionarioTurnoMap());
             modelBuilder.Configurations.Add(new GeneroMap());
             modelBuilder.Configurations.Add(new PresencaMap());
             modelBuilder.Configurations.Add(new TurnoMap());

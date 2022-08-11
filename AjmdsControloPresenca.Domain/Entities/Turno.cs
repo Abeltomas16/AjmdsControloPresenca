@@ -12,12 +12,12 @@ namespace AjmdsControloPresenca.Domain.Entities
         public bool Estado { get; set; }
         public short TurnoToleranciaAtraso { get; set; }
 
-        public virtual ICollection<DepartamentoTurno> DepartamentoTurno { get; set; }
-        public virtual ICollection<DepartamentoTurno> DepartamentoTurnoTerca { get; set; }
-        public virtual ICollection<DepartamentoTurno> DepartamentoTurnoQuarta { get; set; }
-        public virtual ICollection<DepartamentoTurno> DepartamentoTurnoQuinta { get; set; }
-        public virtual ICollection<DepartamentoTurno> DepartamentoTurnoSexta { get; set; }
-        public virtual ICollection<DepartamentoTurno> DepartamentoTurnoSabado { get; set; }
-        public virtual ICollection<DepartamentoTurno> DepartamentoTurnoDomingo { get; set; }
+        public virtual ICollection<FuncionarioTurno> FuncionarioTurnoSegunda { get; set; }
+        public virtual ICollection<FuncionarioTurno> FuncionarioTurnoTerca { get; set; }
+        public virtual ICollection<FuncionarioTurno> FuncionarioTurnoQuarta { get; set; }
+        public virtual ICollection<FuncionarioTurno> FuncionarioTurnoQuinta { get; set; }
+        public virtual ICollection<FuncionarioTurno> FuncionarioTurnoSexta { get; set; }
+        public virtual ICollection<FuncionarioTurno> FuncionarioTurnoSabado { get; set; }
+        public virtual ICollection<FuncionarioTurno> FuncionarioTurnoDomingo { get; set; }
     }
 }

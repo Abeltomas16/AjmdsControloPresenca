@@ -45,10 +45,10 @@
     <Compile Include="Contract\IUsuarioRepository.cs" />
     <Compile Include="Entities\Cargo.cs" />
     <Compile Include="Entities\Departamento.cs" />
-    <Compile Include="Entities\DepartamentoTurno.cs" />
     <Compile Include="Entities\EstadoCivil.cs" />
     <Compile Include="Entities\Funcionario.cs" />
     <Compile Include="Entities\Genero.cs" />
+    <Compile Include="Entities\FuncionarioTurno.cs" />
     <Compile Include="Entities\Presenca.cs" />
     <Compile Include="Entities\Teste\Employee.cs" />
     <Compile Include="Entities\Turno.cs" />

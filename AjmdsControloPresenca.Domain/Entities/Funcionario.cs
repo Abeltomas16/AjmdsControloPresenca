@@ -33,5 +33,6 @@ namespace AjmdsControloPresenca.Domain.Entities
 
         public virtual ICollection<Presenca> Presenca { get; set; }
         public virtual Usuario Usuario { get; set; }
+        public virtual FuncionarioTurno FuncionarioTurno { get; set; }
     }
 }

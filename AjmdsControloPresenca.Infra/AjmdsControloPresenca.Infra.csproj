@@ -55,37 +55,13 @@
     <Compile Include="Entity\Data\EntityDatabaseContext.cs" />
     <Compile Include="Entity\Data\Maps\CargosMap.cs" />
     <Compile Include="Entity\Data\Maps\DepartamentosMap.cs" />
-    <Compile Include="Entity\Data\Maps\DepartamentosTurnoMap.cs" />
     <Compile Include="Entity\Data\Maps\EstadoCivilMap.cs" />
     <Compile Include="Entity\Data\Maps\FuncionarioMap.cs" />
+    <Compile Include="Entity\Data\Maps\FuncionarioTurnoMap.cs" />
     <Compile Include="Entity\Data\Maps\GeneroMap.cs" />
     <Compile Include="Entity\Data\Maps\PresencaMap.cs" />
     <Compile Include="Entity\Data\Maps\TurnoMap.cs" />
     <Compile Include="Entity\Data\Maps\UsuarioMap.cs" />
-    <Compile Include="Migrations\202207131248010_Initial.cs" />
-    <Compile Include="Migrations\202207131248010_Initial.designer.cs">
-      <DependentUpon>202207131248010_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202208031449479_Colocado Entrada e Saidacoo nullable.cs" />
-    <Compile Include="Migrations\202208031449479_Colocado Entrada e Saidacoo nullable.designer.cs">
-      <DependentUpon>202208031449479_Colocado Entrada e Saidacoo nullable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202208031523252_AddColunaCadastro.cs" />
-    <Compile Include="Migrations\202208031523252_AddColunaCadastro.designer.cs">
-      <DependentUpon>202208031523252_AddColunaCadastro.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202208042236199_AddCampoBilhete.cs" />
-    <Compile Include="Migrations\202208042236199_AddCampoBilhete.designer.cs">
-      <DependentUpon>202208042236199_AddCampoBilhete.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202208111933571_AddColunaDescricao.cs" />
-    <Compile Include="Migrations\202208111933571_AddColunaDescricao.designer.cs">
-      <DependentUpon>202208111933571_AddColunaDescricao.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202208111936518_AddRestricao.cs" />
-    <Compile Include="Migrations\202208111936518_AddRestricao.designer.cs">
-      <DependentUpon>202208111936518_AddRestricao.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\TurnoRepositoryEF.cs" />
@@ -106,26 +82,6 @@
       <Project>{12940055-B8F2-4D8D-85EF-CB482B2D5D8E}</Project>
       <Name>AjmdsControloPresenca.Domain</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202207131248010_Initial.resx">
-      <DependentUpon>202207131248010_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202208031449479_Colocado Entrada e Saidacoo nullable.resx">
-      <DependentUpon>202208031449479_Colocado Entrada e Saidacoo nullable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202208031523252_AddColunaCadastro.resx">
-      <DependentUpon>202208031523252_AddColunaCadastro.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202208042236199_AddCampoBilhete.resx">
-      <DependentUpon>202208042236199_AddCampoBilhete.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202208111933571_AddColunaDescricao.resx">
-      <DependentUpon>202208111933571_AddColunaDescricao.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202208111936518_AddRestricao.resx">
-      <DependentUpon>202208111936518_AddRestricao.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

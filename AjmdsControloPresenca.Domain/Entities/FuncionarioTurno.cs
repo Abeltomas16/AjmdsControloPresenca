@@ -1,14 +1,13 @@
 ﻿namespace AjmdsControloPresenca.Domain.Entities
 {
-    public class DepartamentoTurno
+    public class FuncionarioTurno
     {
-
-        public short DepartamentoId { get; set; }
-        public virtual Departamento Departamento { get; set; }
+        public short FuncionarioId { get; set; }
+        public virtual Funcionario Funcionario { get; set; }
 
         public short TurnoSegundaId { get; set; }
         public virtual Turno TurnoSegunda { get; set; }
-       
+
         public short TurnoTercaId { get; set; }
         public virtual Turno TurnoTerca { get; set; }
 

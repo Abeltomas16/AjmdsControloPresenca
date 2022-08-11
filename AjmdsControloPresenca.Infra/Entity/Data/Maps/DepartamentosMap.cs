@@ -23,10 +23,6 @@ namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
                 }));
 
             Property(c => c.Estado);
-
-            HasOptional(a => a.DepartamentoTurno)
-            .WithRequired(ab => ab.Departamento);
-
         }
     }
 }
