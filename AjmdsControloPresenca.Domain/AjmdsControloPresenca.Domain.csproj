@@ -41,6 +41,7 @@
     <Compile Include="Contract\IFuncionarioRepository.cs" />
     <Compile Include="Contract\IGeneroRepository.cs" />
     <Compile Include="Contract\IRepositoryCrud.cs" />
+    <Compile Include="Contract\ITurnoRepository.cs" />
     <Compile Include="Contract\IUsuarioRepository.cs" />
     <Compile Include="Entities\Cargo.cs" />
     <Compile Include="Entities\Departamento.cs" />
