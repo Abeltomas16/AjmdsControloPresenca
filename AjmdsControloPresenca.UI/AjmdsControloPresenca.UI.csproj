@@ -183,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CargoController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -191,6 +192,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cargo\CargoExtension.cs" />
+    <Compile Include="Models\Cargo\CargoIndexVM.cs" />
     <Compile Include="Models\Departamento\DepartamentoAddEditVM.cs" />
     <Compile Include="Models\Departamento\DepartamentoAddEditExtension.cs" />
     <Compile Include="Models\Departamento\DepartamentoIndexVM.cs" />
@@ -233,6 +236,7 @@
     <Content Include="Views\Departamento\Index.cshtml" />
     <Content Include="Views\Departamento\Add.cshtml" />
     <Content Include="Views\Departamento\Edit.cshtml" />
+    <Content Include="Views\Cargo\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
