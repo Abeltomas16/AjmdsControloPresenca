@@ -76,9 +76,9 @@
                 var promisse= await fetch(link)
                 if(promisse.status==200){
                      document.querySelector('#funcionario-'+id).remove()
-                    toastr.success('Funcionário Excluido com sucesso','AJMDS-PRESENCA')
+                    toastr.success('Usuário Excluido com sucesso','AJMDS-PRESENCA')
                 }else{
-                     toastr.error('Funcionário não encontrado','AJMDS-PRESENCA')
+                     toastr.error('Falha ao exluir usuário','AJMDS-PRESENCA')
                 }
                 $('#deleteModal').data('id','0').modal('hide')
             })*/

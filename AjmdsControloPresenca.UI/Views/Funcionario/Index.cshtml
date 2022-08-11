@@ -84,7 +84,7 @@
                      document.querySelector('#funcionario-'+id).remove()
                     toastr.success('Funcionário Excluido com sucesso','AJMDS-PRESENCA')
                 }else{
-                     toastr.error('Funcionário não encontrado','AJMDS-PRESENCA')
+                     toastr.error('Falha ao exluir funcionário','AJMDS-PRESENCA')
                 }
                 $('#deleteModal').data('id','0').modal('hide')
             })

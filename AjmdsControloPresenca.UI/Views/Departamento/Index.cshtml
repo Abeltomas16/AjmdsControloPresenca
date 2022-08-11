@@ -76,7 +76,7 @@
                      document.querySelector('#departamento-'+id).remove()
                     toastr.success('Departamento Excluido com sucesso','AJMDS-PRESENCA')
                 }else{
-                     toastr.error('Departamento não encontrado','AJMDS-PRESENCA')
+                     toastr.error('Falha ao exluir departamento','AJMDS-PRESENCA')
                 }
                 $('#deleteModal').data('id','0').modal('hide')
             })

@@ -74,7 +74,7 @@
                      document.querySelector('#cargo-'+id).remove()
                     toastr.success('Cargo Excluido com sucesso','AJMDS-PRESENCA')
                 }else{
-                     toastr.error('Cargo não encontrado','AJMDS-PRESENCA')
+                     toastr.error('Falha ao exluir cargo','AJMDS-PRESENCA')
                 }
                 $('#deleteModal').data('id','0').modal('hide')
             })
