@@ -63,6 +63,13 @@ namespace AjmdsControloPresenca.UI.Controllers
             repositoryEF.Alter(Entity.ToFuncionarioTurno());
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public ActionResult Delete(int? Id)
+        {
+            if (Id == null) return RedirectToAction("Index");
+            repositoryEF.Delete(repositoryEF.ListarPorId(Id));
+            return RedirectToAction("Index");
+        }
         private void PreencherSelects()
         {
             TurnoRepositoryEF turnoRepositoryEF = new TurnoRepositoryEF();

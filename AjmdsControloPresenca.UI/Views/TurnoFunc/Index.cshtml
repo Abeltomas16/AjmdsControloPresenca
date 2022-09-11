@@ -82,7 +82,7 @@
          }
         document.querySelector('#btnConfirmar').addEventListener('click',async()=>{
                 const id= $('#deleteModal').data('id')
-                var link=`/Funcionario/Delete/${id}`
+                var link=`/TurnoFunc/Delete/${id}`
                 var promisse= await fetch(link)
                 if(promisse.status==200){
                      document.querySelector('#funcionario-'+id).remove()
