@@ -1,0 +1,101 @@
+﻿@model TurnoFuncAddEditVM
+<h2>Cadastrar turno funcionário</h2>
+<form method="POST">
+    <div class="form-row">
+        <div class="form-group form-row col-12">
+            @Html.LabelFor(f => f.Id, "Funcionário")
+            @Html.DropDownListFor(f => f.Id,
+                                  new SelectList(ViewBag.Funcionarios, "Id", "Nome"),
+                                  "Selecione um funcionário...",
+                                  new { @class = "form-control" }
+            )
+            <small>@Html.ValidationMessageFor(g => g.Id, null, new { @class = "text-danger" })</small>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            @Html.LabelFor(t => t.TurnoSegundaId, "Turno Segunda")
+            @Html.DropDownListFor(f => f.TurnoSegundaId,
+                                  new SelectList(ViewBag.Turnos, "Id", "Descricao"),
+                                  "Selecione um turno...",
+                                  new { @class = "form-control" }
+            )
+            <small>@Html.ValidationMessageFor(t => t.TurnoSegundaId, null, new { @class = "text-danger" })</small>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(t => t.TurnoTercaId, "Turno terça")
+            @Html.DropDownListFor(f => f.TurnoTercaId,
+                                  new SelectList(ViewBag.Turnos, "Id", "Descricao"),
+                                  "Selecione um turno...",
+                                  new { @class = "form-control" }
+            )
+            <small>@Html.ValidationMessageFor(t => t.TurnoTercaId, null, new { @class = "text-danger" })</small>
+        </div>
+
+
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(t => t.TurnoQuartaId, "Turno Quarta")
+            @Html.DropDownListFor(f => f.TurnoQuartaId,
+                                  new SelectList(ViewBag.Turnos, "Id", "Descricao"),
+                                  "Selecione um turno...",
+                                  new { @class = "form-control" }
+            )
+            <small>@Html.ValidationMessageFor(t => t.TurnoQuartaId, null, new { @class = "text-danger" })</small>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            @Html.LabelFor(t => t.TurnoQuintaId, "Turno Quinta")
+            @Html.DropDownListFor(f => f.TurnoQuintaId,
+                                  new SelectList(ViewBag.Turnos, "Id", "Descricao"),
+                                  "Selecione um turno...",
+                                  new { @class = "form-control" }
+            )
+            <small>@Html.ValidationMessageFor(t => t.TurnoQuintaId, null, new { @class = "text-danger" })</small>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(t => t.TurnoSextaId, "Turno Sexta")
+            @Html.DropDownListFor(f => f.TurnoSextaId,
+                                  new SelectList(ViewBag.Turnos, "Id", "Descricao"),
+                                  "Selecione um turno...",
+                                  new { @class = "form-control" }
+            )
+            <small>@Html.ValidationMessageFor(t => t.TurnoSextaId, null, new { @class = "text-danger" })</small>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(t => t.TurnoSabadoId, "Turno Sabádo")
+            @Html.DropDownListFor(f => f.TurnoSabadoId,
+                                  new SelectList(ViewBag.Turnos, "Id", "Descricao"),
+                                  "Selecione um turno...",
+                                  new { @class = "form-control" }
+            )
+            <small>@Html.ValidationMessageFor(t => t.TurnoSabadoId, null, new { @class = "text-danger" })</small>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            @Html.LabelFor(t => t.TurnoDomingoId, "Turno Domingo")
+            @Html.DropDownListFor(f => f.TurnoDomingoId,
+                                  new SelectList(ViewBag.Turnos, "Id", "Descricao"),
+                                  "Selecione um turno...",
+                                  new { @class = "form-control" }
+            )
+            <small>@Html.ValidationMessageFor(t => t.TurnoDomingoId, null, new { @class = "text-danger" })</small>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Salvar" />
+        <a href="@Url.Action("Index")" class="btn btn-outline-info">Cancelar</a>
+    </div>
+</form>
+@section script{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/bootstrap.validate.js"></script>
+}

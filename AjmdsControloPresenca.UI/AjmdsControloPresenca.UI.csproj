@@ -205,6 +205,8 @@
     <Compile Include="Models\Funcionario\FuncionarioIndexExtension.cs" />
     <Compile Include="Models\Funcionario\FuncionarioIndexVM.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\TurnoFunc\TurnoFuncAddEditExtension.cs" />
+    <Compile Include="Models\TurnoFunc\TurnoFuncAddEditVM.cs" />
     <Compile Include="Models\TurnoFunc\TurnoFuncIndexExtension.cs" />
     <Compile Include="Models\TurnoFunc\TurnoFuncIndexVM.cs" />
     <Compile Include="Models\Turno\TurnoAddEditExtension.cs" />
@@ -251,6 +253,7 @@
     <Content Include="Views\Turno\Add.cshtml" />
     <Content Include="Views\Turno\Edit.cshtml" />
     <Content Include="Views\TurnoFunc\Index.cshtml" />
+    <Content Include="Views\TurnoFunc\Add.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
