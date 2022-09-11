@@ -189,6 +189,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\TurnoController.cs" />
+    <Compile Include="Controllers\TurnoFuncController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -247,6 +248,7 @@
     <Content Include="Views\Turno\Index.cshtml" />
     <Content Include="Views\Turno\Add.cshtml" />
     <Content Include="Views\Turno\Edit.cshtml" />
+    <Content Include="Views\TurnoFunc\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
