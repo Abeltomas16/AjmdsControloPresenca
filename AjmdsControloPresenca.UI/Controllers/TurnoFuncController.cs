@@ -14,8 +14,6 @@ namespace AjmdsControloPresenca.UI.Controllers
     public class TurnoFuncController : Controller
     {
         TurnoFuncRepositoryEF repositoryEF = new TurnoFuncRepositoryEF();
-        TurnoRepositoryEF turnoRepositoryEF = new TurnoRepositoryEF();
-        FuncionarioRepositoryEF funcionarioRepositoryEF = new FuncionarioRepositoryEF();
         public ActionResult Index()
         {
             var turnosF = repositoryEF.ListarTodos().ToTurnoFuncVM();
@@ -24,10 +22,9 @@ namespace AjmdsControloPresenca.UI.Controllers
         [HttpGet]
         public ActionResult Add()
         {
-            ViewBag.Funcionarios = funcionarioRepositoryEF.ListarTodos();
-            ViewBag.Turnos = turnoRepositoryEF.ListarTodos();
-            TurnoFuncAddEditVM turno = new TurnoFuncAddEditVM();
-            return View(turno);
+            TurnoFuncAddEditVM turnof = new TurnoFuncAddEditVM();
+            PreencherSelects();
+            return View(turnof);
         }
         [HttpPost]
         public ActionResult Add(TurnoFuncAddEditVM Entity)
@@ -50,6 +47,28 @@ namespace AjmdsControloPresenca.UI.Controllers
                 }
             }
             return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public ActionResult Edit(int? Id)
+        {
+            if (Id == null) return RedirectToAction("Index");
+            TurnoFuncAddEditVM turnof = repositoryEF.OverListarPorId(Id.Value).ToFuncionarioTurnoVM();
+            PreencherSelects();
+            return View(turnof);
+        }
+        [HttpPost]
+        public ActionResult Edit(TurnoFuncAddEditVM Entity)
+        {
+            if (!ModelState.IsValid) return View(Entity);
+            repositoryEF.Alter(Entity.ToFuncionarioTurno());
+            return RedirectToAction("Index");
+        }
+        private void PreencherSelects()
+        {
+            TurnoRepositoryEF turnoRepositoryEF = new TurnoRepositoryEF();
+            FuncionarioRepositoryEF funcionarioRepositoryEF = new FuncionarioRepositoryEF();
+            ViewBag.Funcionarios = funcionarioRepositoryEF.ListarTodos();
+            ViewBag.Turnos = turnoRepositoryEF.ListarTodos();
         }
     }
 }

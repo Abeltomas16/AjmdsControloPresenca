@@ -254,6 +254,7 @@
     <Content Include="Views\Turno\Edit.cshtml" />
     <Content Include="Views\TurnoFunc\Index.cshtml" />
     <Content Include="Views\TurnoFunc\Add.cshtml" />
+    <Content Include="Views\TurnoFunc\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

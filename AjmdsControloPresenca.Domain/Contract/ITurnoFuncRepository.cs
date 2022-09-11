@@ -6,6 +6,6 @@ namespace AjmdsControloPresenca.Domain.Contract
     public interface ITurnoFuncRepository : IRepositoryCrud<FuncionarioTurno>
     {
         IEnumerable<FuncionarioTurno> ListarTodos();
-        FuncionarioTurno ListarPorId(short Id);
+        FuncionarioTurno OverListarPorId(int Id);
     }
 }

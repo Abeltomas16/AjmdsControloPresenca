@@ -7,7 +7,7 @@ namespace AjmdsControloPresenca.Infra.Repository
 {
     public class TurnoFuncRepositoryEF : RepositoryEF<FuncionarioTurno>, ITurnoFuncRepository
     {
-        public FuncionarioTurno ListarPorId(short Id)
+        public FuncionarioTurno OverListarPorId(int Id)
         {
             return Context.Set<FuncionarioTurno>()
                           .Include(a => a.TurnoSegunda)
