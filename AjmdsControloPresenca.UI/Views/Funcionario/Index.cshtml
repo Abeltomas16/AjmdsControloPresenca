@@ -51,7 +51,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Desejas excluir o funcionário <span id="lblNomeFuncionario"></span></p>
+                    <p>Desejas excluir turno do funcionário <span id="lblNomeFuncionario"></span></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -82,9 +82,9 @@
                 var promisse= await fetch(link)
                 if(promisse.status==200){
                      document.querySelector('#funcionario-'+id).remove()
-                    toastr.success('Funcionário Excluido com sucesso','AJMDS-PRESENCA')
+                    toastr.success('Turno do funcionário Excluido com sucesso','AJMDS-PRESENCA')
                 }else{
-                     toastr.error('Falha ao exluir funcionário','AJMDS-PRESENCA')
+                     toastr.error('Falha ao exluir turno do funcionário','AJMDS-PRESENCA')
                 }
                 $('#deleteModal').data('id','0').modal('hide')
             })

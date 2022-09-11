@@ -1,7 +1,96 @@
 ﻿
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Turno Funcionário";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
+<a href="@Url.Action("Add")" class="btn btn-primary mt-4 mb-4 px-3">Cadastrar</a>
+<div class="table-responsive table-hover">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Funcionário</th>
+                <th scope="col">Segunda</th>
+                <th scope="col">Terça</th>
+                <th scope="col">Quarta</th>
+                <th scope="col">Quinta</th>
+                <th scope="col">Sexta</th>
+                <th scope="col">Sábado</th>
+                <th scope="col">Domingo</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (TurnoFuncIndexVM funcionario in Model)
+            {
+            <tr id="funcionario-@funcionario.Id">
+                <th scope="row">@funcionario.Id</th>
+                <td>@funcionario.Funcionario</td>
+                <td>@funcionario.TurnoSegunda</td>
+                <td>@funcionario.TurnoTerca</td>
+                <td>@funcionario.TurnoQuarta</td>
+                <td>@funcionario.TurnoQuinta</td>
+                <td>@funcionario.TurnoSexta</td>
+                <td>@funcionario.TurnoSabado</td>
+                <td>@funcionario.TurnoDomingo</td>
+                <td class="btn-group">
+                    <a class="btn btn-sm btn-outline-success"
+                       href="@Url.Action("Edit",new {id=funcionario.Id})"><i class="fas fa-edit"></i> Editar</a>
+                    <button class="btn btn-sm btn-outline-danger" onclick="showModal(@funcionario.Id,'@funcionario.Funcionario')"><i class="fas fa-trash"></i> Excluir</button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
 
+    <div data-id="0" class="modal" id="deleteModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Excluir Funcionário</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Desejas excluir o funcionário <span id="lblNomeFuncionario"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnConfirmar">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+@section script{
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/bootstrap.validate.js"></script>
+}
+<script>
+         function showModal(Id,Nome){
+             $('#lblNomeFuncionario').text(Nome)
+             $('#deleteModal').data('id',Id).modal('show')
+         }
+        document.querySelector('#btnConfirmar').addEventListener('click',async()=>{
+                const id= $('#deleteModal').data('id')
+                var link=`/Funcionario/Delete/${id}`
+                var promisse= await fetch(link)
+                if(promisse.status==200){
+                     document.querySelector('#funcionario-'+id).remove()
+                    toastr.success('Funcionário Excluido com sucesso','AJMDS-PRESENCA')
+                }else{
+                     toastr.error('Falha ao exluir funcionário','AJMDS-PRESENCA')
+                }
+                $('#deleteModal').data('id','0').modal('hide')
+            })
+
+</script>
