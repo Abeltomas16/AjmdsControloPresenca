@@ -4,19 +4,26 @@
 <form method="POST">
 
     <div class="form-row">
-        <div class="form-group col-md-4">
+
+        <div class="form-group col-md-3">
+            @Html.LabelFor(n => n.Id, "Id:")
+            @Html.TextBoxFor(n => n.Id, new { @class = "form-control", @autofocus = "" })
+            <small>  @Html.ValidationMessageFor(n => n.Id, null, new { @class = "text-danger" })</small>
+        </div>
+
+        <div class="form-group col-md-3">
             @Html.LabelFor(n => n.Nome, "Nome:")
-            @Html.TextBoxFor(n => n.Nome, new { @class = "form-control", @autofocus = "" })
+            @Html.TextBoxFor(n => n.Nome, new { @class = "form-control" })
             <small>  @Html.ValidationMessageFor(n => n.Nome, null, new { @class = "text-danger" })</small>
         </div>
 
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
             @Html.LabelFor(s => s.SobreNome, "SobreNome:")
             @Html.TextBoxFor(s => s.SobreNome, new { @class = "form-control" })
             <small>  @Html.ValidationMessageFor(s => s.SobreNome, null, new { @class = "text-danger" })</small>
         </div>
 
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
             @Html.LabelFor(b => b.Bilhete, "Bilhete:")
             @Html.TextBoxFor(b => b.Bilhete, new { @class = "form-control" })
             <small>  @Html.ValidationMessageFor(b => b.Bilhete, null, new { @class = "text-danger" })</small>

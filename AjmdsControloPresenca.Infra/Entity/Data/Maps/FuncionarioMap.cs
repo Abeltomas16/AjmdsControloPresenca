@@ -13,7 +13,7 @@ namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
             HasKey(pk => pk.Id);
 
             Property(c => c.Id)
-                .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+                .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
 
             Property(c => c.Nome)
              .HasMaxLength(30)

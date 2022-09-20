@@ -4,6 +4,7 @@ namespace AjmdsControloPresenca.UI.Models.Funcionario
 {
     public class FuncionarioAddEditVM
     {
+        [Required]
         public short Id { get; set; }
         [Required, StringLength(30)]
         public string Nome { get; set; }

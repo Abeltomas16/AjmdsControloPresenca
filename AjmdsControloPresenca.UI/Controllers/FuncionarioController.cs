@@ -1,12 +1,9 @@
-﻿using AjmdsControloPresenca.Domain.Entities;
-using AjmdsControloPresenca.Infra.Repository;
-using AjmdsControloPresenca.UI.Models;
+﻿using AjmdsControloPresenca.Infra.Repository;
 using AjmdsControloPresenca.UI.Models.Funcionario;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace AjmdsControloPresenca.UI.Controllers
@@ -21,15 +18,31 @@ namespace AjmdsControloPresenca.UI.Controllers
         EstadoCivilRepositoryEF _estadoCivilRepository = new EstadoCivilRepositoryEF();
         public ActionResult Index()
         {
-            IEnumerable<FuncionarioIndexVM> funcionarios = repositoryEF.ListarTodos().ToFuncionarioIndex();
-            return View(funcionarios);
+            try
+            {
+                IEnumerable<FuncionarioIndexVM> funcionarios = repositoryEF.ListarTodos().ToFuncionarioIndex();
+                return View(funcionarios);
+            }
+            catch (Exception)
+            {
+                return View();
+            }
         }
         [HttpGet]
         public ActionResult Add()
         {
-            FuncionarioAddEditVM funcionario = new FuncionarioAddEditVM();
-            PreencherSelects();
-            return View(funcionario);
+            try
+            {
+                var id = repositoryEF.ListarTodos().Max(i => i.Id) + 1;
+                FuncionarioAddEditVM funcionario = new FuncionarioAddEditVM();
+                funcionario.Id = (short)id;
+                PreencherSelects();
+                return View(funcionario);
+            }
+            catch (Exception)
+            {
+                return View();
+            }
         }
         [HttpPost]
         public ActionResult Add(FuncionarioAddEditVM Entity)
@@ -37,17 +50,28 @@ namespace AjmdsControloPresenca.UI.Controllers
             try
             {
                 if (!ModelState.IsValid) return View(Entity);
+                if (Entity.Id >= 240)
+                {
+                    ModelState.AddModelError("Id", "O id tem que ser menor que 240");
+                    return View(Entity);
+                }
+                IEnumerable<FuncionarioIndexVM> funcionarios = repositoryEF.ListarTodos().ToFuncionarioIndex();
+                if (funcionarios.Where(f => f.Id == Entity.Id).Count() > 0)
+                {
+                    ModelState.AddModelError("Id", "Este id Já existe");
+                    return View(Entity);
+                }
                 repositoryEF.Add(Entity.ToFuncionario());
                 return RedirectToAction("Index");
             }
-            catch(DbEntityValidationException ex)
+            catch (DbEntityValidationException ex)
             {
                 foreach (var eve in ex.EntityValidationErrors)
                 {
-                    Console.WriteLine("Entity do tipo \"{0}\" in state \"{1}\" causou erro:",eve.Entry.Entity.GetType().Name,eve.ValidationErrors);
+                    Console.WriteLine("Entity do tipo \"{0}\" in state \"{1}\" causou erro:", eve.Entry.Entity.GetType().Name, eve.ValidationErrors);
                     foreach (var item in eve.ValidationErrors)
                     {
-                        Console.WriteLine("- Propiedade: \"{0}\", Error: \"{1}\"",item.PropertyName,item.ErrorMessage);
+                        Console.WriteLine("- Propiedade: \"{0}\", Error: \"{1}\"", item.PropertyName, item.ErrorMessage);
                     }
                 }
             }
@@ -56,24 +80,45 @@ namespace AjmdsControloPresenca.UI.Controllers
         [HttpGet]
         public ActionResult Edit(int? Id)
         {
-            if (Id == null) return RedirectToAction("Index");
-            FuncionarioAddEditVM funcionarioVM = repositoryEF.ListarPorId(Id).ToFuncionarioAddEdit();
-            PreencherSelects();
-            return View(funcionarioVM);
+            try
+            {
+                if (Id == null) return RedirectToAction("Index");
+                FuncionarioAddEditVM funcionarioVM = repositoryEF.ListarPorId(Id).ToFuncionarioAddEdit();
+                PreencherSelects();
+                return View(funcionarioVM);
+            }
+            catch (Exception)
+            {
+                return View();
+            }
         }
         [HttpPost]
         public ActionResult Edit(FuncionarioAddEditVM Entity)
         {
-            if (!ModelState.IsValid) return View(Entity);
-            repositoryEF.Alter(Entity.ToFuncionario());
-            return RedirectToAction("Index");
+            try
+            {
+                if (!ModelState.IsValid) return View(Entity);
+                repositoryEF.Alter(Entity.ToFuncionario());
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                return View();
+            }
         }
         [HttpGet]
         public ActionResult Delete(int? Id)
         {
-            if (Id == null)return RedirectToAction("Index");
-            repositoryEF.Delete(repositoryEF.ListarPorId(Id));
-            return RedirectToAction("Index");
+            try
+            {
+                if (Id == null) return RedirectToAction("Index");
+                repositoryEF.Delete(repositoryEF.ListarPorId(Id));
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                return View();
+            }
         }
         private void PreencherSelects()
         {
