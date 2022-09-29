@@ -9,6 +9,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjmdsControloPresenca.Infra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjmdsControloPresenca.Domain", "AjmdsControloPresenca.Domain\AjmdsControloPresenca.Domain.csproj", "{12940055-B8F2-4D8D-85EF-CB482B2D5D8E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop", "Desktop", "{4EAC6D70-7A6A-4A72-BC99-63AC880F2747}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1\WindowsFormsApp1.csproj", "{E10CFEFC-B5FE-443B-9EDA-3C017AB28907}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servico", "Servico", "{6FF51121-68A7-4F38-9F2F-1B848BCB96CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FingerPrintServico", "FingerPrintServico\FingerPrintServico.csproj", "{3B015CDE-849D-432A-B0DE-71CB83EB117A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +35,21 @@ Global
 		{12940055-B8F2-4D8D-85EF-CB482B2D5D8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12940055-B8F2-4D8D-85EF-CB482B2D5D8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12940055-B8F2-4D8D-85EF-CB482B2D5D8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E10CFEFC-B5FE-443B-9EDA-3C017AB28907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E10CFEFC-B5FE-443B-9EDA-3C017AB28907}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E10CFEFC-B5FE-443B-9EDA-3C017AB28907}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E10CFEFC-B5FE-443B-9EDA-3C017AB28907}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B015CDE-849D-432A-B0DE-71CB83EB117A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B015CDE-849D-432A-B0DE-71CB83EB117A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B015CDE-849D-432A-B0DE-71CB83EB117A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B015CDE-849D-432A-B0DE-71CB83EB117A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E10CFEFC-B5FE-443B-9EDA-3C017AB28907} = {4EAC6D70-7A6A-4A72-BC99-63AC880F2747}
+		{3B015CDE-849D-432A-B0DE-71CB83EB117A} = {6FF51121-68A7-4F38-9F2F-1B848BCB96CA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {529B0EFF-B372-4688-8B1E-410A4C2B03F0}
