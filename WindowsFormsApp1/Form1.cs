@@ -72,7 +72,7 @@ namespace WindowsFormsApp1
         void StartService()
         {
             TimeSpan timeout = TimeSpan.FromMilliseconds(6000);
-            servico.Stop();
+            servico.Start();
             servico.WaitForStatus(ServiceControllerStatus.Running, timeout);
         }
         void StopService()
