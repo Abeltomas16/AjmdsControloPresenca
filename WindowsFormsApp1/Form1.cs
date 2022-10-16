@@ -1,73 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.IO.Ports;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Management;
-using Microsoft.Win32;
 using System.IO;
+using System.ServiceProcess;
 
 namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
         List<string> portas = new List<string>();
+        const string Path = @"C:\FingerPrint";
+        const string PathPorta = @"C:\FingerPrint\FingerPrintPorta.txt";
+        const string FecharServico = "Fechar serviço";
+        const string StartServico = "Iniciar serviço";
+        const string NomeServico = "FingerPrint Arduino";
+        readonly ServiceController servico ;
         public Form1()
         {
             InitializeComponent();
+            servico = new ServiceController(NomeServico);
         }
 
-        private void LblConfiguracao_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnSair_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
         #region Metodos
-        private string GetPorta()
+        private List<string> GetPorta()
         {
+            List<string> portas = new List<string>();
             ConnectionOptions options = GetConnectionOptions();
             ManagementScope connectionScope = new ManagementScope(); //GetConnectionScope(Environment.MachineName, options, @"\root\CIMV2");
-            SelectQuery q = new SelectQuery("SELECT * FROM Win32_SerialPort");
-           // ObjectQuery objectQuery = new ObjectQuery("SELECT * FROM MSSerial_PortName");
-            ManagementObjectSearcher comPortSearcher = new ManagementObjectSearcher(connectionScope,q);
-            foreach (var item in comPortSearcher.Get())
-            {
-                Console.WriteLine();
-            }
-           /* using (comPortSearcher)
+            SelectQuery q = new SelectQuery("select * from Win32_PnpEntity where ClassGuid = '{4d36e978-e325-11ce-bfc1-08002be10318}' ");
+            ManagementObjectSearcher comPortSearcher = new ManagementObjectSearcher(connectionScope, q);
+            using (comPortSearcher)
             {
                 string caption = null;
                 foreach (ManagementObject obj in comPortSearcher.Get())
                 {
                     if (obj == null) return null;
-                    object captionObj = obj["Caption"];
+                    object captionObj = obj["Name"];
                     if (captionObj == null) return null;
                     caption = captionObj.ToString();
                     if (!caption.Contains("(COM")) return null;
                     if (caption.Contains("CH340") || caption.Contains("Arduino"))
-                        return caption.Substring(caption.LastIndexOf("(COM")).Replace("(", string.Empty).Replace(")", string.Empty);
+                        portas.Add(caption);
                 }
-            }*/
-            return null;
+            }
+            return portas;
         }
-        private static ManagementScope GetConnectionScope(string machineName, ConnectionOptions options, string path)
-        {
-            ManagementScope connectScope = new ManagementScope();
-            connectScope.Path = new ManagementPath(@"\\" + machineName + path);
-            connectScope.Options = options;
-            connectScope.Connect();
-            return connectScope;
-        }
-
         private static ConnectionOptions GetConnectionOptions()
         {
             ConnectionOptions options = new ConnectionOptions();
@@ -76,101 +55,124 @@ namespace WindowsFormsApp1
             options.EnablePrivileges = true;
             return options;
         }
-        #endregion
-        private void ActualizaLista()
+        void RestartService()
         {
-
-            try
+            int tick1 = Environment.TickCount;
+            int tick2 = Environment.TickCount;
+            TimeSpan timeout = TimeSpan.FromMilliseconds(6000);
+            if ((servico.Status == ServiceControllerStatus.Running) || (servico.Status == ServiceControllerStatus.StartPending))
             {
-                GetPorta();
-                /*  int i;
-                  bool quantDiferente; // para sinalizar que a quantidade de portas mudou
-                  i = 0;
-                  quantDiferente = false;
-
-                  //se a quantidade de portas mudou
-
-                  if (cbxPortas.Items.Count == SerialPort.GetPortNames().Length)
-                  {
-                      foreach (string item in SerialPort.GetPortNames())
-                      {
-                          if (cbxPortas.Items[i++].Equals(item) == false)
-                          {
-                              quantDiferente = true;
-                          }
-                      }
-                  }
-                  else
-                  {
-                      quantDiferente = true;
-                  }
-                  //se nao foi detectado diferenca
-                  if (quantDiferente == false)
-                  {
-                      return;
-                  }
-                  cbxPortas.Items.Clear();
-
-                  foreach (string item in SerialPort.GetPortNames())
-                  {
-                      cbxPortas.Items.Add(item);
-                  }
-                  //seleciona a primeira posicao
-
-                  if (cbxPortas.Items.Count > 1)
-                  {
-                      cbxPortas.SelectedIndex = 1;
-                  }
-                  else
-                  {
-                      cbxPortas.SelectedIndex = 0;
-                  }*/
+                servico.Stop();
             }
-            catch (Exception erro)
+            servico.WaitForStatus(ServiceControllerStatus.Stopped, timeout);
+            timeout = TimeSpan.FromMilliseconds(6000 - (tick1 - tick2));
+            servico.Start();
+            servico.WaitForStatus(ServiceControllerStatus.Running, timeout);
+        }
+        void StartService()
+        {
+            TimeSpan timeout = TimeSpan.FromMilliseconds(6000);
+            servico.Stop();
+            servico.WaitForStatus(ServiceControllerStatus.Running, timeout);
+        }
+        void StopService()
+        {
+            TimeSpan timeout = TimeSpan.FromMilliseconds(6000);
+            servico.Stop();      
+            servico.WaitForStatus(ServiceControllerStatus.Stopped, timeout);
+        }
+        bool StatService()
+        {
+            if ((servico.Status == ServiceControllerStatus.Running) || (servico.Status == ServiceControllerStatus.StartPending))
             {
-                MessageBox.Show(erro.Message);
+                return true;
             }
+            return false;
+        }
+        void AnalisarServico()
+        {
+            if (StatService())
+                btServico.Text = FecharServico;
+            else
+                btServico.Text = StartServico;
+        }
+        #endregion
+
+        #region eventos
+        private void LblConfiguracao_Click(object sender, EventArgs e)
+        {
+        }
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
-            ActualizaLista();
-            // ListarPortas();
             try
             {
-                /*string pasta = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-                string pastaCompleta = Path.Combine(pasta, "FingerPrint");
-                string file = pastaCompleta + $@"\fingerprint.txt";
-                string porta = string.Empty;
-
-                if (!Directory.Exists(pastaCompleta))
-                    Directory.CreateDirectory(pastaCompleta);
-
-                if (!File.Exists(file)) return;
-
-                TextReader ler = new StreamReader(file);
-                while (ler.Peek() != -1)
+                List<string> portas = GetPorta();
+                cbxPortas.Items.Clear();
+                foreach (var item in portas)
                 {
-                    string p = ler.ReadLine();
-                    if (p.ToUpper().Contains("COM")) porta = p.ToUpper();
+                    cbxPortas.Items.Add(item);
                 }
-                ler.Dispose();*/
-
-                string pasta = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-                string pastaCompleta = Path.Combine(pasta, "FingerPrint");
-                string file = pastaCompleta + $@"\fingerprint.txt";
-                string porta = string.Empty;
-
-                if (!Directory.Exists(pastaCompleta))
-                    Directory.CreateDirectory(pastaCompleta);
-
-                TextWriter escrita = new StreamWriter(file, false, Encoding.Default);
-                escrita.Write(cbxPortas.Text);
-                escrita.Dispose();
             }
             catch (Exception erro)
             {
                 MessageBox.Show(erro.Message);
             }
         }
+        private void btSalvar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string porta = cbxPortas.Text.Substring(cbxPortas.Text.LastIndexOf("(COM")).Replace("(", string.Empty).Replace(")", string.Empty);
+
+                if (!Directory.Exists(Path))
+                    Directory.CreateDirectory(Path);
+
+                TextWriter escrita = new StreamWriter(PathPorta, false, Encoding.Default);
+                escrita.Write(porta);
+                escrita.Dispose();
+                RestartService();
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show(erro.Message);
+            }
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                AnalisarServico();
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show(erro.Message);
+            }
+        }
+        private void btServico_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (btServico.Text == FecharServico)
+                {
+                    StopService();
+                }
+                else
+                {
+                    StartService();
+                }
+
+                AnalisarServico();
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show(erro.Message);
+            }
+        }
+        #endregion
     }
 }
+
