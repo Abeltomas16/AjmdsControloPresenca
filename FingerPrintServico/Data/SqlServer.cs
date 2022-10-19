@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace FingerPrintServico.Data
 
         public string StringConexao()
         {
-            return "Data Source=.;Initial Catalog=AJMDSPresenca;Integrated Security=True";
+            return "Data Source=.;Password=049222Xp12;Persist Security Info=True;User ID=sa;Initial Catalog=AJMDSPresenca";
         }
 
         #endregion
@@ -100,7 +101,19 @@ namespace FingerPrintServico.Data
 
 
         }
-
+        public string Cadastrar(int FuncionarioId)
+        {
+            try
+            {
+                LimparParametro();
+                AdicionarParametros("@FuncionarioId", FuncionarioId);
+                return ExecutarManipulacao(CommandType.StoredProcedure, "uspFuncionarioPresencaCadastrar").ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         #endregion
     }
 }

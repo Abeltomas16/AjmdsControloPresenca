@@ -11,7 +11,7 @@ namespace FingerPrintServico
     {
         const string Path = @"C:\FingerPrint";
         const string PathError = @"C:\FingerPrint\FingerPrintErro.txt";
-        const string PathPorta= @"C:\FingerPrint\FingerPrintPorta.txt";
+        const string PathPorta = @"C:\FingerPrint\FingerPrintPorta.txt";
 
         static string COM = string.Empty;
         System.Threading.Timer timer1;
@@ -65,7 +65,7 @@ namespace FingerPrintServico
         }
 
         private string GetPorta()
-        {         
+        {
             string porta = string.Empty;
 
             if (!File.Exists(PathPorta) || !Directory.Exists(Path)) return null;
@@ -92,10 +92,12 @@ namespace FingerPrintServico
             try
             {
                 int ids = int.Parse(rtx);
-                StreamWriter vWriter = new StreamWriter(@"c:\FingerPrintRecebidotxt", true);
-                vWriter.WriteLine(ids.ToString());
+                string retorno = bll.Cadastrar(ids);
+                StreamWriter vWriter = new StreamWriter(@"c:\FingerPrintRecebido.txt", true);
+                vWriter.WriteLine("Funcionário: " + ids.ToString() + " " + DateTime.Now);
                 vWriter.Flush();
                 vWriter.Close();
+                conexao.Write(retorno);
             }
             catch (Exception erro)
             {
