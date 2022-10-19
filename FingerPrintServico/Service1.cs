@@ -97,7 +97,7 @@ namespace FingerPrintServico
                 vWriter.WriteLine("Funcionário: " + ids.ToString() + " " + DateTime.Now);
                 vWriter.Flush();
                 vWriter.Close();
-                conexao.Write(retorno);
+                conexao.WriteLine(retorno);
             }
             catch (Exception erro)
             {
