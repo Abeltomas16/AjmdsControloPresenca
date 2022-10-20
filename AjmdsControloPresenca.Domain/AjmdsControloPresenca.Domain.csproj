@@ -40,6 +40,7 @@
     <Compile Include="Contract\IEstadoCivilRepository.cs" />
     <Compile Include="Contract\IFuncionarioRepository.cs" />
     <Compile Include="Contract\IGeneroRepository.cs" />
+    <Compile Include="Contract\IRelatorioRepository.cs" />
     <Compile Include="Contract\IRepositoryCrud.cs" />
     <Compile Include="Contract\ITurnoFuncRepository.cs" />
     <Compile Include="Contract\ITurnoRepository.cs" />
@@ -51,7 +52,7 @@
     <Compile Include="Entities\Genero.cs" />
     <Compile Include="Entities\FuncionarioTurno.cs" />
     <Compile Include="Entities\Presenca.cs" />
-    <Compile Include="Entities\Teste\Employee.cs" />
+    <Compile Include="Entities\Relatorio\RelFolhaPresenca.cs" />
     <Compile Include="Entities\Turno.cs" />
     <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

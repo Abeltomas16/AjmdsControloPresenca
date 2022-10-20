@@ -64,6 +64,7 @@
     <Compile Include="Entity\Data\Maps\UsuarioMap.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\RelatorioRepositorioEF.cs" />
     <Compile Include="Repository\TurnoFuncRepositoryEF.cs" />
     <Compile Include="Repository\TurnoRepositoryEF.cs" />
     <Compile Include="Repository\CargoRepositoryEF.cs" />
