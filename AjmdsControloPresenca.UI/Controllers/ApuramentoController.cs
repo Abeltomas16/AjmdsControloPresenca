@@ -23,8 +23,15 @@ namespace AjmdsControloPresenca.UI.Controllers
         // GET: Apuramento
         public ActionResult Index()
         {
-            PreencherSelects();
-            return View();
+            try
+            {
+                PreencherSelects();
+                return View();
+            }
+            catch (Exception)
+            {
+                return View();
+            }
         }
         [HttpPost]
         public ActionResult Index(RelPresencaVM Entity)
@@ -157,13 +164,13 @@ namespace AjmdsControloPresenca.UI.Controllers
                     folhaPresencas[index] = p;
                 }
                 ViewBag.NomeFuncionario = string.Concat(funcionario.Nome, " ", funcionario.SobreNome);
-                ViewBag.CodigoFuncionario =string.Concat("00", funcionario.Id);
+                ViewBag.CodigoFuncionario = string.Concat("00", funcionario.Id);
                 ViewBag.CargoFuncionario = funcionario.Cargo.Descricao;
                 ViewBag.DepartamentoFuncionario = funcionario.Departamento.Descricao;
                 ViewBag.BIFuncionario = funcionario.Bilhete;
                 ViewBag.Inicio = Inicio.ToShortDateString();
                 ViewBag.Fim = Fim.ToShortDateString();
-                ViewBag.TotalFaltas = folhaPresencas.Sum(s=>s.Falta);
+                ViewBag.TotalFaltas = folhaPresencas.Sum(s => s.Falta);
                 ViewBag.TotalHorasTrabalhadas = folhaPresencas.Sum(s => s.HorasTrabalhadas);
                 int numeroPagina = 1;
                 var relatorioPdf = new ViewAsPdf

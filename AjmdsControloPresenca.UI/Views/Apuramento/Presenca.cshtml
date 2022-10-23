@@ -3,7 +3,7 @@
 
 
 <p class="text-left">
-    Período: <span>@ViewBag.Inicio</span> Até  <span>@ViewBag.Fim</span>
+    Período: <span>@string.Format(ViewBag.Inicio.ToShortDateString())</span> Até  <span>@string.Format(ViewBag.Fim.ToShortDateString())</span>
 </p>
 
 <div class="table-responsive table-hover">

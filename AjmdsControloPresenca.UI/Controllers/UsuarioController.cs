@@ -1,5 +1,7 @@
 ﻿using AjmdsControloPresenca.Infra.Repository;
 using AjmdsControloPresenca.UI.Models.Usuario;
+using PagedList;
+using System;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.Mvc;
@@ -11,10 +13,19 @@ namespace AjmdsControloPresenca.UI.Controllers
     {
         UsuarioRepositoryEF usuarioRepository = new UsuarioRepositoryEF();
         FuncionarioRepositoryEF funcionarioRepository = new FuncionarioRepositoryEF();
-        public ActionResult Index()
+        public ActionResult Index(int? pagina)
         {
-            var usuarios = usuarioRepository.ListarTodos().ToUsuarioIndexVM();
-            return View(usuarios);
+            try
+            {
+                var usuarios = usuarioRepository.ListarTodos().ToUsuarioIndexVM();
+                int numeroRegistros = 10;
+                int numeroPagina = (pagina ?? 1);
+                return View(usuarios.ToPagedList(numeroPagina, numeroRegistros));
+            }
+            catch (Exception)
+            {
+                return View();
+            }
         }
         [HttpGet]
         public ActionResult Add()

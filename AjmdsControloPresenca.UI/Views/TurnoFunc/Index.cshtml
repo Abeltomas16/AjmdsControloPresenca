@@ -1,5 +1,4 @@
-﻿
-
+﻿@model PagedList.IPagedList<TurnoFuncIndexVM>
 @{
     ViewBag.Title = "Turno Funcionário";
 }
@@ -25,26 +24,69 @@
         <tbody>
             @foreach (TurnoFuncIndexVM funcionario in Model)
             {
-            <tr id="funcionario-@funcionario.Id">
-                <th scope="row">@funcionario.Id</th>
-                <td>@funcionario.Funcionario</td>
-                <td>@funcionario.TurnoSegunda</td>
-                <td>@funcionario.TurnoTerca</td>
-                <td>@funcionario.TurnoQuarta</td>
-                <td>@funcionario.TurnoQuinta</td>
-                <td>@funcionario.TurnoSexta</td>
-                <td>@funcionario.TurnoSabado</td>
-                <td>@funcionario.TurnoDomingo</td>
-                <td class="btn-group">
-                    <a class="btn btn-sm btn-outline-success"
-                       href="@Url.Action("Edit",new {id=funcionario.Id})"><i class="fas fa-edit"></i> Editar</a>
-                    <button class="btn btn-sm btn-outline-danger" onclick="showModal(@funcionario.Id,'@funcionario.Funcionario')"><i class="fas fa-trash"></i> Excluir</button>
-                </td>
-            </tr>
+                <tr id="funcionario-@funcionario.Id">
+                    <th scope="row">@funcionario.Id</th>
+                    <td>@funcionario.Funcionario</td>
+                    <td>@funcionario.TurnoSegunda</td>
+                    <td>@funcionario.TurnoTerca</td>
+                    <td>@funcionario.TurnoQuarta</td>
+                    <td>@funcionario.TurnoQuinta</td>
+                    <td>@funcionario.TurnoSexta</td>
+                    <td>@funcionario.TurnoSabado</td>
+                    <td>@funcionario.TurnoDomingo</td>
+                    <td class="btn-group">
+                        <a class="btn btn-sm btn-outline-success"
+                           href="@Url.Action("Edit",new {id=funcionario.Id})"><i class="fas fa-edit"></i> Editar</a>
+                        <button class="btn btn-sm btn-outline-danger" onclick="showModal(@funcionario.Id,'@funcionario.Funcionario')"><i class="fas fa-trash"></i> Excluir</button>
+                    </td>
+                </tr>
             }
+            <tr class="bg-transparent">
+                <td colspan="2"><b>@Model.Count registros de @Model.TotalItemCount</b></td>
+            </tr>
         </tbody>
     </table>
+</div>
 
+<!-- -->
+@{
+    if (Model.TotalItemCount != Model.Count)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                Página @(Model.PageCount<Model.PageNumber? 0 : Model.PageNumber) de @Model.PageCount
+
+                @if (Model.HasPreviousPage)
+                {
+                    @Html.ActionLink("<<", "Index", new { pagina = 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                    @Html.Raw(" ");
+                    @Html.ActionLink("< Anterior", "Index", new { pagina = Model.PageNumber - 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                }
+                else
+                {
+                    @:<<
+                    @Html.Raw(" ");
+                    @:< Anterior
+                }
+
+                @if (Model.HasNextPage)
+                {
+                    @Html.ActionLink("Próxima >", "Index", new { pagina = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                    @Html.Raw(" ");
+                    @Html.ActionLink(">>", "Index", new { pagina = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                }
+                else
+                {
+                    @:Próxima >
+                    @Html.Raw(" ")
+                    @:>>
+                }
+            </div>
+        </div>
+    }
+}
+
+<div>
     <div data-id="0" class="modal" id="deleteModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -76,21 +118,21 @@
     <script src="~/Scripts/bootstrap.validate.js"></script>
 }
 <script>
-         function showModal(Id,Nome){
-             $('#lblNomeFuncionario').text(Nome)
-             $('#deleteModal').data('id',Id).modal('show')
-         }
-        document.querySelector('#btnConfirmar').addEventListener('click',async()=>{
-                const id= $('#deleteModal').data('id')
-                var link=`/TurnoFunc/Delete/${id}`
-                var promisse= await fetch(link)
-                if(promisse.status==200){
-                     document.querySelector('#funcionario-'+id).remove()
-                    toastr.success('Funcionário Excluido com sucesso','AJMDS-PRESENCA')
-                }else{
-                     toastr.error('Falha ao exluir funcionário','AJMDS-PRESENCA')
-                }
-                $('#deleteModal').data('id','0').modal('hide')
-            })
+    function showModal(Id, Nome) {
+        $('#lblNomeFuncionario').text(Nome)
+        $('#deleteModal').data('id', Id).modal('show')
+    }
+    document.querySelector('#btnConfirmar').addEventListener('click', async () => {
+        const id = $('#deleteModal').data('id')
+        var link = `/TurnoFunc/Delete/${id}`
+        var promisse = await fetch(link)
+        if (promisse.status == 200) {
+            document.querySelector('#funcionario-' + id).remove()
+            toastr.success('Funcionário Excluido com sucesso', 'AJMDS-PRESENCA')
+        } else {
+            toastr.error('Falha ao exluir funcionário', 'AJMDS-PRESENCA')
+        }
+        $('#deleteModal').data('id', '0').modal('hide')
+    })
 
 </script>

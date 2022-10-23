@@ -1,4 +1,5 @@
 ﻿
+@model PagedList.IPagedList<FuncionarioIndexVM>
 
 @{
     ViewBag.Title = "Funcionários";
@@ -21,7 +22,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (FuncionarioIndexVM funcionario in Model)
+            @foreach (var funcionario in Model)
             {
                 <tr id="funcionario-@funcionario.Id">
                     <th scope="row">@funcionario.Id</th>
@@ -38,9 +39,53 @@
                     </td>
                 </tr>
             }
+            <tr class="bg-transparent">
+                <td colspan="2"><b>@Model.Count registros de @Model.TotalItemCount</b></td>
+            </tr>
+
         </tbody>
     </table>
+    </div>
+    <!-- -->
+    @{
+        if (Model.TotalItemCount != Model.Count)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    Página @(Model.PageCount<Model.PageNumber? 0 : Model.PageNumber) de @Model.PageCount
 
+                    @if (Model.HasPreviousPage)
+                    {
+                        @Html.ActionLink("<<", "Index", new { pagina = 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                        @Html.Raw(" ");
+                        @Html.ActionLink("< Anterior", "Index", new { pagina = Model.PageNumber - 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                    }
+                    else
+                    {
+                        @:<<
+                        @Html.Raw(" ");
+                        @:< Anterior
+                    }
+
+                    @if (Model.HasNextPage)
+                    {
+                        @Html.ActionLink("Próxima >", "Index", new { pagina = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                        @Html.Raw(" ");
+                        @Html.ActionLink(">>", "Index", new { pagina = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                    }
+                    else
+                    {
+                        @:Próxima >
+                        @Html.Raw(" ")
+                        @:>>
+                    }
+                </div>
+            </div>
+        }
+    }
+
+
+<div>
     <div data-id="0" class="modal" id="deleteModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -60,9 +105,6 @@
             </div>
         </div>
     </div>
-
-
-
 </div>
 @section script{
 
@@ -72,21 +114,21 @@
     <script src="~/Scripts/bootstrap.validate.js"></script>
 }
 <script>
-         function showModal(Id,Nome){
-             $('#lblNomeFuncionario').text(Nome)
-             $('#deleteModal').data('id',Id).modal('show')
-         }
-        document.querySelector('#btnConfirmar').addEventListener('click',async()=>{
-                const id= $('#deleteModal').data('id')
-                var link=`/Funcionario/Delete/${id}`
-                var promisse= await fetch(link)
-                if(promisse.status==200){
-                     document.querySelector('#funcionario-'+id).remove()
-                    toastr.success('Turno do funcionário Excluido com sucesso','AJMDS-PRESENCA')
-                }else{
-                     toastr.error('Falha ao exluir turno do funcionário','AJMDS-PRESENCA')
-                }
-                $('#deleteModal').data('id','0').modal('hide')
-            })
+    function showModal(Id, Nome) {
+        $('#lblNomeFuncionario').text(Nome)
+        $('#deleteModal').data('id', Id).modal('show')
+    }
+    document.querySelector('#btnConfirmar').addEventListener('click', async () => {
+        const id = $('#deleteModal').data('id')
+        var link = `/Funcionario/Delete/${id}`
+        var promisse = await fetch(link)
+        if (promisse.status == 200) {
+            document.querySelector('#funcionario-' + id).remove()
+            toastr.success('Turno do funcionário Excluido com sucesso', 'AJMDS-PRESENCA')
+        } else {
+            toastr.error('Falha ao exluir turno do funcionário', 'AJMDS-PRESENCA')
+        }
+        $('#deleteModal').data('id', '0').modal('hide')
+    })
 
 </script>

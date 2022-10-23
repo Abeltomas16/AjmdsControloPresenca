@@ -1,10 +1,8 @@
 ﻿using AjmdsControloPresenca.Infra.Repository;
 using AjmdsControloPresenca.UI.Models.Cargo;
+using PagedList;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity.Validation;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace AjmdsControloPresenca.UI.Controllersa
@@ -13,10 +11,19 @@ namespace AjmdsControloPresenca.UI.Controllersa
     public class CargoController : Controller
     {
         CargoRepositoryEF cargoRepository = new CargoRepositoryEF();
-        public ActionResult Index()
+        public ActionResult Index(int? pagina)
         {
-            var cargos = cargoRepository.ListarTodos().ToCargoIndexVM();
-            return View(cargos);
+            try
+            {
+                var cargos = cargoRepository.ListarTodos().ToCargoIndexVM();
+                int numeroRegistros = 10;
+                int numeroPagina = (pagina ?? 1);
+                return View(cargos.ToPagedList(numeroPagina, numeroRegistros));
+            }
+            catch (Exception)
+            {
+                return View();
+            }
         }
         [HttpGet]
         public ActionResult Add()

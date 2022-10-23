@@ -1,5 +1,6 @@
 ﻿using AjmdsControloPresenca.Infra.Repository;
 using AjmdsControloPresenca.UI.Models.Departamento;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -13,10 +14,19 @@ namespace AjmdsControloPresenca.UI.Controllers
     public class DepartamentoController : Controller
     {
         DepartamentoRepositoryEF departamentoRepository = new DepartamentoRepositoryEF();
-        public ActionResult Index()
+        public ActionResult Index(int? pagina)
         {
-            var departamentos = departamentoRepository.ListarTodos().ToDepartamentoVM();
-            return View(departamentos);
+            try
+            {
+                var departamentos = departamentoRepository.ListarTodos().ToDepartamentoVM();
+                int numeroRegistros = 10;
+                int numeroPagina = (pagina ?? 1);
+                return View(departamentos.ToPagedList(numeroPagina, numeroRegistros));
+            }
+            catch (Exception)
+            {
+                return View();
+            }
         }
         [HttpGet]
         public ActionResult Add()

@@ -1,5 +1,6 @@
 ﻿using AjmdsControloPresenca.Infra.Repository;
 using AjmdsControloPresenca.UI.Models.Funcionario;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -16,12 +17,14 @@ namespace AjmdsControloPresenca.UI.Controllers
         CargoRepositoryEF _cargosRepositoryEF = new CargoRepositoryEF();
         GeneroRepositoryEF _generoRepositoryEF = new GeneroRepositoryEF();
         EstadoCivilRepositoryEF _estadoCivilRepository = new EstadoCivilRepositoryEF();
-        public ActionResult Index()
+        public ActionResult Index(int? pagina)
         {
             try
             {
                 IEnumerable<FuncionarioIndexVM> funcionarios = repositoryEF.ListarTodos().ToFuncionarioIndex();
-                return View(funcionarios);
+                int numeroRegistros = 10;
+                int numeroPagina = (pagina ?? 1);
+                return View(funcionarios.ToPagedList(numeroPagina, numeroRegistros));
             }
             catch (Exception)
             {

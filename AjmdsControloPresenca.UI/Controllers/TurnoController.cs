@@ -1,5 +1,6 @@
 ﻿using AjmdsControloPresenca.Infra.Repository;
 using AjmdsControloPresenca.UI.Models.Turno;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -13,10 +14,19 @@ namespace AjmdsControloPresenca.UI.Controllers
     public class TurnoController : Controller
     {
         TurnoRepositoryEF turnoRepositoryEF = new TurnoRepositoryEF();
-        public ActionResult Index()
+        public ActionResult Index(int? pagina)
         {
-            var turnos = turnoRepositoryEF.ListarTodos().ToTurnoVM();
-            return View(turnos);
+            try
+            {
+                var turnos = turnoRepositoryEF.ListarTodos().ToTurnoVM();
+                int numeroRegistros = 10;
+                int numeroPagina = (pagina ?? 1);
+                return View(turnos.ToPagedList(numeroPagina, numeroRegistros));
+            }
+            catch (Exception)
+            {
+                return View();
+            }
         }
         [HttpGet]
         public ActionResult Add()
