@@ -1,0 +1,98 @@
+﻿@model PagedList.IPagedList<RelFolhaPresenca>
+
+@{ ViewBag.Title = "Cartão ponto"; }
+
+    <header>
+        <div id="DivEmpr">
+            <img src="./apple-touch-icon.png" alt="ss">
+
+            <div id="DivTextEmpr">
+                <div class="textos">
+                    <p class="t6"></p>
+                    <p class="t7">Emitido aos: <span>@DateTime.Now</span></p>
+                </div>
+                <div class="textos">
+                    <p class="t1" style="font: 12pt;font-weight: bold; ">CARTÃO DE PONTO</p>
+                    <p class="t2">
+                        Período: <span style="font-weight: bold;">@ViewBag.Inicio</span> a
+                        <span style="font-weight: bold;">@ViewBag.Fim</span>
+                    </p>
+                </div>
+                <div class="textos">
+                    <p class="t3">Empregador: <span>AJMDS SOLUÇÕES TECNOLÓGICAS</span></p>
+                </div>
+                <div class="textos">
+                    <p class="t4">NIF: <span>254787545268855</span></p>
+                    <p class="t5">Ritondo rua direita guinê</p>
+                </div>
+            </div>
+        </div>
+        <div id="DivFunc">
+            <div class="textos">
+                <p class="t1">Empregado: <span>@ViewBag.NomeFuncionario</span></p>
+                <p class="t2">Código: <span>@ViewBag.CodigoFuncionario</span></p>
+            </div>
+            <div class="textos">
+                <p class="t3">
+                    Cargo:
+                    <span>@ViewBag.CargoFuncionario</span>
+                    <span> - </span>
+                    <span>Departamento</span>
+                    <span>@ViewBag.DepartamentoFuncionario</span>
+                </p>
+                <p class="t4">BI: <span>@ViewBag.BIFuncionario</span></p>
+            </div>
+
+        </div>
+    </header>
+
+    <section>
+        <table id="tabela">
+            <thead>
+                <tr id="header">
+                    <th>Data</th>
+                    <th>Semana</th>
+                    <th>Marcações</th>
+                    <th>Trabalho</th>
+                    <th>Faltas</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.DiaMes</td>
+                        <td>@item.Semana</td>
+                        <td>@item.Marcacoes</td>
+                        <td class="alinhaCentro">@item.HorasTrabalhadas</td>
+                        <td class="alinhaCentro">@item.Falta</td>
+                    </tr>
+                }
+            <tr>
+                <td></td>
+                <td></td>
+                <td style="font-weight:bold; text-align:right;">Total:</td>
+                <td style="font-weight:bold; text-align:center;">@ViewBag.TotalHorasTrabalhadas</td>
+                <td style="font-weight:bold; text-align:center;">@ViewBag.TotalFaltas</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="footer">
+        <p style="font-size: 11pt;">
+            Estou de pleno acordo com o que demonstram as marcações acima,
+            sendo que represetam o ocorrido neste período.
+        </p>
+        <div id="assinaturas">
+            <div class="assinatura1">
+                <div></div>
+                <p style="font-size: 13pt;">@ViewBag.NomeFuncionario</p>
+            </div>
+
+            <div class="assinatura2">
+                <div></div>
+                <p style="font-size: 13pt;">Chefe da área</p>
+            </div>
+        </div>
+    </section>

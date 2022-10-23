@@ -52,7 +52,7 @@ namespace AjmdsControloPresenca.UI.Controllers
         public ActionResult Edit(int? Id)
         {
             if (Id == null) return RedirectToAction("Index");
-            TurnoFuncAddEditVM turnof = repositoryEF.OverListarPorId(Id.Value).ToFuncionarioTurnoVM();
+            TurnoFuncAddEditVM turnof = repositoryEF.ListarPorId(Id.Value).ToFuncionarioTurnoVM();
             PreencherSelects();
             return View(turnof);
         }

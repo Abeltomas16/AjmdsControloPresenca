@@ -7,5 +7,6 @@ namespace AjmdsControloPresenca.Domain.Contract
     {
         IEnumerable<Funcionario> ListarTodos();
         Funcionario ListarBI(string BI);
+        Funcionario ListarTudoPorId(short Id);
     }
 }

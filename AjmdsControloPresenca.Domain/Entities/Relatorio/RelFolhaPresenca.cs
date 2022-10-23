@@ -8,5 +8,9 @@
         public string DataCompleta { get; set; }
         public string Semana { get; set; }
         public short FuncionarioId { get; set; }
+        public int Dia { get; set; }
+        public int HorasTrabalhadas { get; set; }
+        public decimal Falta { get; set; }
+
     }
 }

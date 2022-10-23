@@ -1,0 +1,45 @@
+﻿
+<h2>@ViewBag.Title</h2>
+
+
+<p class="text-left">
+    Período: <span>@ViewBag.Inicio</span> Até  <span>@ViewBag.Fim</span>
+</p>
+
+<div class="table-responsive table-hover">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Marcações</th>
+                <th scope="col">Semana</th>
+                <th scope="col">Data</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (RelFolhaPresenca pr in Model)
+            {
+                <tr id="presenca-@pr.Id">
+                    <th scope="row">@pr.Id</th>
+                    <td>@pr.Marcacoes</td>
+                    <td>@pr.Semana</td>
+                    <td>@pr.DataCompleta</td>
+                    @if (pr.Falta > 0)
+                    {
+                        <td class="btn-group">
+                            <a class="btn btn-sm btn-outline-success"
+                               href="@Url.Action("Justificar", new { id =pr.Id })"><i class="fas fa-edit"></i>Justificar</a>
+                        </td>
+                    }
+                </tr>
+            }
+
+            <tr class="bg-transparent">
+                <td><a class="btn btn-danger" href="@Url.Action("GerarPdf", new { id =@Model[0].FuncionarioId, Inicio=ViewBag.Inicio,Fim=ViewBag.Fim})">Gerar folha</a></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>

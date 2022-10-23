@@ -198,6 +198,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ApuramentoController.cs" />
     <Compile Include="Controllers\CargoController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
@@ -219,7 +220,10 @@
     <Compile Include="Models\Funcionario\FuncionarioAddEditVM.cs" />
     <Compile Include="Models\Funcionario\FuncionarioIndexExtension.cs" />
     <Compile Include="Models\Funcionario\FuncionarioIndexVM.cs" />
+    <Compile Include="Models\Justificar\JustificarExtension.cs" />
+    <Compile Include="Models\Justificar\JustificarVM.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\Relatorio\RelPresencaVM.cs" />
     <Compile Include="Models\TurnoFunc\TurnoFuncAddEditExtension.cs" />
     <Compile Include="Models\TurnoFunc\TurnoFuncAddEditVM.cs" />
     <Compile Include="Models\TurnoFunc\TurnoFuncIndexExtension.cs" />
@@ -270,6 +274,10 @@
     <Content Include="Views\TurnoFunc\Index.cshtml" />
     <Content Include="Views\TurnoFunc\Add.cshtml" />
     <Content Include="Views\TurnoFunc\Edit.cshtml" />
+    <Content Include="Views\Apuramento\Index.cshtml" />
+    <Content Include="Views\Apuramento\Presenca.cshtml" />
+    <Content Include="Views\Apuramento\Justificar.cshtml" />
+    <Content Include="Views\Relatorio\RelatorioPresenca.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
