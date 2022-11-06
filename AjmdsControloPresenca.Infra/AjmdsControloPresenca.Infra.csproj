@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity\Data\EntityDatabaseContext.cs" />
+    <Compile Include="Entity\Data\Maps\AfastamentoMap.cs" />
     <Compile Include="Entity\Data\Maps\CargosMap.cs" />
     <Compile Include="Entity\Data\Maps\DepartamentosMap.cs" />
     <Compile Include="Entity\Data\Maps\EstadoCivilMap.cs" />
