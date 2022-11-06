@@ -46,14 +46,17 @@
     <Compile Include="Contract\ITurnoFuncRepository.cs" />
     <Compile Include="Contract\ITurnoRepository.cs" />
     <Compile Include="Contract\IUsuarioRepository.cs" />
+    <Compile Include="Entities\Afastamento.cs" />
     <Compile Include="Entities\Cargo.cs" />
     <Compile Include="Entities\Departamento.cs" />
     <Compile Include="Entities\EstadoCivil.cs" />
+    <Compile Include="Entities\Feriado.cs" />
     <Compile Include="Entities\Funcionario.cs" />
     <Compile Include="Entities\Genero.cs" />
     <Compile Include="Entities\FuncionarioTurno.cs" />
     <Compile Include="Entities\Presenca.cs" />
     <Compile Include="Entities\Relatorio\RelFolhaPresenca.cs" />
+    <Compile Include="Entities\Situacao.cs" />
     <Compile Include="Entities\Turno.cs" />
     <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
