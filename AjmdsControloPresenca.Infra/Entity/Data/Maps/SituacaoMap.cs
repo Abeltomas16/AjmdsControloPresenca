@@ -10,14 +10,14 @@ namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
         {
             ToTable("Situacao");
 
-            HasKey(pk => pk.SituacaoId);
+            HasKey(pk => pk.Id);
 
-            Property(c => c.SituacaoId)
+            Property(c => c.Id)
                 .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
 
             Property(c => c.Descricao)
                 .HasMaxLength(100)
-                .HasColumnAnnotation("IX_DESCRICAO", new IndexAnnotation(new System.ComponentModel.DataAnnotations.Schema.IndexAttribute()
+                .HasColumnAnnotation("ST_DESCRICAO", new IndexAnnotation(new System.ComponentModel.DataAnnotations.Schema.IndexAttribute()
                 {
                     IsUnique = true
                 }));

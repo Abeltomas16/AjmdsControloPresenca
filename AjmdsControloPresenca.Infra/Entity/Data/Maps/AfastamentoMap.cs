@@ -9,14 +9,18 @@ namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
         {
             ToTable("Afastamento");
 
-            HasKey(pk => pk.AfastamentoId);
+            HasKey(pk => pk.Id);
 
-            Property(c => c.AfastamentoId)
+            Property(c => c.Id)
                 .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
 
             Property(c => c.Observacao)
              .HasMaxLength(100)
             .HasColumnType("varchar");
+
+            Property(c => c.DataAfastamento);
+
+            Property(c => c.DataTermino);
 
             Property(c => c.Estado);
 

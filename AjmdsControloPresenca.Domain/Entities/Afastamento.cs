@@ -4,9 +4,9 @@ namespace AjmdsControloPresenca.Domain.Entities
 {
     public class Afastamento
     {
-        public int AfastamentoId { get; set; }
+        public int Id { get; set; }
         public string Observacao { get; set; }
-        public DateTime DataAfasmento { get; set; }
+        public DateTime DataAfastamento { get; set; }
         public DateTime DataTermino { get; set; }
         public bool Apurado { get; set; }
         public bool Estado { get; set; }

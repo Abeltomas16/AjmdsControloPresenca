@@ -30,6 +30,9 @@ namespace AjmdsControloPresenca.Infra.Entity.Data
             modelBuilder.Configurations.Add(new TurnoMap());
             modelBuilder.Configurations.Add(new FuncionarioMap());
             modelBuilder.Configurations.Add(new UsuarioMap());
+            modelBuilder.Configurations.Add(new FeriadoMap());
+            modelBuilder.Configurations.Add(new SituacaoMap());
+            modelBuilder.Configurations.Add(new AfastamentoMap());
         }
     }
 }

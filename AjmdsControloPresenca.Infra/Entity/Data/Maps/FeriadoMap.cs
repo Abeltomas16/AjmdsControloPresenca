@@ -10,14 +10,14 @@ namespace AjmdsControloPresenca.Infra.Entity.Data.Maps
         {
             ToTable("Feriado");
 
-            HasKey(pk => pk.FeriadoId);
+            HasKey(pk => pk.Id);
 
-            Property(c => c.FeriadoId)
+            Property(c => c.Id)
                 .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
 
             Property(c => c.Descricao)
                 .HasMaxLength(100)
-                .HasColumnAnnotation("IX_DESCRICAO", new IndexAnnotation(new System.ComponentModel.DataAnnotations.Schema.IndexAttribute()
+                .HasColumnAnnotation("FD_DESCRICAO", new IndexAnnotation(new System.ComponentModel.DataAnnotations.Schema.IndexAttribute()
                 {
                     IsUnique = true
                 }));
