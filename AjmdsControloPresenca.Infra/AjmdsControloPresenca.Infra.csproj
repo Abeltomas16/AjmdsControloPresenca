@@ -60,6 +60,7 @@
     <Compile Include="Entity\Data\Maps\FuncionarioTurnoMap.cs" />
     <Compile Include="Entity\Data\Maps\GeneroMap.cs" />
     <Compile Include="Entity\Data\Maps\PresencaMap.cs" />
+    <Compile Include="Entity\Data\Maps\SituacaoMap.cs" />
     <Compile Include="Entity\Data\Maps\TurnoMap.cs" />
     <Compile Include="Entity\Data\Maps\UsuarioMap.cs" />
     <Compile Include="Migrations\Configuration.cs" />
