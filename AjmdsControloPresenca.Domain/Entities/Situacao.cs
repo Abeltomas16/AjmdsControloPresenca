@@ -7,6 +7,6 @@ namespace AjmdsControloPresenca.Domain.Entities
         public short SituacaoId { get; set; }
         public string Descricao { get; set; }
 
-        public virtual ICollection<Afastamento> Afastamentos
+        public virtual ICollection<Afastamento> Afastamentos { get; set; }
     }
 }
