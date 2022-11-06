@@ -56,6 +56,7 @@
     <Compile Include="Entity\Data\Maps\CargosMap.cs" />
     <Compile Include="Entity\Data\Maps\DepartamentosMap.cs" />
     <Compile Include="Entity\Data\Maps\EstadoCivilMap.cs" />
+    <Compile Include="Entity\Data\Maps\FeriadoMap.cs" />
     <Compile Include="Entity\Data\Maps\FuncionarioMap.cs" />
     <Compile Include="Entity\Data\Maps\FuncionarioTurnoMap.cs" />
     <Compile Include="Entity\Data\Maps\GeneroMap.cs" />
