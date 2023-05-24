@@ -47,7 +47,7 @@ namespace AjmdsControloPresenca.UI.Controllers
                     ModelState.AddModelError("DataInicial", "Data Inicial não pode ser maior que data final");
                     return View(Entity);
                 }
-                Folha = relatorioRepositorioEF.Listar(1, DataIn, DataFim);
+                Folha = relatorioRepositorioEF.Listar(Entity.FuncionarioId, DataIn, DataFim);
                 if (Folha.Count() <= 0)
                 {
                     ModelState.AddModelError("FuncionarioId", "Nenhum registro encontrado neste período para este funcionário");
