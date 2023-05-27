@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AjmdsControloPresenca.Domain.Entities.Afastamento" Collapsed="true">
+    <Position X="6.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAQQAQAAAAACAAAAAAAAAAAAAACAAABAAAAAgg=</HashCode>
+      <FileName>Entities\Afastamento.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjmdsControloPresenca.Domain.Entities.Cargo" Collapsed="true">
+    <Position X="8.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQBAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Cargo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjmdsControloPresenca.Domain.Entities.Departamento" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQBAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Entities\Departamento.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjmdsControloPresenca.Domain.Entities.EstadoCivil" Collapsed="true">
+    <Position X="8.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAQBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\EstadoCivil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjmdsControloPresenca.Domain.Entities.Feriado" Collapsed="true">
+    <Position X="11" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Feriado.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjmdsControloPresenca.Domain.Entities.Funcionario" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAAAEQAAAAAIEEAAQEAIAIAAEIAABAAAEEAUCAgg=</HashCode>
+      <FileName>Entities\Funcionario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjmdsControloPresenca.Domain.Entities.FuncionarioTurno" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAgAAAEUAAAAAAQAIAAAQAhAAACAAAAgAgIAAAgA=</HashCode>
+      <FileName>Entities\FuncionarioTurno.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjmdsControloPresenca.Domain.Entities.Genero" Collapsed="true">
+    <Position X="8.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAQBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Genero.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjmdsControloPresenca.Domain.Entities.Presenca" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCCAAAAAQAAAAAAAgAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Entities\Presenca.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjmdsControloPresenca.Domain.Entities.Situacao" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAABAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Situacao.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjmdsControloPresenca.Domain.Entities.Turno" Collapsed="true">
+    <Position X="10.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIACCAAAgABBAAAICAiAAAAAAAAAIAAAAAEAAAAAAAg=</HashCode>
+      <FileName>Entities\Turno.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjmdsControloPresenca.Domain.Entities.Usuario" Collapsed="true">
+    <Position X="10.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAQAAAAAAAAAAAAAACAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Entities\Usuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

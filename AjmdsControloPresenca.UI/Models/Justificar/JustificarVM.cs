@@ -14,6 +14,7 @@ namespace AjmdsControloPresenca.UI.Models.Justificar
         public string HoraInicial { get; set; }
 
         [Required, DataType(DataType.Time), Display(Name = "Hora Final")]
+        [Compare(nameof(HoraFinal), ErrorMessage ="A hora final deve ser maior ou igual a hora inicial")]
         public string HoraFinal { get; set; }
     }
 }

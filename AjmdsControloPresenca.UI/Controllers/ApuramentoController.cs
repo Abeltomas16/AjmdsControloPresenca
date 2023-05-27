@@ -108,6 +108,13 @@ namespace AjmdsControloPresenca.UI.Controllers
                 var PresencaAlter = entity.ToJustificativaPresenca(presenca.FuncionarioId);
                 presenca.Entrada = PresencaAlter.Entrada;
                 presenca.Saida = PresencaAlter.Saida;
+
+                if (presenca.Saida <= presenca.Entrada)
+                {
+                    ModelState.AddModelError("HoraFinal", "A hora final deve ser maior que a hora inicial");
+                    return View(entity);
+                }
+
                 presenca.Cadastro = PresencaAlter.Cadastro;
                 presencaRepository.Alter(presenca);
                 return RedirectToAction(nameof(Index), "Home");
