@@ -137,6 +137,22 @@ namespace AjmdsControloPresenca.UI.Controllers
             string[] DiasSemana = new string[] { "DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SAB" };
             return DiasSemana[dia];
         }
+        public void RetornaUltimoDia(ref int dia, ref int mes, int ano)
+        {
+            DateTime ultimodia = new DateTime(ano, mes, DateTime.DaysInMonth(ano, mes));
+            if (ultimodia.Day == dia)
+            {
+                dia = 1;
+                mes++;
+            }
+            else dia++;
+        }
+        public int RetornaproximoMes(int dia, int mes, int ano)
+        {
+            DateTime ultimodia = new DateTime(ano, mes, DateTime.DaysInMonth(ano, mes));
+            if (ultimodia.Day == dia) return mes + 1;
+            else return mes;
+        }
         [HttpGet]
         public ActionResult GerarPdf(short id, DateTime Inicio, DateTime Fim)
         {
@@ -144,16 +160,19 @@ namespace AjmdsControloPresenca.UI.Controllers
             {
                 var funcionario = funcionarioRepository.ListarTudoPorId(id);
                 var lista = relatorioRepositorioEF.Listar(id, Inicio, Fim);
-                var qtd = Fim.Day - Inicio.Day;
+                TimeSpan diff = Fim - Inicio;
+                var qtd = (int)diff.TotalDays;
                 int dia = Inicio.Day;
+                int mes = Inicio.Month;
+                int ano = Inicio.Year;
                 List<RelFolhaPresenca> folhaPresencas = new List<RelFolhaPresenca>();
                 for (int i = 0; i <= qtd; i++)
                 {
-                    var _Semana = RetornaDiaSemana((ushort)(DateTime.Parse(string.Concat(dia, "/", Inicio.Month, "/", Inicio.Year, " ")).DayOfWeek));
+                    var _Semana = RetornaDiaSemana((ushort)(DateTime.Parse(string.Concat(dia, "/", mes, "/", ano, " ")).DayOfWeek));
                     RelFolhaPresenca f = new RelFolhaPresenca()
                     {
                         Dia = dia,
-                        DiaMes = string.Concat(dia, "/", Inicio.Month),
+                        DiaMes = string.Concat(dia, "/", mes),
                         Semana = _Semana,
                         Marcacoes = "DSR",
                         DataCompleta = "",
@@ -163,7 +182,7 @@ namespace AjmdsControloPresenca.UI.Controllers
                         Id = 0
                     };
                     folhaPresencas.Add(f);
-                    dia++;
+                    RetornaUltimoDia(ref dia, ref mes, ano);
                 }
                 foreach (RelFolhaPresenca p in lista)
                 {

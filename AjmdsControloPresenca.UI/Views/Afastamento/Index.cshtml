@@ -1,0 +1,136 @@
+﻿
+@model PagedList.IPagedList<AfastamentoIndexVM>
+
+@{
+    ViewBag.Title = "Afastamentos";
+}
+
+<h2>@ViewBag.Title</h2>
+<a href="@Url.Action("Add")" class="btn btn-primary mt-4 mb-4 px-3">Cadastrar</a>
+<div class="table-responsive table-hover">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Funcionário</th>
+                <th scope="col">Situação</th>
+                <th scope="col">Data afastamento</th>
+                <th scope="col">Data término</th>
+                <th scope="col">Obsrvação</th>
+                <th scope="col">Remunerável</th>
+                <th scope="col">Estado</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var afs in Model)
+            {
+                <tr id="afastamento-@afs.Id">
+                    <th scope="row">@afs.FuncionarioId</th>
+                    <td>@afs.FuncionarioNome</td>
+                    <td>@afs.Situacao</td>
+                    <td>@afs.DataAfastamento</td>
+                    <td>@afs.DataTermino</td>
+                    <td>@afs.Observacao</td>
+                    <td>(@afs.Apurado ? "Sim" :"Não")</td>
+                    <td>@afs.Estado ? "Activo" :"Inactivo"</td>
+                    <td class="btn-group">
+                        <a class="btn btn-sm btn-outline-success"
+                           href="@Url.Action("Edit",new {id=afs.Id})"><i class="fas fa-edit"></i> Editar</a>
+                        <button class="btn btn-sm btn-outline-danger" onclick="showModal(@afs.Id,'@afs.FuncionarioNome')"><i class="fas fa-trash"></i> Excluir</button>
+                    </td>
+                </tr>
+            }
+            <tr class="bg-transparent">
+                <td colspan="2"><b>@Model.Count registros de @Model.TotalItemCount</b></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+<!-- -->
+@{
+    if (Model.TotalItemCount != Model.Count)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                Página @(Model.PageCount<Model.PageNumber? 0 : Model.PageNumber) de @Model.PageCount
+
+                @if (Model.HasPreviousPage)
+                {
+                    @Html.ActionLink("<<", "Index", new { pagina = 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                    @Html.Raw(" ");
+                    @Html.ActionLink("< Anterior", "Index", new { pagina = Model.PageNumber - 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                }
+                else
+                {
+                    @:<<
+                    @Html.Raw(" ");
+                    @:< Anterior
+                }
+
+                @if (Model.HasNextPage)
+                {
+                    @Html.ActionLink("Próxima >", "Index", new { pagina = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                    @Html.Raw(" ");
+                    @Html.ActionLink(">>", "Index", new { pagina = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                }
+                else
+                {
+                    @:Próxima >
+                    @Html.Raw(" ")
+                    @:>>
+                }
+            </div>
+        </div>
+    }
+}
+
+
+<div>
+    <div data-id="0" class="modal" id="deleteModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Excluir afastamento</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Desejas excluir afastamento do funcionário <span id="lblNomeFuncionario"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnConfirmar">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section script{
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/bootstrap.validate.js"></script>
+}
+<script>
+    function showModal(Id, Nome) {
+        $('#lblNomeFuncionario').text(Nome)
+        $('#deleteModal').data('id', Id).modal('show')
+    }
+    document.querySelector('#btnConfirmar').addEventListener('click', async () => {
+        const id = $('#deleteModal').data('id')
+        var link = `/Afastamento/Delete/${id}`
+        var promisse = await fetch(link)
+        if (promisse.status == 200) {
+            document.querySelector('#afastamento-' + id).remove()
+            toastr.success('Afastamento Excluido com sucesso', 'AJMDS-PRESENCA')
+        } else {
+            toastr.error('Falha ao exluir afastamento', 'AJMDS-PRESENCA')
+        }
+        $('#deleteModal').data('id', '0').modal('hide')
+    })
+
+</script>

@@ -75,6 +75,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AfastamentoRepositoryEF.cs" />
+    <Compile Include="Repository\ISituacaoRepositoryEF.cs" />
     <Compile Include="Repository\PresencaRepositoryEF.cs" />
     <Compile Include="Repository\RelatorioRepositorioEF.cs" />
     <Compile Include="Repository\TurnoFuncRepositoryEF.cs" />
