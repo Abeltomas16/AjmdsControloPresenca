@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "RelatorioAfastamento";
+}
+<section>
+    <h3 style="margin-bottom: 60px;">DECLARAÇÃO DE AFASTAMENTO</h3>
+
+    <p style="text-align: justify;">
+        Declara-se, para os devidos efeitos, que <span style="font-weight: bold;">@ViewBag.NomeFuncionario</span>,
+        <span style="font-weight: bold;">@ViewBag.CargoFuncionario</span>  ,
+        portador(a) do Documento de Identificação <strong>@ViewBag.NomeFuncionario</strong>,
+        com o Contribuinte N.º <strong>@ViewBag.NomeFuncionario</strong>, estará ausente de suas
+        atividades regulares na empresa no período de <strong>@ViewBag.Data</strong>.
+        pelo motivo de lhe ter sido atribuido <strong>@ViewBag.Situacao</strong> com a seguinte observação: @ViewBag.Obs.
+    </p>
+
+</section>
+    <div class="datas">
+        <p><span>@DateTime.Now</span></p>
+        <p>(Dpto. de Recursos Humanos)</p>
+    </div>
+

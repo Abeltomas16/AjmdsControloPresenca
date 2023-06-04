@@ -14,9 +14,8 @@
                 <th scope="col">#</th>
                 <th scope="col">Funcionário</th>
                 <th scope="col">Situação</th>
-                <th scope="col">Data afastamento</th>
-                <th scope="col">Data término</th>
-                <th scope="col">Obsrvação</th>
+                <th scope="col">inicío</th>
+                <th scope="col">Término</th>
                 <th scope="col">Remunerável</th>
                 <th scope="col">Estado</th>
                 <th scope="col"></th>
@@ -31,13 +30,14 @@
                     <td>@afs.Situacao</td>
                     <td>@afs.DataAfastamento</td>
                     <td>@afs.DataTermino</td>
-                    <td>@afs.Observacao</td>
-                    <td>(@afs.Apurado ? "Sim" :"Não")</td>
-                    <td>@afs.Estado ? "Activo" :"Inactivo"</td>
+                    <td>@(afs.Apurado ? "Sim" :"Não")</td>
+                    <td>@(afs.Estado ? "Activo" :"Inactivo")</td>
                     <td class="btn-group">
                         <a class="btn btn-sm btn-outline-success"
                            href="@Url.Action("Edit",new {id=afs.Id})"><i class="fas fa-edit"></i> Editar</a>
                         <button class="btn btn-sm btn-outline-danger" onclick="showModal(@afs.Id,'@afs.FuncionarioNome')"><i class="fas fa-trash"></i> Excluir</button>
+                        <a class="btn btn-sm btn-outline-success"
+                           href="@Url.Action("GerarPdf",new {id=afs.Id})"><i class="fas fa-print"></i>Imprimir</a>
                     </td>
                 </tr>
             }

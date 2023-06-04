@@ -11,6 +11,7 @@ namespace AjmdsControloPresenca.Infra.Repository
     {
         public IEnumerable<Afastamento> ListarTodos() => Context.Set<Afastamento>().Include(s => s.Situacao).Include(f => f.Funcionario).ToList();
         public bool AtestadoDataExiste (Afastamento e)=> Context.Set<Afastamento>()
-                .Any(x => x.FuncionarioId == e.FuncionarioId && x.DataAfastamento <= e.DataTermino && x.DataTermino >= e.DataAfastamento);      
+                .Any(x => x.FuncionarioId == e.FuncionarioId && x.DataAfastamento <= e.DataTermino && x.DataTermino >= e.DataAfastamento);
+        public Afastamento ListarPoId(int e) => Context.Set<Afastamento>().Include(s => s.Situacao).Include(f => f.Funcionario).FirstOrDefault();
     }
 }

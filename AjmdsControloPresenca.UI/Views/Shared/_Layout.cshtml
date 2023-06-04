@@ -1,271 +1,312 @@
-﻿@if (!HttpContext.Current.Request.Path.Contains("/Apuramento/GerarPdf/"))
-{
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>@ViewBag.Title - AJMDS PRESENCA</title>
-        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-        <link href="~/Content/all.min.css" rel="stylesheet" />
-        <link href="~/Content/toastr.min.css" rel="stylesheet" />
-    </head>
-    <body>
-        @if (HttpContext.Current.User.Identity.IsAuthenticated)
-        {
-            <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-                <a class="navbar-brand text-white" href="#">AJMDS PRESENCA</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link text-white" href="#">Inicio <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Apuramento
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                                <a class="dropdown-item" href="@Url.Action("Index", "Apuramento")">Funcionário</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Trabalhadores
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                                <a class="dropdown-item" href="@Url.Action("Index", "Funcionario")">Funcionário</a>
-                                <a class="dropdown-item" href="@Url.Action("Index", "Usuario")">Usuário</a>
-                                <a class="dropdown-item" href="@Url.Action("Index", "Afastamento")">Afastamento</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Empresa
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                                <a class="dropdown-item" href="@Url.Action("Index", "Departamento")">Departamento</a>
-                                <a class="dropdown-item" href="@Url.Action("Index", "Cargo")">Cargo</a>
-                                <a class="dropdown-item" href="@Url.Action("Index", "Turno")">Turno</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Reclamações</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Sobre</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        }
-        <div class="container my-5 body-content">
-            @RenderBody()
-        </div>
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - AJMDS Controlo de presença </p>
-        </footer>
-
-        <script src="~/Scripts/jquery-3.0.0.min.js"></script>
-        <script src="~/Scripts/bootstrap.bundle.min.js"></script>
-        @RenderSection("script", false)
-
-    </body>
-</html>
-
+﻿@{
+    string currentPath = HttpContext.Current.Request.Path;
 }
-else
+@switch (currentPath)
 {
+    case string path when path.StartsWith("/Apuramento/GerarPdf/"):
+        <!DOCTYPE html>
+        <html lang="pt-AO">
+        <head>
+            <meta charset="UTF-8">
+            <title>@ViewBag.Title</title>
+            <style>
+                header {
+                    border: 2px solid black;
+                }
 
-<html lang="pt-AO">
-<head>
-    <meta charset="UTF-8">
-    <title>@ViewBag.Title</title>
-    <style>
-        header {
-            border: 2px solid black;
-        }
-
-        #DivEmpr {
-            padding: 3px 30px;
-            border-bottom: 2px solid black;
-            position: relative;
-            display: block;
-            height: 110px;
-        }
-
-            #DivEmpr img {
-                height: 80px;
-                margin: 0 10px;
-                width: 10%;
-                position: absolute;
-                left: 0;
-                top: 0.5cm;
-            }
-
-            #DivEmpr #DivTextEmpr {
-                margin: 10px 0 80px 0;
-                width: 90%;
-                position: absolute;
-                right: 0;
-                top: 0;
-            }
-
-                #DivEmpr #DivTextEmpr .textos {
+                #DivEmpr {
+                    padding: 3px 30px;
+                    border-bottom: 2px solid black;
                     position: relative;
                     display: block;
-                    padding-left: 20px;
+                    height: 110px;
                 }
 
-                    #DivEmpr #DivTextEmpr .textos .t1 {
+                    #DivEmpr img {
+                        height: 80px;
                         margin: 0 10px;
+                        width: 10%;
                         position: absolute;
                         left: 0;
-                        top: 0.7cm;
-                        padding-left: 12px;
+                        top: 0.5cm;
                     }
 
-                    #DivEmpr #DivTextEmpr .textos .t2 {
-                        position: absolute;
-                        right: 0;
-                        top: 0.7cm;
-                    }
-
-                    #DivEmpr #DivTextEmpr .textos .t3 {
-                        position: absolute;
-                        left: 0;
-                        top: 1.2cm;
-                        padding-left: 20px;
-                    }
-
-                    #DivEmpr #DivTextEmpr .textos .t4 {
-                        position: absolute;
-                        left: 0;
-                        top: 1.8cm;
-                        padding-left: 20px;
-                    }
-
-                    #DivEmpr #DivTextEmpr .textos .t5 {
-                        position: absolute;
-                        right: 0;
-                        top: 1.8cm;
-                    }
-
-                    #DivEmpr #DivTextEmpr .textos .t6 {
-                        position: absolute;
-                        left: 0;
-                        top: 0;
-                    }
-
-                    #DivEmpr #DivTextEmpr .textos .t7 {
+                    #DivEmpr #DivTextEmpr {
+                        margin: 10px 0 80px 0;
+                        width: 90%;
                         position: absolute;
                         right: 0;
                         top: 0;
                     }
 
-        #DivFunc {
-            padding: 3px 30px;
-            margin: 0;
-            height: 50px;
-        }
+                        #DivEmpr #DivTextEmpr .textos {
+                            position: relative;
+                            display: block;
+                            padding-left: 20px;
+                        }
 
-            #DivFunc .textos {
-                position: relative;
-                display: block;
-                padding-left: 20px;
-            }
+                            #DivEmpr #DivTextEmpr .textos .t1 {
+                                margin: 0 10px;
+                                position: absolute;
+                                left: 0;
+                                top: 0.7cm;
+                                padding-left: 12px;
+                            }
 
-                #DivFunc .textos .t1 {
+                            #DivEmpr #DivTextEmpr .textos .t2 {
+                                position: absolute;
+                                right: 0;
+                                top: 0.7cm;
+                            }
+
+                            #DivEmpr #DivTextEmpr .textos .t3 {
+                                position: absolute;
+                                left: 0;
+                                top: 1.2cm;
+                                padding-left: 20px;
+                            }
+
+                            #DivEmpr #DivTextEmpr .textos .t4 {
+                                position: absolute;
+                                left: 0;
+                                top: 1.8cm;
+                                padding-left: 20px;
+                            }
+
+                            #DivEmpr #DivTextEmpr .textos .t5 {
+                                position: absolute;
+                                right: 0;
+                                top: 1.8cm;
+                            }
+
+                            #DivEmpr #DivTextEmpr .textos .t6 {
+                                position: absolute;
+                                left: 0;
+                                top: 0;
+                            }
+
+                            #DivEmpr #DivTextEmpr .textos .t7 {
+                                position: absolute;
+                                right: 0;
+                                top: 0;
+                            }
+
+                #DivFunc {
+                    padding: 3px 30px;
+                    margin: 0;
+                    height: 50px;
+                }
+
+                    #DivFunc .textos {
+                        position: relative;
+                        display: block;
+                        padding-left: 20px;
+                    }
+
+                        #DivFunc .textos .t1 {
+                            margin: 0 10px;
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            padding-left: 12px;
+                        }
+
+                        #DivFunc .textos .t2 {
+                            position: absolute;
+                            right: 0;
+                            top: 0;
+                        }
+
+                        #DivFunc .textos .t3 {
+                            margin: 0 10px;
+                            position: absolute;
+                            left: 0;
+                            top: 0.7cm;
+                            padding-left: 12px;
+                        }
+
+                        #DivFunc .textos .t4 {
+                            position: absolute;
+                            right: 0;
+                            top: 0.7cm;
+                        }
+
+                .textos p {
+                    margin: 4px;
+                }
+
+                table#tabela {
+                    border: 1px solid black;
+                    border-spacing: 0;
+                    margin: 0;
+                }
+
+                    table#tabela td, table#tabela th {
+                        border: 1px solid black;
+                        padding: 1px 12px;
+                    }
+
+                .alinhaCentro {
+                    text-align: center;
+                }
+
+                #footer {
+                    border: 2px solid black;
+                    padding: 10px;
+                    height: 100px;
+                }
+
+                #assinaturas {
+                    margin-top: 38px;
+                    position: relative;
+                    display: block;
+                }
+
+                .assinatura1 {
+                    text-align: center;
                     margin: 0 10px;
+                    width: 35%;
                     position: absolute;
                     left: 0;
                     top: 0;
-                    padding-left: 12px;
                 }
 
-                #DivFunc .textos .t2 {
+                .assinatura2 {
+                    text-align: center;
+                    margin: 0 10px;
+                    width: 35%;
                     position: absolute;
                     right: 0;
                     top: 0;
                 }
 
-                #DivFunc .textos .t3 {
-                    margin: 0 10px;
-                    position: absolute;
-                    left: 0;
-                    top: 0.7cm;
-                    padding-left: 12px;
-                }
+                    .assinatura1 div, .assinatura2 div {
+                        height: 1px;
+                        border: 1px solid black;
+                    }
+            </style>
+        </head>
+        <body>
+            <div>
+                @RenderBody()
+            </div>
+        </body>
+    </html>
 
-                #DivFunc .textos .t4 {
-                    position: absolute;
-                    right: 0;
-                    top: 0.7cm;
-                }
-
-        .textos p {
-            margin: 4px;
-        }
-
-        table#tabela {
-            border: 1px solid black;
-            border-spacing: 0;
-            margin: 0;
-        }
-
-            table#tabela td, table#tabela th {
-                border: 1px solid black;
-                padding: 1px 12px;
+    break;
+case string path when path.StartsWith("/Afastamento/GerarPdf/"):
+    <!DOCTYPE html>
+    <html lang="pt-AO">
+    <head>
+        <meta charset="UTF-8">
+        <title>Declaração de Afastamento</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 20px;
             }
 
-        .alinhaCentro {
-            text-align: center;
-        }
-
-        #footer {
-            border: 2px solid black;
-            padding: 10px;
-            height: 100px;
-        }
-
-        #assinaturas {
-            margin-top: 38px;
-            position: relative;
-            display: block;
-        }
-
-        .assinatura1 {
-            text-align: center;
-            margin: 0 10px;
-            width: 35%;
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-
-        .assinatura2 {
-            text-align: center;
-            margin: 0 10px;
-            width: 35%;
-            position: absolute;
-            right: 0;
-            top: 0;
-        }
-
-            .assinatura1 div, .assinatura2 div {
-                height: 1px;
-                border: 1px solid black;
+            h1 {
+                text-align: center;
             }
-    </style>
+
+            p {
+                text-align: justify;
+                margin-bottom: 10px;
+            }
+
+            .datas {\
+                width: 100%;
+                text-align: center;
+            }
+                .datas p, h3 {
+                    text-align: center;
+                }
+        </style>
+    </head>
+    <body>
+        @RenderBody()
+    </body>
+</html>
+break;
+default:
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewBag.Title - AJMDS PRESENCA</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/all.min.css" rel="stylesheet" />
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div>
+    @if (HttpContext.Current.User.Identity.IsAuthenticated)
+    {
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+            <a class="navbar-brand text-white" href="#">AJMDS PRESENCA</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="#">Inicio <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Apuramento
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                            <a class="dropdown-item" href="@Url.Action("Index", "Apuramento")">Funcionário</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Trabalhadores
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item" href="@Url.Action("Index", "Funcionario")">Funcionário</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "Usuario")">Usuário</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "Afastamento")">Afastamento</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Empresa
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                            <a class="dropdown-item" href="@Url.Action("Index", "Departamento")">Departamento</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "Cargo")">Cargo</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "Turno")">Turno</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Reclamações</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Sobre</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    }
+    <div class="container my-5 body-content">
         @RenderBody()
     </div>
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - AJMDS Controlo de presença </p>
+    </footer>
+
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    @RenderSection("script", false)
+
 </body>
 </html>
+break;
+
 }

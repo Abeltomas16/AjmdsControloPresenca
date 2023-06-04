@@ -1,8 +1,11 @@
 ﻿using AjmdsControloPresenca.Domain.Entities;
+using AjmdsControloPresenca.Domain.Entities.Relatorio;
 using AjmdsControloPresenca.Infra.Repository;
 using AjmdsControloPresenca.UI.Models.Afastamento;
 using PagedList;
+using Rotativa;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Web.Mvc;
 
@@ -101,5 +104,46 @@ namespace AjmdsControloPresenca.UI.Controllers
             ViewBag.Funcionarios = funcionarioRepositoryEF.ListarTodos();
             ViewBag.Situacao = situacaoRepositoryEF.ListarTodos();
         }
+        [HttpGet]
+        public ActionResult GerarPdf(short id)
+        {
+            try
+            {
+
+                var lista = afastamentoRepositoryEF.ListarPoId(id);
+                 var funcionario = funcionarioRepository.ListarTudoPorId(lista.FuncionarioId);
+                ViewBag.NomeFuncionario = string.Concat(funcionario.Nome, " ", funcionario.Nome);
+                ViewBag.Bilhete = funcionario.Bilhete;
+                ViewBag.CargoFuncionario = funcionario.Cargo.Descricao;
+                ViewBag.Data = string.Concat(string.Format("{0:dd/MM/yyyy}", lista.DataAfastamento), " a ", string.Format("{0:dd/MM/yyyy}", lista.DataTermino));
+                ViewBag.Situacao = lista.Situacao.Descricao;
+                ViewBag.Obs = lista.Observacao;
+
+                var relatorioPdf = new ViewAsPdf
+                {
+                    ViewName = "../Relatorio/RelatorioAfastamento",
+                    IsGrayScale = true
+                };
+                return relatorioPdf;
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity do tipo \"{0}\" in state \"{1}\" causou erro:", eve.Entry.Entity.GetType().Name, eve.ValidationErrors);
+                    foreach (var item in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Propiedade: \"{0}\", Error: \"{1}\"", item.PropertyName, item.ErrorMessage);
+                    }
+                }
+                return RedirectToAction("Index");
+            }
+        }
+       /* private void PreencherSelects()
+        {
+            FuncionarioRepositoryEF funcionarioRepositoryEF = new FuncionarioRepositoryEF();
+            var Funcionario = funcionarioRepositoryEF.ListarTodos();
+            ViewBag.Funcionario = Funcionario;
+        }*/
     }
 }
