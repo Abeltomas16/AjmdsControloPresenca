@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Perfil";
+}
+
+@model FuncionarioInfoVM
+
+
+<style>
+
+
+    .avatar {
+        width: 200px;
+        height: 200px;
+    }
+</style>
+
+
+
+<div class="container bootstrap snippets bootdey">
+    <h2>Perfil</h2>
+    <hr>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="text-center">
+                <form id="formulario">
+                    <img src="~/Content/images/user.png" class="avatar img-circle img-thumbnail" alt="avatar" name ="foto">
+                </form>
+            </div>
+        </div>
+
+
+        <div class="col-md-9 personal-info">
+
+            <h3>Minhas Informações</h3>
+            <form class="form-horizontal">
+
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(n => n.Nome, "Nome:")
+                    @Html.TextBoxFor(n => n.Nome, new { @class = "form-control", @disabled="" })
+                </div>
+
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(s => s.SobreNome, "SobreNome:")
+                    @Html.TextBoxFor(s => s.SobreNome, new { @class = "form-control", @disabled = "" })
+                </div>
+
+
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(n => n.Usuario, "Usuário:")
+                    @Html.TextBoxFor(n => n.Usuario, new { @class = "form-control", @disabled = "" })
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+

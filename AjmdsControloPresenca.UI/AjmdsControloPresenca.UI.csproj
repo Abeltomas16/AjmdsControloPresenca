@@ -22825,6 +22825,7 @@
     <Content Include="Content\images\trophy.png" />
     <Content Include="Content\images\up-plan.png" />
     <Content Include="Content\images\user-info.jpg" />
+    <Content Include="Content\images\user.png" />
     <Content Include="Content\images\user1-128x128.jpg" />
     <Content Include="Content\images\user2-160x160.jpg" />
     <Content Include="Content\images\user2-280x160.jpg" />
@@ -25794,6 +25795,8 @@
     <Compile Include="Models\Funcionario\FuncionarioAddEditVM.cs" />
     <Compile Include="Models\Funcionario\FuncionarioIndexExtension.cs" />
     <Compile Include="Models\Funcionario\FuncionarioIndexVM.cs" />
+    <Compile Include="Models\Funcionario\FuncionarioInfoVM.cs" />
+    <Compile Include="Models\Funcionario\FuncionarioInfoExtension.cs" />
     <Compile Include="Models\Justificar\JustificarExtension.cs" />
     <Compile Include="Models\Justificar\JustificarVM.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
@@ -25859,6 +25862,7 @@
     <Content Include="Views\Shared\_BarraLateral.cshtml" />
     <Content Include="Views\Shared\_HeaderNavbar.cshtml" />
     <Content Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <Content Include="Views\Funcionario\UserInfo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

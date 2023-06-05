@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.Mvc;
-
+ 
 namespace AjmdsControloPresenca.UI.Controllers
 {
     [Authorize]
@@ -17,6 +17,7 @@ namespace AjmdsControloPresenca.UI.Controllers
         CargoRepositoryEF _cargosRepositoryEF = new CargoRepositoryEF();
         GeneroRepositoryEF _generoRepositoryEF = new GeneroRepositoryEF();
         EstadoCivilRepositoryEF _estadoCivilRepository = new EstadoCivilRepositoryEF();
+        UsuarioRepositoryEF _usuarioRepository = new UsuarioRepositoryEF();
         public ActionResult Index(int? pagina)
         {
             try
@@ -117,6 +118,20 @@ namespace AjmdsControloPresenca.UI.Controllers
                 if (Id == null) return RedirectToAction("Index");
                 repositoryEF.Delete(repositoryEF.ListarPorId(Id));
                 return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                return View();
+            }
+        }
+        [HttpGet]
+        public ActionResult UserInfo()
+        {
+            try
+            {
+                string _nome = User.Identity.Name;
+                FuncionarioInfoVM funcionario = _usuarioRepository.ListarPorNome(_nome).ToFuncionarioInfoVM();
+                return View(funcionario);
             }
             catch (Exception)
             {
