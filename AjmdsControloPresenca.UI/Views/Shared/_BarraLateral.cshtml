@@ -1,0 +1,72 @@
+﻿<!-- sidebar-->
+<section class="sidebar position-relative">
+    <div class="multinav">
+        <div class="multinav-scroll" style="height: 100%;">
+            <!-- sidebar menu-->
+            <ul class="sidebar-menu" data-widget="tree">
+                <li class="header">RH</li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="icon-Layout-4-blocks"><span class="path1"></span><span class="path2"></span></i>
+                        <span>Apuramento</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-right pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="@Url.Action("Index", "Apuramento")"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Funcionário</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i span class="icon-Layout-grid"><span class="path1"></span><span class="path2"></span></i>
+                        <span>Empregados</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-right pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="@Url.Action("Index", "Funcionario")"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Funcionários</a></li>
+                        <li><a href="@Url.Action("Index", "Afastamento")"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Afastamento</a></li>
+                    </ul>
+                </li>
+                <li class="header">Configurações</li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="icon-Write"><span class="path1"></span><span class="path2"></span></i>
+                        <span>Empresa</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-right pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="ui_grid.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Empresa</a></li>
+                        <li><a href="@Url.Action("Index", "Departamento")"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Departamento</a></li>
+                        <li><a href="@Url.Action("Index", "Cargo")"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Cargo</a></li>
+                        <li><a href="@Url.Action("Index", "Turno")"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Turno</a></li>
+                    </ul>
+                </li>
+
+                <li class="header">LOGIN & ERROR </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="icon-Chat-locked"><span class="path1"></span><span class="path2"></span></i>
+                        <span>Administração</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-right pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="@Url.Action("Index", "Usuario")"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuários</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<div class="sidebar-footer">
+    <a href="javascript:void(0)" class="link" data-bs-toggle="tooltip" title="Definições"><span class="icon-Settings-2"></span></a>
+    <a href="mailbox.html" class="link" data-bs-toggle="tooltip" title="Email"><span class="icon-Mail"></span></a>
+    <a href="javascript:void(0)" class="link" data-bs-toggle="tooltip" title="Sair"><span class="icon-Lock-overturning"><span class="path1"></span><span class="path2"></span></span></a>
+</div>
+

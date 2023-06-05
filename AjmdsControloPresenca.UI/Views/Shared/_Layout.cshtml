@@ -216,10 +216,11 @@ case string path when path.StartsWith("/Afastamento/GerarPdf/"):
                 margin-bottom: 10px;
             }
 
-            .datas {\
-                width: 100%;
+            .datas {
+                \ width: 100%;
                 text-align: center;
             }
+
                 .datas p, h3 {
                     text-align: center;
                 }
@@ -230,83 +231,116 @@ case string path when path.StartsWith("/Afastamento/GerarPdf/"):
     </body>
 </html>
 break;
-default:
-<!DOCTYPE html>
-<html>
+case string path when path.ToLower().StartsWith("/login/login"):
+<html lang="pt">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>@ViewBag.Title - AJMDS PRESENCA</title>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/all.min.css" rel="stylesheet" />
-    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="~/images/favicon.ico">
+    <title>@ViewBag.Title</title>
+    <!-- Vendors Style-->
+    <link rel="stylesheet" href="~/Content/css/css/vendors_css.css" asp-append-version="true">
+    <!-- Style-->
+    <link rel="stylesheet" href="~/Content/css/css/style.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/Content/css/css/skin_color.css" asp-append-version="true">
 </head>
-<body>
-    @if (HttpContext.Current.User.Identity.IsAuthenticated)
-    {
-        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-            <a class="navbar-brand text-white" href="#">AJMDS PRESENCA</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+<body class="hold-transition light-skin sidebar-mini theme-primary fixed">
+    @RenderBody()
+    @RenderSection("script", false)
+</body>
+</html>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link text-white" href="#">Inicio <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Apuramento
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                            <a class="dropdown-item" href="@Url.Action("Index", "Apuramento")">Funcionário</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Trabalhadores
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                            <a class="dropdown-item" href="@Url.Action("Index", "Funcionario")">Funcionário</a>
-                            <a class="dropdown-item" href="@Url.Action("Index", "Usuario")">Usuário</a>
-                            <a class="dropdown-item" href="@Url.Action("Index", "Afastamento")">Afastamento</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Empresa
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                            <a class="dropdown-item" href="@Url.Action("Index", "Departamento")">Departamento</a>
-                            <a class="dropdown-item" href="@Url.Action("Index", "Cargo")">Cargo</a>
-                            <a class="dropdown-item" href="@Url.Action("Index", "Turno")">Turno</a>
-                        </div>
+break;
+default:
+
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="~/images/favicon.ico">
+    <title>@ViewBag.Title</title>
+    <!-- Vendors Style-->
+    <link rel="stylesheet" href="~/Content/css/css/vendors_css.css" asp-append-version="true">
+    <!-- Style-->
+    <link rel="stylesheet" href="~/Content/css/css/style.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/Content/css/css/skin_color.css" asp-append-version="true">
+</head>
+<body class="hold-transition light-skin sidebar-mini theme-primary fixed">
+   
+    <div class="wrapper">
+        <div id="loader"></div>
+        <header class="main-header">
+            <div class="d-flex align-items-center logo-box justify-content-center">
+                <a href="#" class="waves-effect waves-light nav-link d-none d-md-inline-block mx-10 push-btn bg-transparent" data-toggle="push-menu" role="button">
+                    <span class="icon-Align-left"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span>
+                </a>
+                <!-- Logo -->
+                <a asp-area="#" asp-controller="#" asp-action="#" class="logo">
+
+                    <!-- logo-->
+                    <div class="logo-lg">
+                        <span class="light-logo"><img src="~/Content/css/images/logo-dark-text.png" alt="logo"></span>
+                        <span class="dark-logo"><img src="~/Content/css/images/logo-light-text.png" alt="logo"></span>
+                    </div>
+                </a>
+            </div>
+            @Html.Partial("_HeaderNavbar")
+        </header>
+        <aside class="main-sidebar">
+            @Html.Partial("_BarraLateral")
+        </aside>
+        <div class="content-wrapper">
+            <div class="container-full">
+                <section class="content">
+                    @RenderBody()
+                </section>
+            </div>
+        </div>
+        <footer class="main-footer align-center">
+            <div class="pull-right d-none d-sm-inline-block">
+                <ul class="nav nav-primary nav-dotted nav-dot-separated justify-content-center justify-content-md-end">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.alayschoolgest.com/">ALAYSchoolGest</a>&copy;2023
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Reclamações</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Sobre</a>
+                        Desenvoldivo por:
+                        <a class="nav-link" href="https:ajmdstec.ao" target="_blank">Abel Tomás José</a>
                     </li>
                 </ul>
             </div>
-        </nav>
-    }
-    <div class="container my-5 body-content">
-        @RenderBody()
-    </div>
-    <hr />
-    <footer>
-        <p>&copy; @DateTime.Now.Year - AJMDS Controlo de presença </p>
-    </footer>
+            <a href="https://www.alayschoolgest.com/"></a> Todos Direitos Reservados.
+        </footer>
 
-    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
-    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
-    @RenderSection("script", false)
 
+
+        <!-- Page Content overlay -->
+        <!-- Vendor JS -->
+        <script src="~/Content/css/js/vendors.min.js"></script>
+        <script src="~/Content/css/js/pages/chat-popup.js"></script>
+        <script src="~/Content/css/assets/icons/feather-icons/feather.min.js"></script>
+
+        <script src="~/Content/css/assets/vendor_components/apexcharts-bundle/dist/apexcharts.js"></script>
+        <script src="~/Content/css/assets/vendor_components/moment/min/moment.min.js"></script>
+        <script src="~/Content/css/assets/vendor_components/fullcalendar/fullcalendar.js"></script>
+
+        <!-- EduAdmin App -->
+        <script src="~/Content/css/js/template.js"></script>
+        <script src="~/Content/css/js/pages/dashboard.js"></script>
+        <script src="~/Content/css/js/pages/calendar.js"></script>
+
+        @RenderSection("script", false)
 </body>
 </html>
+
 break;
 
 }
+

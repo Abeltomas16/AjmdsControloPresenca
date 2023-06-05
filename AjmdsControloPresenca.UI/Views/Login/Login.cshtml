@@ -4,38 +4,66 @@
     ViewBag.Title = "Login";
 }
 
-<div class="my-5 row">
-    <div class="col-12 col-md-6">
-        <h2>Entrar no sistema</h2>
-        <small>
-            @Html.ValidationMessage("ErroLogin")
-        </small>
 
-        <form method="post">
-            <div class="form-group">
-                @Html.LabelFor(c => c.Nome, "Nome")
-                @Html.TextBoxFor(m => m.Nome, new { @class = "form-control",autofocus="" })
-                <small>
-                    @Html.ValidationMessageFor(v => v.Nome, null, new { @class = "text-danger" })
-                </small>
+<section class="vh-100">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 d-flex align-items-center justify-content-center text-black">
+
+
+                <div class="h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+
+                    <div class="px-5 ms-xl-4" style="margin-bottom: 30px !important;">
+                        <i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style="color: #709085;"></i>
+                        <span class="h1 fw-bold mb-0">Logo</span>
+                    </div>
+
+                    <div class="my-5 row">
+                        <div class="col-12 col-md-6">
+                            <small>
+                                @Html.ValidationMessage("ErroLogin")
+                            </small>
+                        </div>
+                    </div>
+
+                    <form method="post" style="width: 23rem;">
+                        <div class="form-group">
+                            @Html.LabelFor(c => c.Nome, "Nome")
+                            @Html.TextBoxFor(m => m.Nome, new { @class = "form-control", autofocus = "" })
+                            <small>
+                                @Html.ValidationMessageFor(v => v.Nome, null, new { @class = "text-danger" })
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(c => c.Senha, "Senha")
+                            @Html.TextBoxFor(m => m.Senha, new { @class = "form-control" })
+                            <small>
+                                @Html.ValidationMessageFor(v => v.Senha, null, new { @class = "text-danger" })
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-6">
+                                    <input type="submit" class="btn btn-block w-100 btn-primary" value="Entrar" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <p class="small pb-lg-2"><a class="text-muted" href="#!">Esqueceu a senha?</a></p>
+                        <p class="text-info">Entre em contacto com o administrador do sistema</p>
+                    </form>
+
+                </div>
+
             </div>
-            <div class="form-group">
-                @Html.LabelFor(c => c.Senha, "Senha")
-                @Html.TextBoxFor(m => m.Senha, new { @class = "form-control" })
-                <small>
-                    @Html.ValidationMessageFor(v => v.Senha, null, new { @class = "text-danger" })
-                </small>
+            <div class="col-sm-6 px-0 d-none d-sm-block">
+                <img src="~/Content/images/Acesso.jpg"
+                     alt="Login image" class="vh-100" style="object-fit: cover; object-position: left;">
             </div>
-            <div class="form-group">
-                @Html.CheckBoxFor(model => model.Logado, new { @class = "" })
-                @Html.LabelFor(model => model.Logado, "Permanecer logado")
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-lg btn-primary" value="Entrar" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+</section>
+
 
 @section script{
 
