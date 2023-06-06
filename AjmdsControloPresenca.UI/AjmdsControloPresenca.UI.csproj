@@ -25863,6 +25863,7 @@
     <Content Include="Views\Shared\_HeaderNavbar.cshtml" />
     <Content Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
     <Content Include="Views\Funcionario\UserInfo.cshtml" />
+    <Content Include="Views\Home\grafico.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

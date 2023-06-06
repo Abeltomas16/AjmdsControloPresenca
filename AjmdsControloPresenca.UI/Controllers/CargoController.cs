@@ -38,6 +38,7 @@ namespace AjmdsControloPresenca.UI.Controllersa
             {
                 if (!ModelState.IsValid) return View(Entity);
                 cargoRepository.Add(Entity.ToCargo());
+                TempData["Mensagem"] = "Cargo inserido com sucesso!";
                 return RedirectToAction("Index");
             }
             catch (DbEntityValidationException ex)
@@ -65,6 +66,7 @@ namespace AjmdsControloPresenca.UI.Controllersa
         {
             if (!ModelState.IsValid) return View(Entity);
             cargoRepository.Alter(Entity.ToCargo());
+            TempData["Mensagem"] = "Cargo editado com sucesso!";
             return RedirectToAction("Index");
         }
         [HttpGet]
@@ -72,6 +74,7 @@ namespace AjmdsControloPresenca.UI.Controllersa
         {
             if (Id is null) return RedirectToAction("Index");
             cargoRepository.Delete(cargoRepository.ListarPorId(Id));
+            TempData["Mensagem"] = "Cargo apagado com sucesso!";
             return RedirectToAction("Index");
         }
     }

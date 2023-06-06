@@ -21417,7 +21417,7 @@ body .main-header .navbar .nav > li.search-box > a:hover, body .main-header .nav
   .sidebar-menu li.header {
     padding: 15px 25px 15px 25px;
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 900 !important;
     color: #b5b5c3;
     opacity: 0.5;
     text-transform: uppercase; }

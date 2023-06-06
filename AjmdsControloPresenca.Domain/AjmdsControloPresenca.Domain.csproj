@@ -58,6 +58,7 @@
     <Compile Include="Entities\Genero.cs" />
     <Compile Include="Entities\FuncionarioTurno.cs" />
     <Compile Include="Entities\Presenca.cs" />
+    <Compile Include="Entities\Relatorio\Presencas.cs" />
     <Compile Include="Entities\Relatorio\RelFolhaPresenca.cs" />
     <Compile Include="Entities\Situacao.cs" />
     <Compile Include="Entities\Turno.cs" />

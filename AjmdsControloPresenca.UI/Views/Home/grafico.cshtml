@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Gráfico";
+}
+
+<h2>Gráfico para exibição</h2>
+<form id="frm">
+
+    <div class="form-row">
+
+        <div class="form-group col-md-6">
+            <select class="form-select form-select mb-3" aria-label=".form-select example" id="ChartType">
+                <option value="bar" selected>bar</option>
+                <option value="line">line</option>
+                <option value="pie">pie</option>
+                <option value="doughnut">doughnut</option>
+                <option value="polarArea">polarArea</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <button type="button" class="btn btn-primary" id="Botao">Salvar</button>
+        </div>
+
+    </div>
+</form>
+
+
+@section script{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/bootstrap.validate.js"></script>
+
+    <script>
+        const select = document.getElementById('ChartType');
+        const button = document.getElementById('Botao');
+        button.addEventListener('click', function () {
+            const selectedValue = select.value;
+
+            if (selectedValue !== '' || selectedValue !=="Selecione o gráfico") {
+                localStorage.setItem('ChartType', selectedValue);
+                console.log('Valor salvo no localStorage:', selectedValue);
+            } else {
+                console.log('Selecione uma opção válida');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const select = document.getElementById('ChartType');
+            const savedValue = localStorage.getItem('ChartType');
+
+            if (savedValue) {
+                select.value = savedValue;
+            }
+        });
+    </script>
+}

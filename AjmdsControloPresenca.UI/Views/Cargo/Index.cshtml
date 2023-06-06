@@ -33,44 +33,44 @@
             </tr>
         </tbody>
     </table>
-    </div>
-    <!-- -->
-    @{
-        if (Model.TotalItemCount != Model.Count)
-        {
-            <div class="row">
-                <div class="col-md-12">
-                    Página @(Model.PageCount<Model.PageNumber? 0 : Model.PageNumber) de @Model.PageCount
+</div>
+<!-- -->
+@{
+    if (Model.TotalItemCount != Model.Count)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                Página @(Model.PageCount<Model.PageNumber? 0 : Model.PageNumber) de @Model.PageCount
 
-                    @if (Model.HasPreviousPage)
-                    {
-                        @Html.ActionLink("<<", "Index", new { pagina = 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
-                        @Html.Raw(" ");
-                        @Html.ActionLink("< Anterior", "Index", new { pagina = Model.PageNumber - 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
-                    }
-                    else
-                    {
-                        @:<<
-                        @Html.Raw(" ");
-                        @:< Anterior
-                    }
+                @if (Model.HasPreviousPage)
+                {
+                    @Html.ActionLink("<<", "Index", new { pagina = 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                    @Html.Raw(" ");
+                    @Html.ActionLink("< Anterior", "Index", new { pagina = Model.PageNumber - 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                }
+                else
+                {
+                    @:<<
+                    @Html.Raw(" ");
+                    @:< Anterior
+                }
 
-                    @if (Model.HasNextPage)
-                    {
-                        @Html.ActionLink("Próxima >", "Index", new { pagina = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
-                        @Html.Raw(" ");
-                        @Html.ActionLink(">>", "Index", new { pagina = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
-                    }
-                    else
-                    {
-                        @:Próxima >
-                        @Html.Raw(" ")
-                        @:>>
-                    }
-                </div>
+                @if (Model.HasNextPage)
+                {
+                    @Html.ActionLink("Próxima >", "Index", new { pagina = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                    @Html.Raw(" ");
+                    @Html.ActionLink(">>", "Index", new { pagina = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                }
+                else
+                {
+                    @:Próxima >
+                    @Html.Raw(" ")
+                    @:>>
+                }
             </div>
-        }
+        </div>
     }
+}
 <div>
     <div data-id="0" class="modal" id="deleteModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -119,3 +119,9 @@
     </script>
 }
 
+@if (TempData["Mensagem"] != null)
+{
+    <script>
+                toastr.success("@TempData["Mensagem"]");
+    </script>
+}

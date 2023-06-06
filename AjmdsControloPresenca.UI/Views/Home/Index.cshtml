@@ -2,7 +2,10 @@
 
 @{
     ViewBag.Title = "Index";
+    var mesAtual = DateTime.Now.ToString("MMMM");
+    List<Presencas> listaPresencas = ViewBag.ListaPresencas;
 }
+
 <div class="configContainer vh-80">
     <div class="row">
         <div class="col-md-12">
@@ -15,7 +18,7 @@
                                 <div class="d-flex align-items-center">
                                     <div>
                                         <p class="mb-0 text-light">Total funcionários</p>
-                                        <h4 class="my-1 text-dark">55</h4>
+                                        <h4 class="my-1 text-dark">@ViewBag.TotalFuncionario</h4>
                                     </div>
                                     <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
                                         <i class="fa fa-shopping-cart"></i>
@@ -30,7 +33,7 @@
                                 <div class="d-flex align-items-center">
                                     <div>
                                         <p class="mb-0 text-light">Total departamento</p>
-                                        <h4 class="my-1 text-dark">10</h4>
+                                        <h4 class="my-1 text-dark">@ViewBag.Depto</h4>
                                     </div>
                                     <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto">
                                         <i class="fa fa-dollar"></i>
@@ -40,12 +43,12 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card  bg-dark radius-10 border-start border-0 border-3 border-success">
+                        <div class="card  bg-primary radius-10 border-start border-0 border-3 border-success">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div>
-                                        <p class="mb-0 text-light">Total cursos</p>
-                                        <h4 class="my-1 text-dark">8</h4>
+                                        <p class="mb-0 text-light">Total afastamento</p>
+                                        <h4 class="my-1 text-dark">@ViewBag.TotalAfastamento</h4>
                                     </div>
                                     <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
                                         <i class="fa fa-bar-chart"></i>
@@ -59,8 +62,8 @@
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div>
-                                        <p class="mb-0 text-light">Total mensagens</p>
-                                        <h4 class="my-1 text-dark">9</h4>
+                                        <p class="mb-0 text-light">Período exercicío</p>
+                                        <h4 class="my-1 text-dark">@mesAtual</h4>
                                     </div>
                                     <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto">
                                         <i class="fa fa-users"></i>
@@ -77,24 +80,8 @@
 
         </div>
         @*Container do grafico*@
-        <div class="col-md-8">
+        <div class="col-md-9">
             <div class="">
-                <div class="row">
-                    <div class="d-flex align-items-center">
-                        <div class="col-6 ml-2 pr-0">
-                            <select id="ChartType" class="form-control m-0">
-                                <option selected>bar</option>
-                                <option>line</option>
-                                <option>pie</option>
-                                <option>doughnut</option>
-                                <option>polarArea</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <button class="btn w-50 bt-lg btn-primary" value="Mostrar" id="ID">Mostrar</button>
-                        </div>
-                    </div>
-                </div>
                 @*Grafico*@
                 <div class="row">
                     <div class="col-md-12 mt-4">
@@ -109,13 +96,33 @@
             </div>
         </div>
         @*container dos pontuais*@
-    <div class="col-md-4">
-        <div class="row">
-            <div class="d-flex align-items-center">
-                <span class="mr-2">Trabalhadores pontuais:</span>
+        <div class="col-md-3 ">
+            <div class="row">
+                <div class="d-flex mt-5 align-items-center">
+
+                    <div class="p-2">
+                        <p class="text-primary text-bold">
+                            Presenças:
+                        </p>
+                        <ul class="list-group shadow">
+                            @foreach (var presenca in listaPresencas)
+                            {
+
+                                <li class="list-group-item">
+                                    <span class="badge @presenca.Cor"
+                                          style="color: white">
+                                        @presenca.Entrada
+                                    </span>
+                                    @presenca.Nome
+                                </li>
+
+                            }
+                        </ul>
+
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 </div>
 
@@ -124,54 +131,58 @@
 
 <script type="text/javascript">
     $(document).ready(function ($) {
-        $('#ID').click(function () {
-            var _ChartType = $('#ChartType').val()
-             var ChartView = document.getElementById('ChartView');
-             ChartView.innerHTML = '&nbsp;';
 
-            $('#ChartView').append('<canvas id="myChart" style="max-width:100%; max-height:50vh;"></canvas>')
-            $.ajax
-                ({
-                    type: "post",
-                    url: "/Home/GetDados",
-                    contextType: "application/json, charset=utf-8",
-                    datatype: "json",
-                    error: function (html) {
+        const savedValue = localStorage.getItem('ChartType');
+        var _ChartType = 'bar';
+        if (savedValue) {
+            _ChartType = savedValue;
+        }
 
-                    },
-                    success: function (data) {
-                        var _data = data;
-                        var _chartLabels = _data[0]
-                        var _chartdataPresenca = _data[1];
-                        var _chartdataFaltas = _data[2];
-                        var _barColorPresenca = _data[3];
-                        var _barColorFaltas = _data[4];
+        //var _ChartType = $('#ChartType').val()
+        var ChartView = document.getElementById('ChartView');
+        ChartView.innerHTML = '&nbsp;';
 
-                        new Chart("myChart", {
-                            type: _ChartType,
-                            data: {
-                                labels: _chartLabels,
-                                datasets: [
-                                    //{
-                                    //    label: 'Faltas',
-                                    //    data: _chartdataFaltas,
-                                    //    backgroundColor: _barColorFaltas
-                                    //},
-                                    {
-                                        label: 'Presenças',
-                                        data: _chartdataPresenca,
-                                        backgroundColor: _barColorPresenca
-                                    }
-                                ]
-                            }
+        $('#ChartView').append('<canvas id="myChart" style="max-width:100%; max-height:50vh;"></canvas>')
+        $.ajax
+            ({
+                type: "post",
+                url: "/Home/GetDados",
+                contextType: "application/json, charset=utf-8",
+                datatype: "json",
+                error: function (html) {
 
-                        })
-                    }
-                });
+                },
+                success: function (data) {
+                    var _data = data;
+                    var _chartLabels = _data[0]
+                    var _chartdataPresenca = _data[1];
+                    var _chartdataFaltas = _data[2];
+                    var _barColorPresenca = _data[3];
+                    var _barColorFaltas = _data[4];
 
-        })
+                    new Chart("myChart", {
+                        type: _ChartType,
+                        data: {
+                            labels: _chartLabels,
+                            datasets: [
+                                //{
+                                //    label: 'Faltas',
+                                //    data: _chartdataFaltas,
+                                //    backgroundColor: _barColorFaltas
+                                //},
+                                {
+                                    label: 'Presenças',
+                                    data: _chartdataPresenca,
+                                    backgroundColor: _barColorPresenca
+                                }
+                            ]
+                        }
 
-});
+                    })
+                }
+            });
+
+    });
 </script>
 
 

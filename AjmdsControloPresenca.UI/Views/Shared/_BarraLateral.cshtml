@@ -7,7 +7,7 @@
                 <li class="header">RH</li>
                 <li class="treeview">
                     <a href="#">
-                        <i class="icon-Layout-4-blocks"><span class="path1"></span><span class="path2"></span></i>
+                        <i class="fas fa-calculator"><span class="path1"></span><span class="path2"></span></i>
                         <span>Apuramento</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-right pull-right"></i>
@@ -19,7 +19,7 @@
                 </li>
                 <li class="treeview">
                     <a href="#">
-                        <i span class="icon-Layout-grid"><span class="path1"></span><span class="path2"></span></i>
+                        <i span class="fas fa-user-tie"><span class="path1"></span><span class="path2"></span></i>
                         <span>Empregados</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-right pull-right"></i>
@@ -33,17 +33,28 @@
                 <li class="header">Configurações</li>
                 <li class="treeview">
                     <a href="#">
-                        <i class="icon-Write"><span class="path1"></span><span class="path2"></span></i>
+                        <i class="fas fa-building"><span class="path1"></span><span class="path2"></span></i>
                         <span>Empresa</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-right pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="ui_grid.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Empresa</a></li>
                         <li><a href="@Url.Action("Index", "Departamento")"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Departamento</a></li>
                         <li><a href="@Url.Action("Index", "Cargo")"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Cargo</a></li>
                         <li><a href="@Url.Action("Index", "Turno")"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Turno</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fas fa-cogs"><span class="path1"></span><span class="path2"></span></i>
+                        <span>Site</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-right pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="@Url.Action("grafico", "Home")"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Turno</a></li>
                     </ul>
                 </li>
 
@@ -65,8 +76,6 @@
     </div>
 </section>
 <div class="sidebar-footer">
-    <a href="javascript:void(0)" class="link" data-bs-toggle="tooltip" title="Definições"><span class="icon-Settings-2"></span></a>
-    <a href="mailbox.html" class="link" data-bs-toggle="tooltip" title="Email"><span class="icon-Mail"></span></a>
-    <a href="javascript:void(0)" class="link" data-bs-toggle="tooltip" title="Sair"><span class="icon-Lock-overturning"><span class="path1"></span><span class="path2"></span></span></a>
+    <a  href="@Url.Action("Logout", "login") class="link" data-bs-toggle="tooltip" title="Sair"><span class="fas fa-sign-out-alt"><span class="path1"></span><span class="path2"></span></span></a>
 </div>
 

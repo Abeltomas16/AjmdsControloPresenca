@@ -25,4 +25,10 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/bootstrap.validate.js"></script>
 }
+@if (TempData["Mensagem"] != null)
+{
+    <script>
+                toastr.success("@TempData["Mensagem"]");
+    </script>
+}
 

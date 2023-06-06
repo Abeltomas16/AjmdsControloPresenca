@@ -28,5 +28,10 @@ namespace AjmdsControloPresenca.Infra.Repository
                                                                      PDataIn, PDataFin, PFuncionarioId).ToList();
             return lista;
         }
+        public IEnumerable<Presencas> ListarHoje()
+        {
+            var lista = Context.Database.SqlQuery<Presencas>("SELECT F.Nome, CASE WHEN P.Entrada IS NULL THEN 'Atraso' ELSE FORMAT(p.Entrada,'HH:mm:ss','pt-Pt') END Entrada, '''' as Cor FROM Presenca P JOIN Funcionario f ON P.FuncionarioId = f.Id WHERE CAST(P.Cadastro AS DATE)=CAST(GETDATE() AS DATE) ORDER BY f.Nome").ToList();
+            return lista;
+        }
     }
 }

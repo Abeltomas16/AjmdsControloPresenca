@@ -269,10 +269,10 @@ default:
     <title>@ViewBag.Title</title>
     <!-- Vendors Style-->
     <link rel="stylesheet" href="~/Content/css/css/vendors_css.css" asp-append-version="true">
-    <!-- Style-->
     <link rel="stylesheet" href="~/Content/css/css/style.css" asp-append-version="true">
     <link rel="stylesheet" href="~/Content/css/css/skin_color.css" asp-append-version="true">
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 <body class="hold-transition light-skin sidebar-mini theme-primary fixed">
    
@@ -309,7 +309,7 @@ default:
             <div class="pull-right d-none d-sm-inline-block">
                 <ul class="nav nav-primary nav-dotted nav-dot-separated justify-content-center justify-content-md-end">
                     <li class="nav-item">
-                        <a class="nav-link" href="https://www.alayschoolgest.com/">ALAYSchoolGest</a>&copy;2023
+                        <a class="nav-link" href="#">ALAYSchoolGest</a>&copy;2023
                     </li>
                     <li class="nav-item">
                         Desenvoldivo por:
@@ -317,7 +317,7 @@ default:
                     </li>
                 </ul>
             </div>
-            <a href="https://www.alayschoolgest.com/"></a> Todos Direitos Reservados.
+            <a href="#"></a> Todos Direitos Reservados.
         </footer>
 
 
@@ -327,15 +327,15 @@ default:
         <script src="~/Content/css/js/vendors.min.js"></script>
         <script src="~/Content/css/js/pages/chat-popup.js"></script>
         <script src="~/Content/css/assets/icons/feather-icons/feather.min.js"></script>
-
-        <script src="~/Content/css/assets/vendor_components/apexcharts-bundle/dist/apexcharts.js"></script>
-        <script src="~/Content/css/assets/vendor_components/moment/min/moment.min.js"></script>
-        <script src="~/Content/css/assets/vendor_components/fullcalendar/fullcalendar.js"></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <!-- EduAdmin App -->
         <script src="~/Content/css/js/template.js"></script>
-        <script src="~/Content/css/js/pages/dashboard.js"></script>
-        <script src="~/Content/css/js/pages/calendar.js"></script>
+        @if (TempData["Mensagem"] != null)
+        {
+            <script>
+                toastr.success("@TempData["Mensagem"]");
+            </script>
+        }
 
         @RenderSection("script", false)
 </body>

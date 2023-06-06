@@ -1,10 +1,12 @@
-﻿using AjmdsControloPresenca.Infra.Repository;
+﻿using AjmdsControloPresenca.Domain.Entities.Relatorio;
+using AjmdsControloPresenca.Infra.Repository;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Razor.Parser.SyntaxTree;
 
 namespace AjmdsControloPresenca.UI.Controllers
 {
@@ -12,11 +14,51 @@ namespace AjmdsControloPresenca.UI.Controllers
     public class HomeController : Controller
     {
         GraficosRepositoryEF repositoryEF = new GraficosRepositoryEF();
+        FuncionarioRepositoryEF funcionarioRepository = new FuncionarioRepositoryEF();
+        DepartamentoRepositoryEF departamentoRepositoryEF = new DepartamentoRepositoryEF();
+        AfastamentoRepositoryEF afastamentoRepositoryEF = new AfastamentoRepositoryEF();
+        RelatorioRepositorioEF relatorioRepositorioEF = new RelatorioRepositorioEF();
+        List<string> cores = new List<string>
+        { "bg-primary" ,"bg-secondary","bg-warning","bg-info","bg-danger","bg-success",
+        };
+        List<string> coresUtilizadas = new List<string>();
         // GET: Home
         public ActionResult Index()
         {
+            int TotalFuncionario = funcionarioRepository.ListarTodos().Where(x => x.Estado).Count();
+            int TotalDepto = departamentoRepositoryEF.ListarTodos().Where(x => x.Estado).Count();
+            int TotalAfastamento = afastamentoRepositoryEF.ListarTodos().Where(x => x.Estado).Count();
+            var presencas = relatorioRepositorioEF.ListarHoje();
+
+
+            Random random = new Random();
+            foreach (Presencas presenca in presencas)
+            {
+                // Verifica se todas as cores já foram utilizadas
+                if (coresUtilizadas.Count == cores.Count)
+                {
+                    // Se todas as cores já foram utilizadas, reinicia a lista de cores utilizadas
+                    coresUtilizadas.Clear();
+                }
+                // Obtém uma cor aleatória que não tenha sido utilizada anteriormente
+                string corAleatoria = ObterCorAleatoria(cores, coresUtilizadas, random);
+                presenca.Cor = corAleatoria; // Define a cor aleatória na propriedade "cor" da presenca
+                coresUtilizadas.Add(corAleatoria); // Adiciona a cor utilizada na lista de cores utilizadas
+            }
+
+            ViewBag.TotalFuncionario = TotalFuncionario;
+            ViewBag.Depto = TotalDepto;
+            ViewBag.TotalAfastamento = TotalAfastamento;
+            ViewBag.ListaPresencas = presencas;
+
             return View();
         }
+        public ActionResult grafico()
+        {
+
+            return View();
+        }
+
         [HttpPost]
         public ActionResult GetDados()
         {
@@ -121,7 +163,15 @@ namespace AjmdsControloPresenca.UI.Controllers
 
             return mesPortugues;
         }
+        string ObterCorAleatoria(List<string> cores, List<string> coresUtilizadas, Random random)
+        {
+            List<string> coresDisponiveis = cores.Except(coresUtilizadas).ToList(); // Obtém as cores disponíveis (ainda não utilizadas)
 
+            int index = random.Next(0, coresDisponiveis.Count); // Gera um índice aleatório na lista de cores disponíveis
+            string corAleatoria = coresDisponiveis[index]; // Obtém a cor aleatória correspondente ao índice
+
+            return corAleatoria;
+        }
 
     }
 }
