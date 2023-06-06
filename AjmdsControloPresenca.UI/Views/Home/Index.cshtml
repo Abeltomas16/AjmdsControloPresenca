@@ -1,22 +1,186 @@
-﻿@model AjmdsControloPresenca.UI.Models.LoginViewModel
+﻿
 
 @{
     ViewBag.Title = "Index";
 }
+<div class="configContainer vh-80">
+    <div class="row">
+        <div class="col-md-12">
 
-<h2>Index</h2>
+            <div class="container my-5">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+                    <div class="col">
+                        <div class="card radius-10 border-start border-0 border-3 border-info">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <p class="mb-0 text-secondary">Total funcionários</p>
+                                        <h4 class="my-1 text-info">55</h4>
+                                    </div>
+                                    <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
+                                        <i class="fa fa-shopping-cart"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card radius-10 border-start border-0 border-3 border-danger">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <p class="mb-0 text-secondary">Total departamento</p>
+                                        <h4 class="my-1 text-danger">10</h4>
+                                    </div>
+                                    <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto">
+                                        <i class="fa fa-dollar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card radius-10 border-start border-0 border-3 border-success">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <p class="mb-0 text-secondary">Total cursos</p>
+                                        <h4 class="my-1 text-success">8</h4>
+                                    </div>
+                                    <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
+                                        <i class="fa fa-bar-chart"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card radius-10 border-start border-0 border-3 border-warning">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <p class="mb-0 text-secondary">Total mensagens</p>
+                                        <h4 class="my-1 text-warning">9</h4>
+                                    </div>
+                                    <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto">
+                                        <i class="fa fa-users"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<div>
-    <h4>Bem bindo</h4>
+
+
+
+        </div>
+        @*Container do grafico*@
+        <div class="col-md-8">
+            <div class="">
+                <div class="row">
+                    <div class="d-flex align-items-center">
+                        <span class="ml-5">Gráfico:</span>
+                        <div class="col-6">
+                            <select id="ChartType" class="form-control mr-2">
+                                <option selected>bar</option>
+                                <option>line</option>
+                                <option>pie</option>
+                                <option>doughnut</option>
+                                <option>polarArea</option>
+                            </select>
+                        </div>
+                        <div class="">
+                            <button class="btn bt-lg btn-primary" value="Mostrar" id="ID">Teste</button>
+                        </div>
+                    </div>
+                </div>
+                @*Grafico*@
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="ChartView">
+                            <canvas id="myChart"></canvas>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        @*container dos pontuais*@
+    <div class="col-md-4 bg-white-70">
+        <div class="row">
+            <div class="d-flex align-items-center">
+                <span class="mr-2">Trabalhadores pontuais:</span>
+            </div>
+        </div>
+    </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="~/Scripts/jquery-3.0.0.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function ($) {
+        $('#ID').click(function () {
+            var _ChartType = $('#ChartType').val()
+             var ChartView = document.getElementById('ChartView');
+             ChartView.innerHTML = '&nbsp;';
+
+            $('#ChartView').append('<canvas id="myChart" style="max-width:100%; max-height:50vh;"></canvas>')
+            $.ajax
+                ({
+                    type: "post",
+                    url: "/Home/GetDados",
+                    contextType: "application/json, charset=utf-8",
+                    datatype: "json",
+                    error: function (html) {
+
+                    },
+                    success: function (data) {
+                        var _data = data;
+                        var _chartLabels = _data[0]
+                        var _chartdataPresenca = _data[1];
+                        var _chartdataFaltas = _data[2];
+                        var _barColorPresenca = _data[3];
+                        var _barColorFaltas = _data[4];
+
+                        new Chart("myChart", {
+                            type: _ChartType,
+                            data: {
+                                labels: _chartLabels,
+                                datasets: [
+                                    //{
+                                    //    label: 'Faltas',
+                                    //    data: _chartdataFaltas,
+                                    //    backgroundColor: _barColorFaltas
+                                    //},
+                                    {
+                                        label: 'Presenças',
+                                        data: _chartdataPresenca,
+                                        backgroundColor: _barColorPresenca
+                                    }
+                                ]
+                            }
+
+                        })
+                    }
+                });
+
+        })
+
+});
+</script>
+
+
+
 
 @section script{
 
     <script src="~/Scripts/toastr.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    }
+}
