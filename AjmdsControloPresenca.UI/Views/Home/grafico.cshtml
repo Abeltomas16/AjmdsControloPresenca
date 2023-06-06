@@ -36,11 +36,11 @@
         button.addEventListener('click', function () {
             const selectedValue = select.value;
 
-            if (selectedValue !== '' || selectedValue !=="Selecione o gráfico") {
+            if (selectedValue !== '' || selectedValue !== "Selecione o gráfico") {
                 localStorage.setItem('ChartType', selectedValue);
-                console.log('Valor salvo no localStorage:', selectedValue);
+                toastr.success("Tipo de gráfico salvo","AlayPonto");
             } else {
-                console.log('Selecione uma opção válida');
+                toastr.error("Falha ao salvar", "AlayPonto");
             }
         });
 
