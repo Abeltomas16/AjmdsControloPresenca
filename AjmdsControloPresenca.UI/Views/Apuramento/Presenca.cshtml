@@ -1,45 +1,67 @@
 ﻿
-<h2>@ViewBag.Title</h2>
+
+@{
+    ViewBag.Title = "Presenças";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="box shadow p-4">
+            <div class=" row d-flex justify-content-start px-0 box-header with-border">
+                <div class="col-6 text-start">
+                    <h3 class="page-title">@ViewBag.Title</h3>
+                </div>
+                <div class="col-6 text-end">
+                    <p class="text-right">
+                        Período: <span>@string.Format(ViewBag.Inicio.ToShortDateString())</span> Até  <span>@string.Format(ViewBag.Fim.ToShortDateString())</span>
+                    </p>
+                </div>
 
 
-<p class="text-left">
-    Período: <span>@string.Format(ViewBag.Inicio.ToShortDateString())</span> Até  <span>@string.Format(ViewBag.Fim.ToShortDateString())</span>
-</p>
+            </div>
 
-<div class="table-responsive table-hover">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Marcações</th>
-                <th scope="col">Semana</th>
-                <th scope="col">Data</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (RelFolhaPresenca pr in Model)
-            {
-                <tr id="presenca-@pr.Id">
-                    <th scope="row">@pr.Id</th>
-                    <td>@pr.Marcacoes</td>
-                    <td>@pr.Semana</td>
-                    <td>@pr.DataCompleta</td>
-                    @if (pr.Falta > 0)
-                    {
-                        <td class="btn-group">
-                            <a class="btn btn-sm btn-outline-success"
-                               href="@Url.Action("Justificar", new { id =pr.Id })"><i class="fas fa-edit"></i>Marcação</a>
-                        </td>
-                    }
-                </tr>
-            }
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="bg-primary">
+                                <th scope="col">#</th>
+                                <th scope="col">Marcações</th>
+                                <th scope="col">Semana</th>
+                                <th scope="col">Data</th>
+                                <th>Acções</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (RelFolhaPresenca pr in Model)
+                            {
+                                <tr id="presenca-@pr.Id">
+                                    <th scope="row">@pr.Id</th>
+                                    <td  style="width:100%;">@pr.Marcacoes</td>
+                                    <td>@pr.Semana</td>
+                                    <td class="text-nowrap">@pr.DataCompleta</td>
+                                    @if (pr.Falta > 0)
+                                    {
+                                        <td class="btn-group">
+                                            <a class="btn btn-sm btn-outline-success"
+                                               href="@Url.Action("Justificar", new { id =pr.Id })"><i class="fas fa-edit"></i>Marcação</a>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                            <tr class="bg-transparent">
+                                <td><a class="btn btn-danger" href="@Url.Action("GerarPdf", new { id =@Model[0].FuncionarioId, Inicio=ViewBag.Inicio,Fim=ViewBag.Fim})">Gerar folha</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
 
-            <tr class="bg-transparent">
-                <td><a class="btn btn-danger" href="@Url.Action("GerarPdf", new { id =@Model[0].FuncionarioId, Inicio=ViewBag.Inicio,Fim=ViewBag.Fim})">Gerar folha</a></td>
-            </tr>
-
-        </tbody>
-    </table>
-
+    </div>
 </div>
+
+
