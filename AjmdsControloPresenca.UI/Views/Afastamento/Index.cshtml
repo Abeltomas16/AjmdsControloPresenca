@@ -5,50 +5,71 @@
     ViewBag.Title = "Afastamentos";
 }
 
-<h2>@ViewBag.Title</h2>
-<a href="@Url.Action("Add")" class="btn btn-primary mt-4 mb-4 px-3">Cadastrar</a>
-<div class="table-responsive table-hover">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Funcionário</th>
-                <th scope="col">Situação</th>
-                <th scope="col">inicío</th>
-                <th scope="col">Término</th>
-                <th scope="col">Remunerável</th>
-                <th scope="col">Estado</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var afs in Model)
-            {
-                <tr id="afastamento-@afs.Id">
-                    <th scope="row">@afs.FuncionarioId</th>
-                    <td>@afs.FuncionarioNome</td>
-                    <td>@afs.Situacao</td>
-                    <td>@afs.DataAfastamento</td>
-                    <td>@afs.DataTermino</td>
-                    <td>@(afs.Apurado ? "Sim" :"Não")</td>
-                    <td>@(afs.Estado ? "Activo" :"Inactivo")</td>
-                    <td class="btn-group">
-                        <a class="btn btn-sm btn-outline-success"
-                           href="@Url.Action("Edit",new {id=afs.Id})"><i class="fas fa-edit"></i> Editar</a>
-                        <button class="btn btn-sm btn-outline-danger" onclick="showModal(@afs.Id,'@afs.FuncionarioNome')"><i class="fas fa-trash"></i> Excluir</button>
-                        <a class="btn btn-sm btn-outline-success"
-                           href="@Url.Action("GerarPdf",new {id=afs.Id})"><i class="fas fa-print"></i>Imprimir</a>
-                    </td>
-                </tr>
-            }
-            <tr class="bg-transparent">
-                <td colspan="2"><b>@Model.Count registros de @Model.TotalItemCount</b></td>
-            </tr>
+<div class="row">
+    <div class="col-12">
+        <div class="box shadow p-4">
+            <div class=" row d-flex justify-content-start px-0 box-header with-border">
+                <div class="col-6 text-start">
+                    <h3 class="page-title">@ViewBag.Title</h3>
+                </div>
+                <div class="col-6 text-end">
+                    <a href="@Url.Action("Add")" class="m-0 waves-effect waves-light btn btn-warning btn-large"><i class="fa fa-plus"></i> Novo</a>
+                </div>
 
-        </tbody>
-    </table>
+
+            </div>
+
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="bg-primary">
+                                <th scope="col">#</th>
+                                <th scope="col">Funcionário</th>
+                                <th scope="col">Situação</th>
+                                <th scope="col">inicío</th>
+                                <th scope="col">Término</th>
+                                <th scope="col">Remunerável</th>
+                                <th scope="col">Estado</th>
+                                <th>Acções</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var afs in Model)
+                            {
+                                <tr id="afastamento-@afs.Id">
+                                    <th scope="row">@afs.FuncionarioId</th>
+                                    <td>@afs.FuncionarioNome</td>
+                                    <td>@afs.Situacao</td>
+                                    <td class="text-nowrap">@afs.DataAfastamento</td>
+                                    <td class="text-nowrap">@afs.DataTermino</td>
+                                    <td><span class="badge badge-pill badge-success-light">@(afs.Apurado ? "Sim" :"Não")</span></td>
+                                    <td><span class="badge badge-pill badge-success-light">@(afs.Estado ? "Activo" :"Inactivo")</span></td>
+                                    <td class="btn-group">
+                                        <a class="btn btn-sm btn-outline-success"
+                                           href="@Url.Action("Edit",new {id=afs.Id})"><i class="fas fa-edit"></i> Editar</a>
+                                        <button class="btn btn-sm btn-outline-danger" onclick="showModal(@afs.Id,'@afs.FuncionarioNome')"><i class="fas fa-trash"></i> Excluir</button>
+                                        <a class="btn btn-sm btn-outline-success"
+                                           href="@Url.Action("GerarPdf",new {id=afs.Id})"><i class="fas fa-print"></i> Imprimir</a>
+                                    </td>
+                                </tr>
+                            }
+                            <tr class="bg-transparent">
+                                <td colspan="2"><b>@Model.Count registros de @Model.TotalItemCount</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+
+    </div>
 </div>
-<!-- -->
+<!-- /.row -->
+
 @{
     if (Model.TotalItemCount != Model.Count)
     {
@@ -126,9 +147,9 @@
         var promisse = await fetch(link)
         if (promisse.status == 200) {
             document.querySelector('#afastamento-' + id).remove()
-            toastr.success('Afastamento Excluido com sucesso', 'AJMDS-PRESENCA')
+            toastr.success('Afastamento Excluido com sucesso', 'ALAYPonto')
         } else {
-            toastr.error('Falha ao exluir afastamento', 'AJMDS-PRESENCA')
+            toastr.error('Falha ao exluir afastamento', 'ALAYPonto')
         }
         $('#deleteModal').data('id', '0').modal('hide')
     })

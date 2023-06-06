@@ -145,9 +145,9 @@
         var promisse = await fetch(link)
         if (promisse.status == 200) {
             document.querySelector('#funcionario-' + id).remove()
-            toastr.success('Turno do funcionário Excluido com sucesso', 'AJMDS-PRESENCA')
+            toastr.success('Funcionário Excluido com sucesso', 'ALAYPonto')
         } else {
-            toastr.error('Falha ao exluir turno do funcionário', 'AJMDS-PRESENCA')
+            toastr.error('Falha ao exluir funcionário', 'ALAYPonto')
         }
         $('#deleteModal').data('id', '0').modal('hide')
     })
