@@ -8,7 +8,7 @@
         <html lang="pt-AO">
         <head>
             <meta charset="UTF-8">
-            <title>@ViewBag.Title</title>
+            <title>ALAYPonto - @ViewBag.Title</title>
             <style>
                 header {
                     border: 2px solid black;
@@ -240,7 +240,7 @@ case string path when path.ToLower().StartsWith("/login/login"):
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="~/images/favicon.ico">
-    <title>@ViewBag.Title</title>
+    <title>ALAYPonto - @ViewBag.Title</title>
     <!-- Vendors Style-->
     <link rel="stylesheet" href="~/Content/css/css/vendors_css.css" asp-append-version="true">
     <!-- Style-->
@@ -266,7 +266,7 @@ default:
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="~/images/favicon.ico">
-    <title>@ViewBag.Title</title>
+    <title>ALAYPonto - @ViewBag.Title</title>
     <!-- Vendors Style-->
     <link rel="stylesheet" href="~/Content/css/css/vendors_css.css" asp-append-version="true">
     <link rel="stylesheet" href="~/Content/css/css/style.css" asp-append-version="true">
@@ -278,9 +278,9 @@ default:
    
     <div class="wrapper">
         <div id="loader"></div>
-        <header class="main-header">
-            <div class="d-flex align-items-center logo-box justify-content-center">
-                <a href="#" class="waves-effect waves-light nav-link d-none d-md-inline-block mx-10 push-btn bg-transparent" data-toggle="push-menu" role="button">
+        <header class="main-header" style="background: #f2f2f2 !important;">
+            <div class="d-flex align-items-center logo-box justify-content-center" style="background: #f2f2f2 !important">
+                <a href="#" class="waves-effect shadow  waves-light nav-link d-none d-md-inline-block mx-10 push-btn bg-transparent" data-toggle="push-menu" role="button">
                     <span class="icon-Align-left"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span>
                 </a>
                 <!-- Logo -->
@@ -295,12 +295,12 @@ default:
             </div>
             @Html.Partial("_HeaderNavbar")
         </header>
-        <aside class="main-sidebar">
+        <aside class="main-sidebar" style="background: #f2f2f2 !important;">
             @Html.Partial("_BarraLateral")
         </aside>
-        <div class="content-wrapper  bg-light">
+        <div class="content-wrapper">
             <div class="container-full">
-                <section class="content">
+                <section class="content" style="padding:0 !important;">
                     @RenderBody()
                 </section>
             </div>
@@ -309,11 +309,9 @@ default:
             <div class="pull-right d-none d-sm-inline-block">
                 <ul class="nav nav-primary nav-dotted nav-dot-separated justify-content-center justify-content-md-end">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">ALAYSchoolGest</a>&copy;2023
+                       &copy;2023
                     </li>
-                    <li class="nav-item">
-                        Desenvoldivo por:
-                        <a class="nav-link" href="https:ajmdstec.ao" target="_blank">Abel Tomás José</a>
+                    <li class="nav-item"> Desenvoldivo por:<a class="nav-link" href="#" target="_blank">Abel Tomás José</a>
                     </li>
                 </ul>
             </div>
