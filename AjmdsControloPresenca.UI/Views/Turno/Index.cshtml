@@ -12,12 +12,14 @@
                     <h3 class="page-title">@ViewBag.Title</h3>
                 </div>
                 <div class="col-6 text-end">
-                    <a href="@Url.Action("Add")" class="m-0 waves-effect waves-light btn btn-warning btn-large"><i class="fa fa-plus"></i> Novo</a>
+                    <div class="btn-group">
+                        <a href="@Url.Action("Add")" class="waves-light btn btn-warning"><i class="fa fa-plus"></i> Novo</a>
+                        <a href="@Url.Action("Index","TurnoFunc")" class="btn btn-dark waves-light">Associar</a>
+                    </div>
+
                 </div>
 
-
             </div>
-
             <!-- /.box-header -->
             <div class="box-body no-padding">
                 <div class="table-responsive">
