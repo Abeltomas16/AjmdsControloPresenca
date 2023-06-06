@@ -1,4 +1,4 @@
-/*abel
+/*
 Template Name: EduAdmin - Responsive Admin Template 
 Author: Multipurpose Themes
 File: scss
@@ -20434,6 +20434,7 @@ Height property
 
 .content {
   min-height: 250px;
+  padding: 0.75rem 1.5rem 0px 1.5rem;
   margin-right: auto;
   margin-left: auto; }
 
@@ -21416,7 +21417,7 @@ body .main-header .navbar .nav > li.search-box > a:hover, body .main-header .nav
   .sidebar-menu li.header {
     padding: 15px 25px 15px 25px;
     font-size: 12px;
-    font-weight: 900 !important;
+    font-weight: 400;
     color: #b5b5c3;
     opacity: 0.5;
     text-transform: uppercase; }
