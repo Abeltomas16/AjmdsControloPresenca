@@ -4,6 +4,7 @@
 }
 
 <div class="row">
+
     <div class="col-12">
         <div class="box shadow p-4">
             <div class=" row d-flex justify-content-start px-0 box-header with-border">
@@ -119,7 +120,14 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/bootstrap.validate.js"></script>
+    @if (TempData["Mensagem"] != null)
+    {
+        <script>
+                toastr.success("@TempData["Mensagem"]","ALAYPonto");
+        </script>
+    }
 }
+
 <script>
     function showModal(Id, Nome) {
         $('#lblNome').text(Nome)

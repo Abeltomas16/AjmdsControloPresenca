@@ -1,54 +1,61 @@
 ﻿@model AfastamentoAddEditVM
-<h2>Cadastrar Afastamento</h2>
-<form method="POST">
 
-    <div class="form-row">
-        <div class="form-group form-row col-12">
-            @Html.LabelFor(f => f.FuncionarioId, "Funcionário")
-            @Html.DropDownListFor(f => f.FuncionarioId,
-                                  new SelectList(ViewBag.Funcionarios, "Id", "Nome"),
-                                  "Selecione um funcionário...",
-                                  new { @class = "form-control" }
-            )
-            <small>@Html.ValidationMessageFor(g => g.FuncionarioId, null, new { @class = "text-danger" })</small>
-        </div>
-    </div>
+@{
+    ViewBag.Title = "Cadastrar Afastamento";
+}
 
-    <div class="form-row">
-        <div class="form-group form-row col-12">
-            @Html.LabelFor(f => f.SituacaoId, "Situação")
-            @Html.DropDownListFor(f => f.SituacaoId,
-                                  new SelectList(ViewBag.Situacao, "Id", "Descricao"),
-                                  "Selecione uma situação...",
-                                  new { @class = "form-control" }
-            )
-            <small>@Html.ValidationMessageFor(g => g.SituacaoId, null, new { @class = "text-danger" })</small>
-        </div>
-    </div>
+<div class="p-4">
 
+    <h2 class="mb-5 text-muted">@ViewBag.Title</h2>
+    <form method="POST">
 
-    <div class="form-row">
-        <div class="form-group col-md-3">
-            @Html.LabelFor(t => t.DataAfastamento, "Data afastamento")
-            @Html.TextBoxFor(n => n.DataAfastamento, new { @class = "form-control", @type = "Date" })
-            <small>  @Html.ValidationMessageFor(n => n.DataAfastamento, null, new { @class = "text-danger" })</small>
+        <div class="form-row">
+            <div class="form-group form-row col-12">
+                @Html.LabelFor(f => f.FuncionarioId, "Funcionário")
+                @Html.DropDownListFor(f => f.FuncionarioId,
+                                      new SelectList(ViewBag.Funcionarios, "Id", "Nome"),
+                                      "Selecione um funcionário...",
+                                      new { @class = "form-control" }
+                )
+                <small>@Html.ValidationMessageFor(g => g.FuncionarioId, null, new { @class = "text-danger" })</small>
+            </div>
         </div>
 
-        <div class="form-group col-md-3">
-            @Html.LabelFor(t => t.DataTermino, "Data término")
-            @Html.TextBoxFor(n => n.DataTermino, new { @class = "form-control", @type = "Date" })
-            <small>  @Html.ValidationMessageFor(n => n.DataTermino, null, new { @class = "text-danger" })</small>
+        <div class="form-row">
+            <div class="form-group form-row col-12">
+                @Html.LabelFor(f => f.SituacaoId, "Situação")
+                @Html.DropDownListFor(f => f.SituacaoId,
+                                      new SelectList(ViewBag.Situacao, "Id", "Descricao"),
+                                      "Selecione uma situação...",
+                                      new { @class = "form-control" }
+                )
+                <small>@Html.ValidationMessageFor(g => g.SituacaoId, null, new { @class = "text-danger" })</small>
+            </div>
         </div>
 
-    </div>
 
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                @Html.LabelFor(t => t.DataAfastamento, "Data afastamento")
+                @Html.TextBoxFor(n => n.DataAfastamento, new { @class = "form-control", @type = "Date" })
+                <small>  @Html.ValidationMessageFor(n => n.DataAfastamento, null, new { @class = "text-danger" })</small>
+            </div>
 
-    <div class="form-row">
-        <div class="form-group">
-            @Html.CheckBoxFor(model => model.Apurado, new { @class = "" })
-            @Html.LabelFor(model => model.Apurado, "Afastamento remunerável?")
+            <div class="form-group col-md-3">
+                @Html.LabelFor(t => t.DataTermino, "Data término")
+                @Html.TextBoxFor(n => n.DataTermino, new { @class = "form-control", @type = "Date" })
+                <small>  @Html.ValidationMessageFor(n => n.DataTermino, null, new { @class = "text-danger" })</small>
+            </div>
+
         </div>
-    </div>
+
+
+        <div class="form-row">
+            <div class="form-group">
+                @Html.CheckBoxFor(model => model.Apurado, new { @class = "" })
+                @Html.LabelFor(model => model.Apurado, "Afastamento remunerável?")
+            </div>
+        </div>
 
 
         <div class="form-row">
@@ -64,9 +71,10 @@
             <input type="submit" class="btn btn-primary" value="Salvar" />
             <a href="@Url.Action("Index")" class="btn btn-outline-info">Cancelar</a>
         </div>
-</form>
-@section script{
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-    <script src="~/Scripts/bootstrap.validate.js"></script>
-}
+    </form>
+    </div>
+    @section script{
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+        <script src="~/Scripts/bootstrap.validate.js"></script>
+    }

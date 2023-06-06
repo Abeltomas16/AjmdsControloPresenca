@@ -61,6 +61,7 @@ namespace AjmdsControloPresenca.UI.Controllers
                 }
 
                 afastamentoRepositoryEF.Add(afastamento_);
+                TempData["Mensagem"] = "Afastamento cadastrado com sucesso";
                 return RedirectToAction("Index");
             }
             catch (DbEntityValidationException ex)
@@ -108,6 +109,7 @@ namespace AjmdsControloPresenca.UI.Controllers
             {
                 if (!ModelState.IsValid) return View(Entity);
                 afastamentoRepositoryEF.Alter(Entity.ToAfastamento());
+                TempData["Mensagem"] = "Afastamento editado com sucesso";
                 return RedirectToAction("Index");
             }
             catch (DbEntityValidationException ex)

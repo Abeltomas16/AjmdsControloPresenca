@@ -53,8 +53,8 @@ namespace AjmdsControloPresenca.UI.Controllers
                     }
                 }
                 TempData["Mensagem"] = err.ToString();
+                return View(Entity);
             }
-            return RedirectToAction("Index");
         }
         [HttpGet]
         public ActionResult Edit(short? Id)
@@ -87,6 +87,7 @@ namespace AjmdsControloPresenca.UI.Controllers
                 if (!ModelState.IsValid) return View(Entity);
                 departamentoRepository.Alter(Entity.ToDepartamento());
                 TempData["Mensagem"] = "Departamento editado com sucesso!";
+                ViewBag.Mensagem = "Mensagem de sucesso!";
                 return RedirectToAction("Index");
             }
             catch (DbEntityValidationException ex)
@@ -100,8 +101,8 @@ namespace AjmdsControloPresenca.UI.Controllers
                     }
                 }
                 TempData["Mensagem"] = err.ToString();
+                return View(Entity);
             }
-            return RedirectToAction("Index");
         }
         [HttpGet]
         public ActionResult Delete(short? Id)
