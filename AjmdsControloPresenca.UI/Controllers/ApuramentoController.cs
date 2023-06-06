@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Text;
 using System.Web.Mvc;
 
 namespace AjmdsControloPresenca.UI.Controllers
@@ -61,14 +62,15 @@ namespace AjmdsControloPresenca.UI.Controllers
             }
             catch (DbEntityValidationException ex)
             {
+                StringBuilder err = new StringBuilder();
                 foreach (var eve in ex.EntityValidationErrors)
                 {
-                    Console.WriteLine("Entity do tipo \"{0}\" in state \"{1}\" causou erro:", eve.Entry.Entity.GetType().Name, eve.ValidationErrors);
                     foreach (var item in eve.ValidationErrors)
                     {
-                        Console.WriteLine("- Propiedade: \"{0}\", Error: \"{1}\"", item.PropertyName, item.ErrorMessage);
+                        err.Append(item.ErrorMessage);
                     }
                 }
+                TempData["Mensagem"] = err.ToString();
                 return RedirectToAction("Index");
             }
         }
@@ -81,16 +83,17 @@ namespace AjmdsControloPresenca.UI.Controllers
             }
             catch (DbEntityValidationException ex)
             {
+                StringBuilder err = new StringBuilder();
                 foreach (var eve in ex.EntityValidationErrors)
                 {
-                    Console.WriteLine("Entity do tipo \"{0}\" in state \"{1}\" causou erro:", eve.Entry.Entity.GetType().Name, eve.ValidationErrors);
                     foreach (var item in eve.ValidationErrors)
                     {
-                        Console.WriteLine("- Propiedade: \"{0}\", Error: \"{1}\"", item.PropertyName, item.ErrorMessage);
+                        err.Append(item.ErrorMessage);
                     }
                 }
-                return RedirectToAction(nameof(Index), "Home");
+                TempData["Mensagem"] = err.ToString();
             }
+            return RedirectToAction(nameof(Index), "Home");
         }
         [HttpPost]
         public ActionResult Justificar(JustificarVM entity)
@@ -117,18 +120,20 @@ namespace AjmdsControloPresenca.UI.Controllers
 
                 presenca.Cadastro = PresencaAlter.Cadastro;
                 presencaRepository.Alter(presenca);
+                TempData["Mensagem"] = "Marcação editada com sucesso";
                 return RedirectToAction(nameof(Index), "Home");
             }
             catch (DbEntityValidationException ex)
             {
+                StringBuilder err = new StringBuilder();
                 foreach (var eve in ex.EntityValidationErrors)
                 {
-                    Console.WriteLine("Entity do tipo \"{0}\" in state \"{1}\" causou erro:", eve.Entry.Entity.GetType().Name, eve.ValidationErrors);
                     foreach (var item in eve.ValidationErrors)
                     {
-                        Console.WriteLine("- Propiedade: \"{0}\", Error: \"{1}\"", item.PropertyName, item.ErrorMessage);
+                       err.Append(item.ErrorMessage);
                     }
                 }
+                TempData["Mensagem"] = err.ToString();
                 return RedirectToAction(nameof(Index), "Home");
             }
         }
@@ -209,14 +214,15 @@ namespace AjmdsControloPresenca.UI.Controllers
             }
             catch (DbEntityValidationException ex)
             {
+                StringBuilder err = new StringBuilder();
                 foreach (var eve in ex.EntityValidationErrors)
                 {
-                    Console.WriteLine("Entity do tipo \"{0}\" in state \"{1}\" causou erro:", eve.Entry.Entity.GetType().Name, eve.ValidationErrors);
                     foreach (var item in eve.ValidationErrors)
                     {
-                        Console.WriteLine("- Propiedade: \"{0}\", Error: \"{1}\"", item.PropertyName, item.ErrorMessage);
+                        err.Append(item.ErrorMessage);
                     }
                 }
+                TempData["Mensagem"] = err.ToString();
                 return RedirectToAction("Index");
             }
         }

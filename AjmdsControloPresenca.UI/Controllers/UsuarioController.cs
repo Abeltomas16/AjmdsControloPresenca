@@ -4,6 +4,7 @@ using PagedList;
 using System;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Text;
 using System.Web.Mvc;
 
 namespace AjmdsControloPresenca.UI.Controllers
@@ -36,9 +37,25 @@ namespace AjmdsControloPresenca.UI.Controllers
         [HttpGet]
         public ActionResult Edit(short? Id)
         {
-            if (Id == null) return RedirectToAction("Index");
-            var user = usuarioRepository.ListarPorIdFunconario(Id.Value).ToUsuarioAddEdit();
-            return View(user);
+            try
+            {
+                if (Id == null) return RedirectToAction("Index");
+                var user = usuarioRepository.ListarPorIdFunconario(Id.Value).ToUsuarioAddEdit();
+                return View(user);
+            }
+            catch (DbEntityValidationException ex)
+            {
+                StringBuilder err = new StringBuilder();
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    foreach (var item in eve.ValidationErrors)
+                    {
+                        err.Append(item.ErrorMessage);
+                    }
+                }
+                TempData["Mensagem"] = err.ToString();
+            }
+            return RedirectToAction("Index");
         }
         [HttpPost]
         public ActionResult Edit(UsuarioAddEditVM Entity)
@@ -48,18 +65,20 @@ namespace AjmdsControloPresenca.UI.Controllers
                 if (!ModelState.IsValid) return View(Entity);
                 var user = Entity.ToUsuario();
                 usuarioRepository.Alter(user);
+                TempData["Mensagem"] = "Usuário editado com sucesso";
                 return RedirectToAction("Index");
             }
             catch (DbEntityValidationException ex)
             {
+                StringBuilder err = new StringBuilder();
                 foreach (var eve in ex.EntityValidationErrors)
                 {
-                    System.Console.WriteLine("Entity do tipo \"{0}\" in state \"{1}\" causou erro:", eve.Entry.Entity.GetType().Name, eve.ValidationErrors);
                     foreach (var item in eve.ValidationErrors)
                     {
-                        System.Console.WriteLine("- Propiedade: \"{0}\", Error: \"{1}\"", item.PropertyName, item.ErrorMessage);
+                        err.Append(item.ErrorMessage);
                     }
                 }
+                TempData["Mensagem"] = err.ToString();
             }
             return RedirectToAction("Index");
         }
@@ -79,18 +98,20 @@ namespace AjmdsControloPresenca.UI.Controllers
                 if (exists != null) ModelState.AddModelError("NomeFuncionario", "Funcionário já cadastrado");
 
                 usuarioRepository.Add(user);
+                TempData["Mensagem"] = "Usuário cadastrado com sucesso";
                 return RedirectToAction("Index");
             }
             catch (DbEntityValidationException ex)
             {
+                StringBuilder err = new StringBuilder();
                 foreach (var eve in ex.EntityValidationErrors)
                 {
-                    System.Console.WriteLine("Entity do tipo \"{0}\" in state \"{1}\" causou erro:", eve.Entry.Entity.GetType().Name, eve.ValidationErrors);
                     foreach (var item in eve.ValidationErrors)
                     {
-                        System.Console.WriteLine("- Propiedade: \"{0}\", Error: \"{1}\"", item.PropertyName, item.ErrorMessage);
+                        err.Append(item.ErrorMessage);
                     }
                 }
+                TempData["Mensagem"] = err.ToString();
             }
             return RedirectToAction("Index");
         }
@@ -112,8 +133,24 @@ namespace AjmdsControloPresenca.UI.Controllers
         [HttpGet]
         public ActionResult Delete(int? Id)
         {
-            if (Id == null) return RedirectToAction("Index");
-            usuarioRepository.Delete(usuarioRepository.ListarPorId(Id));
+            try
+            {
+                if (Id == null) return RedirectToAction("Index");
+                usuarioRepository.Delete(usuarioRepository.ListarPorId(Id));
+                return RedirectToAction("Index");
+            }
+            catch (DbEntityValidationException ex)
+            {
+                StringBuilder err = new StringBuilder();
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    foreach (var item in eve.ValidationErrors)
+                    {
+                        err.Append(item.ErrorMessage);
+                    }
+                }
+                TempData["Mensagem"] = err.ToString();
+            }
             return RedirectToAction("Index");
         }
     }

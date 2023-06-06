@@ -1,115 +1,123 @@
 ﻿
 @model FuncionarioAddEditVM
-<h2>Editar Funcionário</h2>
-<form method="POST">
 
-    <div class="form-row">
-        <div class="form-group col-md-4">
-            @Html.LabelFor(n => n.Nome, "Nome:")
-            @Html.TextBoxFor(n => n.Nome, new { @class = "form-control", @autofocus = "" })
-            <small>  @Html.ValidationMessageFor(n => n.Nome, null, new { @class = "text-danger" })</small>
-        </div>
-
-        <div class="form-group col-md-4">
-            @Html.LabelFor(s => s.SobreNome, "SobreNome:")
-            @Html.TextBoxFor(s => s.SobreNome, new { @class = "form-control" })
-            <small>  @Html.ValidationMessageFor(s => s.SobreNome, null, new { @class = "text-danger" })</small>
-        </div>
-
-        <div class="form-group col-md-4">
-            @Html.LabelFor(b => b.Bilhete, "Bilhete:")
-            @Html.TextBoxFor(b => b.Bilhete, new { @class = "form-control" })
-            <small>  @Html.ValidationMessageFor(b => b.Bilhete, null, new { @class = "text-danger" })</small>
-        </div>
-
-    </div>
-
-    <div class="form-row">
-
-        <div class="form-group col-md-3">
-            @Html.LabelFor(g => g.GeneroId, "Genero:")
-            @Html.DropDownListFor(g => g.GeneroId,
-                        new SelectList(ViewBag.Genero, "Id", "Descricao"),
-                        "Selecione...",
-                        new { @class = "form-control" }
-                        )
-            <small>  @Html.ValidationMessageFor(g => g.GeneroId, null, new { @class = "text-danger" })</small>
-        </div>
-
-        <div class="form-group col-md-3">
-            @Html.LabelFor(e => e.EstadoCivilId, "Estado Civil:")
-            @Html.DropDownListFor(e => e.EstadoCivilId,
-                                  new SelectList(ViewBag.EstadoCivil, "Id", "Descricao"),
-                                  "Selecione...",
-                                  new { @class = "form-control" }
-                                  )
-            <small>  @Html.ValidationMessageFor(e => e.EstadoCivilId, null, new { @class = "text-danger" })</small>
-        </div>
-
-        <div class="form-group col-md-3">
-            @Html.LabelFor(c => c.ContactoPrincipal, "Contacto Principal:")
-            @Html.TextBoxFor(c => c.ContactoPrincipal, new { @class = "form-control" })
-            <small>@Html.ValidationMessageFor(c => c.ContactoPrincipal, null, new { @class = "text-danger" })</small>
-        </div>
-
-        <div class="form-group col-md-3">
-            @Html.LabelFor(c => c.ContactoAuxiliar, "Contacto Auxiliar:")
-            @Html.TextBoxFor(c => c.ContactoAuxiliar, new { @class = "form-control", @Placeholder = "Telefone, Email, Fax" })
-            <small>@Html.ValidationMessageFor(c => c.ContactoAuxiliar, null, new { @class = "text-danger" })</small>
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            @Html.LabelFor(d => d.DepartamentoId, "Departamento:")
-            @Html.DropDownListFor(d => d.DepartamentoId,
-                                  new SelectList(ViewBag.Departamentos, "DepartamentoId", "Descricao"),
-                                  "Selecione...",
-                                  new { @class = "form-control" }
-                                  )
-
-            <small>@Html.ValidationMessageFor(d => d.DepartamentoId, null, new { @class = "text-danger" })</small>
-        </div>
-
-        <div class="form-group col-md-3">
-            @Html.LabelFor(c => c.CargoId, "Cargo:")
-            @Html.DropDownListFor(c => c.CargoId,
-                                  new SelectList(ViewBag.Cargos, "CargoId", "Descricao"),
-                                  "Selecione...",
-                                  new { @class = "form-control" }
-                                  )
-            <small>@Html.ValidationMessageFor(c => c.CargoId, null, new { @class = "text-danger" })</small>
-        </div>
-
-        <div class="form-group col-md-3">
-            @Html.LabelFor(s => s.SalarioLiquido, "Salário Liquido")
-            @Html.TextBoxFor(s => s.SalarioLiquido, new { @class = "form-control" })
-            <small>@Html.ValidationMessageFor(s => s.SalarioLiquido, null, new { @class = "text-danger" })</small>
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            @Html.LabelFor(o => o.Observacao, "Observação")
-            @Html.TextAreaFor(o => o.Observacao, new { @class = "form-control", rows = "5" })
-            <small>@Html.ValidationMessageFor(o => o.Observacao, null, new { @class = "text-danger" })</small>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="form-check">
-            @Html.CheckBoxFor(e => e.Estado, new { @class = "form-check-input" })
-            @Html.LabelFor(e => e.Estado, "Activo")
-        </div>
-    </div>
-
-    <div class="form-group">
-        <input type="submit" class="btn btn-primary" value="Salvar" />
-        <a href="@Url.Action("Index")" class="btn btn-outline-info">Cancelar</a>
-    </div>
-</form>
-@section script{
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-    <script src="~/Scripts/bootstrap.validate.js"></script>
+@{
+    ViewBag.Title = "Editar funcionário";
 }
+
+<div class="p-4">
+
+    <h2 class="mb-5 text-muted">@ViewBag.Title</h2>
+    <form method="POST">
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(n => n.Nome, "Nome:")
+                @Html.TextBoxFor(n => n.Nome, new { @class = "form-control", @autofocus = "" })
+                <small>  @Html.ValidationMessageFor(n => n.Nome, null, new { @class = "text-danger" })</small>
+            </div>
+
+            <div class="form-group col-md-4">
+                @Html.LabelFor(s => s.SobreNome, "SobreNome:")
+                @Html.TextBoxFor(s => s.SobreNome, new { @class = "form-control" })
+                <small>  @Html.ValidationMessageFor(s => s.SobreNome, null, new { @class = "text-danger" })</small>
+            </div>
+
+            <div class="form-group col-md-4">
+                @Html.LabelFor(b => b.Bilhete, "Bilhete:")
+                @Html.TextBoxFor(b => b.Bilhete, new { @class = "form-control" })
+                <small>  @Html.ValidationMessageFor(b => b.Bilhete, null, new { @class = "text-danger" })</small>
+            </div>
+
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group col-md-3">
+                @Html.LabelFor(g => g.GeneroId, "Genero:")
+                @Html.DropDownListFor(g => g.GeneroId,
+                            new SelectList(ViewBag.Genero, "Id", "Descricao"),
+                            "Selecione...",
+                            new { @class = "form-control" }
+                            )
+                <small>  @Html.ValidationMessageFor(g => g.GeneroId, null, new { @class = "text-danger" })</small>
+            </div>
+
+            <div class="form-group col-md-3">
+                @Html.LabelFor(e => e.EstadoCivilId, "Estado Civil:")
+                @Html.DropDownListFor(e => e.EstadoCivilId,
+                                      new SelectList(ViewBag.EstadoCivil, "Id", "Descricao"),
+                                      "Selecione...",
+                                      new { @class = "form-control" }
+                                      )
+                <small>  @Html.ValidationMessageFor(e => e.EstadoCivilId, null, new { @class = "text-danger" })</small>
+            </div>
+
+            <div class="form-group col-md-3">
+                @Html.LabelFor(c => c.ContactoPrincipal, "Contacto Principal:")
+                @Html.TextBoxFor(c => c.ContactoPrincipal, new { @class = "form-control" })
+                <small>@Html.ValidationMessageFor(c => c.ContactoPrincipal, null, new { @class = "text-danger" })</small>
+            </div>
+
+            <div class="form-group col-md-3">
+                @Html.LabelFor(c => c.ContactoAuxiliar, "Contacto Auxiliar:")
+                @Html.TextBoxFor(c => c.ContactoAuxiliar, new { @class = "form-control", @Placeholder = "Telefone, Email, Fax" })
+                <small>@Html.ValidationMessageFor(c => c.ContactoAuxiliar, null, new { @class = "text-danger" })</small>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(d => d.DepartamentoId, "Departamento:")
+                @Html.DropDownListFor(d => d.DepartamentoId,
+                                      new SelectList(ViewBag.Departamentos, "DepartamentoId", "Descricao"),
+                                      "Selecione...",
+                                      new { @class = "form-control" }
+                                      )
+
+                <small>@Html.ValidationMessageFor(d => d.DepartamentoId, null, new { @class = "text-danger" })</small>
+            </div>
+
+            <div class="form-group col-md-3">
+                @Html.LabelFor(c => c.CargoId, "Cargo:")
+                @Html.DropDownListFor(c => c.CargoId,
+                                      new SelectList(ViewBag.Cargos, "CargoId", "Descricao"),
+                                      "Selecione...",
+                                      new { @class = "form-control" }
+                                      )
+                <small>@Html.ValidationMessageFor(c => c.CargoId, null, new { @class = "text-danger" })</small>
+            </div>
+
+            <div class="form-group col-md-3">
+                @Html.LabelFor(s => s.SalarioLiquido, "Salário Liquido")
+                @Html.TextBoxFor(s => s.SalarioLiquido, new { @class = "form-control" })
+                <small>@Html.ValidationMessageFor(s => s.SalarioLiquido, null, new { @class = "text-danger" })</small>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(o => o.Observacao, "Observação")
+                @Html.TextAreaFor(o => o.Observacao, new { @class = "form-control", rows = "5" })
+                <small>@Html.ValidationMessageFor(o => o.Observacao, null, new { @class = "text-danger" })</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-check">
+                @Html.CheckBoxFor(e => e.Estado, new { @class = "form-check-input" })
+                @Html.LabelFor(e => e.Estado, "Activo")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Salvar" />
+            <a href="@Url.Action("Index")" class="btn btn-outline-info">Cancelar</a>
+        </div>
+    </form>
+    </div>
+    @section script{
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+        <script src="~/Scripts/bootstrap.validate.js"></script>
+    }

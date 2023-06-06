@@ -2,10 +2,8 @@
 using AjmdsControloPresenca.UI.Models.Departamento;
 using PagedList;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity.Validation;
-using System.Linq;
-using System.Web;
+using System.Text;
 using System.Web.Mvc;
 
 namespace AjmdsControloPresenca.UI.Controllers
@@ -41,40 +39,91 @@ namespace AjmdsControloPresenca.UI.Controllers
             {
                 if (!ModelState.IsValid) return View(Entity);
                 departamentoRepository.Add(Entity.ToDepartamento());
+                TempData["Mensagem"] = "Departamento cadastrado com sucesso!";
                 return RedirectToAction("Index");
             }
             catch (DbEntityValidationException ex)
             {
+                StringBuilder err = new StringBuilder();
                 foreach (var eve in ex.EntityValidationErrors)
                 {
-                    Console.WriteLine("Entity do tipo \"{0}\" in state \"{1}\" causou erro:", eve.Entry.Entity.GetType().Name, eve.ValidationErrors);
                     foreach (var item in eve.ValidationErrors)
                     {
-                        Console.WriteLine("- Propiedade: \"{0}\", Error: \"{1}\"", item.PropertyName, item.ErrorMessage);
+                        err.Append(item.ErrorMessage);
                     }
                 }
+                TempData["Mensagem"] = err.ToString();
             }
             return RedirectToAction("Index");
         }
         [HttpGet]
         public ActionResult Edit(short? Id)
         {
-            if (Id is null) return RedirectToAction("Index");
-            var departamento = departamentoRepository.ListarPorId(Id).ToDepartamentoVM();
-            return View(departamento);
+            try
+            {
+                if (Id is null) return RedirectToAction("Index");
+                var departamento = departamentoRepository.ListarPorId(Id).ToDepartamentoVM();
+                return View(departamento);
+            }
+            catch (DbEntityValidationException ex)
+            {
+                StringBuilder err = new StringBuilder();
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    foreach (var item in eve.ValidationErrors)
+                    {
+                        err.Append(item.ErrorMessage);
+                    }
+                }
+                TempData["Mensagem"] = err.ToString();
+            }
+            return RedirectToAction("Index");
         }
         [HttpPost]
         public ActionResult Edit(DepartamentoAddEditVM Entity)
         {
-            if (!ModelState.IsValid) return View(Entity);
-            departamentoRepository.Alter(Entity.ToDepartamento());
+            try
+            {
+                if (!ModelState.IsValid) return View(Entity);
+                departamentoRepository.Alter(Entity.ToDepartamento());
+                TempData["Mensagem"] = "Departamento editado com sucesso!";
+                return RedirectToAction("Index");
+            }
+            catch (DbEntityValidationException ex)
+            {
+                StringBuilder err = new StringBuilder();
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    foreach (var item in eve.ValidationErrors)
+                    {
+                        err.Append(item.ErrorMessage);
+                    }
+                }
+                TempData["Mensagem"] = err.ToString();
+            }
             return RedirectToAction("Index");
         }
         [HttpGet]
         public ActionResult Delete(short? Id)
         {
-            if (Id is null) return RedirectToAction("Index");
-            departamentoRepository.Delete(departamentoRepository.ListarPorId(Id));
+            try
+            {
+                if (Id is null) return RedirectToAction("Index");
+                departamentoRepository.Delete(departamentoRepository.ListarPorId(Id));
+                return RedirectToAction("Index");
+            }
+            catch (DbEntityValidationException ex)
+            {
+                StringBuilder err = new StringBuilder();
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    foreach (var item in eve.ValidationErrors)
+                    {
+                        err.Append(item.ErrorMessage);
+                    }
+                }
+                TempData["Mensagem"] = err.ToString();
+            }
             return RedirectToAction("Index");
         }
     }

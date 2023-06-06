@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -43,41 +44,92 @@ namespace AjmdsControloPresenca.UI.Controllers
             {
                 if (!ModelState.IsValid) return View(Entity);
                 repositoryEF.Add(Entity.ToFuncionarioTurno());
+                TempData["Mensagem"] = "Turno funcionário cadastrado com sucesso";
                 return RedirectToAction("Index");
             }
             catch (DbEntityValidationException ex)
             {
+                StringBuilder err = new StringBuilder();
                 foreach (var eve in ex.EntityValidationErrors)
                 {
-                    Console.WriteLine("Entity do tipo \"{0}\" in state \"{1}\" causou erro:", eve.Entry.Entity.GetType().Name, eve.ValidationErrors);
                     foreach (var item in eve.ValidationErrors)
                     {
-                        Console.WriteLine("- Propiedade: \"{0}\", Error: \"{1}\"", item.PropertyName, item.ErrorMessage);
+                        err.Append(item.ErrorMessage);
                     }
                 }
+                TempData["Mensagem"] = err.ToString();
             }
             return RedirectToAction("Index");
         }
         [HttpGet]
         public ActionResult Edit(int? Id)
         {
-            if (Id == null) return RedirectToAction("Index");
-            TurnoFuncAddEditVM turnof = repositoryEF.ListarPorId(Id.Value).ToFuncionarioTurnoVM();
-            PreencherSelects();
-            return View(turnof);
+            try
+            {
+                if (Id == null) return RedirectToAction("Index");
+                TurnoFuncAddEditVM turnof = repositoryEF.ListarPorId(Id.Value).ToFuncionarioTurnoVM();
+                PreencherSelects();
+                return View(turnof);
+            }
+            catch (DbEntityValidationException ex)
+            {
+                StringBuilder err = new StringBuilder();
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    foreach (var item in eve.ValidationErrors)
+                    {
+                        err.Append(item.ErrorMessage);
+                    }
+                }
+                TempData["Mensagem"] = err.ToString();
+            }
+            return RedirectToAction("Index");
         }
         [HttpPost]
         public ActionResult Edit(TurnoFuncAddEditVM Entity)
         {
-            if (!ModelState.IsValid) return View(Entity);
-            repositoryEF.Alter(Entity.ToFuncionarioTurno());
+            try
+            {
+                if (!ModelState.IsValid) return View(Entity);
+                repositoryEF.Alter(Entity.ToFuncionarioTurno());
+                TempData["Mensagem"] = "Turno funcionário editado com sucesso";
+                return RedirectToAction("Index");
+            }
+            catch (DbEntityValidationException ex)
+            {
+                StringBuilder err = new StringBuilder();
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    foreach (var item in eve.ValidationErrors)
+                    {
+                        err.Append(item.ErrorMessage);
+                    }
+                }
+                TempData["Mensagem"] = err.ToString();
+            }
             return RedirectToAction("Index");
         }
         [HttpGet]
         public ActionResult Delete(int? Id)
         {
-            if (Id == null) return RedirectToAction("Index");
-            repositoryEF.Delete(repositoryEF.ListarPorId(Id));
+            try
+            {
+                if (Id == null) return RedirectToAction("Index");
+                repositoryEF.Delete(repositoryEF.ListarPorId(Id));
+                return RedirectToAction("Index");
+            }
+            catch (DbEntityValidationException ex)
+            {
+                StringBuilder err = new StringBuilder();
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    foreach (var item in eve.ValidationErrors)
+                    {
+                        err.Append(item.ErrorMessage);
+                    }
+                }
+                TempData["Mensagem"] = err.ToString();
+            }
             return RedirectToAction("Index");
         }
         private void PreencherSelects()

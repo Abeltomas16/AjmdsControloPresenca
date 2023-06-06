@@ -3,6 +3,7 @@ using AjmdsControloPresenca.UI.Models.Cargo;
 using PagedList;
 using System;
 using System.Data.Entity.Validation;
+using System.Text;
 using System.Web.Mvc;
 
 namespace AjmdsControloPresenca.UI.Controllersa
@@ -43,38 +44,86 @@ namespace AjmdsControloPresenca.UI.Controllersa
             }
             catch (DbEntityValidationException ex)
             {
+                StringBuilder err = new StringBuilder();
                 foreach (var eve in ex.EntityValidationErrors)
                 {
-                    Console.WriteLine("Entity do tipo \"{0}\" in state \"{1}\" causou erro:", eve.Entry.Entity.GetType().Name, eve.ValidationErrors);
                     foreach (var item in eve.ValidationErrors)
                     {
-                        Console.WriteLine("- Propiedade: \"{0}\", Error: \"{1}\"", item.PropertyName, item.ErrorMessage);
+                        err.Append(item.ErrorMessage);
                     }
                 }
+                TempData["Mensagem"] = err.ToString();
             }
             return RedirectToAction("Index");
         }
         [HttpGet]
         public ActionResult Edit(short? Id)
         {
-            if (Id is null) return RedirectToAction("Index");
-            var cargo = cargoRepository.ListarPorId(Id).ToCargoVM();
-            return View(cargo);
+            try
+            {
+                if (Id is null) return RedirectToAction("Index");
+                var cargo = cargoRepository.ListarPorId(Id).ToCargoVM();
+                return View(cargo);
+            }
+            catch (DbEntityValidationException ex)
+            {
+                StringBuilder err = new StringBuilder();
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    foreach (var item in eve.ValidationErrors)
+                    {
+                        err.Append(item.ErrorMessage);
+                    }
+                }
+                TempData["Mensagem"] = err.ToString();
+            }
+            return RedirectToAction("Index");
         }
         [HttpPost]
         public ActionResult Edit(CargoIndexVM Entity)
         {
-            if (!ModelState.IsValid) return View(Entity);
-            cargoRepository.Alter(Entity.ToCargo());
-            TempData["Mensagem"] = "Cargo editado com sucesso!";
+            try
+            {
+                if (!ModelState.IsValid) return View(Entity);
+                cargoRepository.Alter(Entity.ToCargo());
+                TempData["Mensagem"] = "Cargo editado com sucesso!";
+                return RedirectToAction("Index");
+            }
+            catch (DbEntityValidationException ex)
+            {
+                StringBuilder err = new StringBuilder();
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    foreach (var item in eve.ValidationErrors)
+                    {
+                        err.Append(item.ErrorMessage);
+                    }
+                }
+                TempData["Mensagem"] = err.ToString();
+            }
             return RedirectToAction("Index");
         }
         [HttpGet]
         public ActionResult Delete(short? Id)
         {
-            if (Id is null) return RedirectToAction("Index");
-            cargoRepository.Delete(cargoRepository.ListarPorId(Id));
-            TempData["Mensagem"] = "Cargo apagado com sucesso!";
+            try
+            {
+                if (Id is null) return RedirectToAction("Index");
+                cargoRepository.Delete(cargoRepository.ListarPorId(Id));
+                return RedirectToAction("Index");
+            }
+            catch (DbEntityValidationException ex)
+            {
+                StringBuilder err = new StringBuilder();
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    foreach (var item in eve.ValidationErrors)
+                    {
+                        err.Append(item.ErrorMessage);
+                    }
+                }
+                TempData["Mensagem"] = err.ToString();
+            }
             return RedirectToAction("Index");
         }
     }
