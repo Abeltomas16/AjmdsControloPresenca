@@ -1,47 +1,71 @@
 ﻿@model PagedList.IPagedList<TurnoIndexVM>
+
 @{
     ViewBag.Title = "Turno";
 }
 
-<h2>@ViewBag.Title</h2>
-<a href="@Url.Action("Add")" class="btn btn-primary mt-4 mb-4 px-3">Cadastrar</a>
-<a href="@Url.Action("Index","TurnoFunc")" class="btn btn-dark mt-4 mb-4 px-3">Funcionário</a>
-<div class="table-responsive table-hover">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Entrada</th>
-                <th scope="col">Saida</th>
-                <th scope="col">Tolerância(M)</th>
-                <th scope="col">Estado</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (TurnoIndexVM turno in Model)
-            {
-                <tr id="turno-@turno.Id">
-                    <th scope="row">@turno.Id</th>
-                    <td>@turno.Descricao</td>
-                    <td>@turno.Entrada</td>
-                    <td>@turno.Saida</td>
-                    <td>@turno.TurnoToleranciaAtraso</td>
-                    <td>@turno.Estado</td>
-                    <td class="btn-group">
-                        <a class="btn btn-sm btn-outline-success"
-                           href="@Url.Action("Edit",new {id=turno.Id})"><i class="fas fa-edit"></i> Editar</a>
-                        <button class="btn btn-sm btn-outline-danger" onclick="showModal(@turno.Id,'@turno.Descricao')"><i class="fas fa-trash"></i> Excluir</button>
-                    </td>
-                </tr>
-            }
-            <tr class="bg-transparent">
-                <td colspan="2"><b>@Model.Count registros de @Model.TotalItemCount</b></td>
-            </tr>
-        </tbody>
-    </table>
+<div class="row">
+    <div class="col-12">
+        <div class="box shadow p-4">
+            <div class=" row d-flex justify-content-start px-0 box-header with-border">
+                <div class="col-6 text-start">
+                    <h3 class="page-title">@ViewBag.Title</h3>
+                </div>
+                <div class="col-6 text-end">
+                    <a href="@Url.Action("Add")" class="m-0 waves-effect waves-light btn btn-warning btn-large"><i class="fa fa-plus"></i> Novo</a>
+                </div>
+
+
+            </div>
+
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="bg-primary">
+                                <th scope="col">#</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Entrada</th>
+                                <th scope="col">Saida</th>
+                                <th scope="col">Tolerância(M)</th>
+                                <th scope="col">Estado</th>
+                                <th>Acções</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (TurnoIndexVM turno in Model)
+                            {
+                                <tr id="turno-@turno.Id">
+                                    <th scope="row">@turno.Id</th>
+                                    <td style="width:100%;">@turno.Descricao</td>
+                                    <td><span class="text-muted text-nowrap">@turno.Entrada</span></td>
+                                    <td><span class="text-muted text-nowrap">@turno.Saida</span></td>
+                                    <td><span class="text-muted">@turno.TurnoToleranciaAtraso</span></td>
+                                    <td><span class="badge badge-pill badge-success-light">@turno.Estado</span></td>
+
+                                    <td class="btn-group">
+                                        <a class="btn btn-sm btn-outline-success"
+                                           href="@Url.Action("Edit",new {id=turno.Id})"><i class="fas fa-edit"></i> Editar</a>
+                                        <button class="btn btn-sm btn-outline-danger" onclick="showModal(@turno.Id,'@turno.Descricao')"><i class="fas fa-trash"></i> Excluir</button>
+                                    </td>
+                                </tr>
+                                }
+                                <tr class="bg-transparent">
+                                    <td colspan="2"><b>@Model.Count registros de @Model.TotalItemCount</b></td>
+                                </tr>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+
+    </div>
 </div>
+<!-- /.row -->
+
 <!-- -->
 @{
     if (Model.TotalItemCount != Model.Count)
@@ -84,13 +108,13 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Excluir Funcionário</h5>
+                    <h5 class="modal-title">Excluir Turno</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Desejas excluir o funcionário <span id="lblNomeFuncionario"></span></p>
+                    <p>Desejas excluir o turno <span id="lblNomeFuncionario"></span></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -119,9 +143,9 @@
         var promisse = await fetch(link)
         if (promisse.status == 200) {
             document.querySelector('#turno-' + id).remove()
-            toastr.success('Turno Excluido com sucesso', 'AJMDS-PRESENCA')
+            toastr.success('Turno Excluido com sucesso', 'ALAYPonto')
         } else {
-            toastr.error('Falha ao exluir turno', 'AJMDS-PRESENCA')
+            toastr.error('Falha ao exluir turno', 'ALAYPonto')
         }
         $('#deleteModal').data('id', '0').modal('hide')
     })
