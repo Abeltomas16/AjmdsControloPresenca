@@ -7,15 +7,15 @@
     <div class="row">
         <div class="col-md-12">
 
-            <div class="container my-5">
+            <div class="container">
                 <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
                     <div class="col">
-                        <div class="card radius-10 border-start border-0 border-3 border-info">
+                        <div class="card  bg-danger radius-10 border-start border-0 border-3 border-info">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div>
-                                        <p class="mb-0 text-secondary">Total funcionários</p>
-                                        <h4 class="my-1 text-info">55</h4>
+                                        <p class="mb-0 text-light">Total funcionários</p>
+                                        <h4 class="my-1 text-dark">55</h4>
                                     </div>
                                     <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
                                         <i class="fa fa-shopping-cart"></i>
@@ -25,12 +25,12 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card radius-10 border-start border-0 border-3 border-danger">
+                        <div class="card  bg-success radius-10 border-start border-0 border-3 border-danger">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div>
-                                        <p class="mb-0 text-secondary">Total departamento</p>
-                                        <h4 class="my-1 text-danger">10</h4>
+                                        <p class="mb-0 text-light">Total departamento</p>
+                                        <h4 class="my-1 text-dark">10</h4>
                                     </div>
                                     <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto">
                                         <i class="fa fa-dollar"></i>
@@ -40,12 +40,12 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card radius-10 border-start border-0 border-3 border-success">
+                        <div class="card  bg-dark radius-10 border-start border-0 border-3 border-success">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div>
-                                        <p class="mb-0 text-secondary">Total cursos</p>
-                                        <h4 class="my-1 text-success">8</h4>
+                                        <p class="mb-0 text-light">Total cursos</p>
+                                        <h4 class="my-1 text-dark">8</h4>
                                     </div>
                                     <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
                                         <i class="fa fa-bar-chart"></i>
@@ -55,12 +55,12 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card radius-10 border-start border-0 border-3 border-warning">
+                        <div class="card  bg-warning radius-10 border-start border-0 border-3 border-warning">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div>
-                                        <p class="mb-0 text-secondary">Total mensagens</p>
-                                        <h4 class="my-1 text-warning">9</h4>
+                                        <p class="mb-0 text-light">Total mensagens</p>
+                                        <h4 class="my-1 text-dark">9</h4>
                                     </div>
                                     <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto">
                                         <i class="fa fa-users"></i>
@@ -81,9 +81,8 @@
             <div class="">
                 <div class="row">
                     <div class="d-flex align-items-center">
-                        <span class="ml-5">Gráfico:</span>
-                        <div class="col-6">
-                            <select id="ChartType" class="form-control mr-2">
+                        <div class="col-6 ml-2 pr-0">
+                            <select id="ChartType" class="form-control m-0">
                                 <option selected>bar</option>
                                 <option>line</option>
                                 <option>pie</option>
@@ -91,14 +90,14 @@
                                 <option>polarArea</option>
                             </select>
                         </div>
-                        <div class="">
-                            <button class="btn bt-lg btn-primary" value="Mostrar" id="ID">Teste</button>
+                        <div class="col-md-6">
+                            <button class="btn w-50 bt-lg btn-primary" value="Mostrar" id="ID">Mostrar</button>
                         </div>
                     </div>
                 </div>
                 @*Grafico*@
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 mt-4">
                         <div id="ChartView">
                             <canvas id="myChart"></canvas>
                         </div>
@@ -110,7 +109,7 @@
             </div>
         </div>
         @*container dos pontuais*@
-    <div class="col-md-4 bg-white-70">
+    <div class="col-md-4">
         <div class="row">
             <div class="d-flex align-items-center">
                 <span class="mr-2">Trabalhadores pontuais:</span>
